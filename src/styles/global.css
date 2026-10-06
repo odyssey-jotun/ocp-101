@@ -126,3 +126,8 @@
   .fold[open] .chev { transform: rotate(45deg); color: var(--primary); border-color: color-mix(in oklch, var(--primary) 40%, transparent); }
   .fold > summary:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 18px; }
 }
+
+@layer utilities {
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}

@@ -183,12 +183,18 @@ export const levels = [
 
 export const materials = [
   { title: 'The course workspace', text: 'A Google Doc with one tab per assignment. Every video link, the club list, research notes, and the grades log live there.', href: WORKSPACE },
-  { title: 'Michael T. Motley, Overcoming Your Fear of Public Speaking', text: 'Assigned chapters cover the difference between a communication orientation and a performance orientation.' },
-  { title: 'Rory Sutherland, “Life Lessons from an Ad Man”', text: 'TED, 2009. The talk you break down for the speech analysis.', href: 'https://www.ted.com/talks/rory_sutherland_life_lessons_from_an_ad_man' },
-  { title: 'A phone tripod with a remote', text: 'Order it yourself from the link in Marc’s October 5 email. It extends to 72 inches, which puts the camera at eye level when you stand.', href: 'https://www.amazon.com/dp/B0CNGHR7PK' },
+  { way: 0, title: 'Michael T. Motley, Overcoming Your Fear of Public Speaking', text: 'Assigned chapters cover the difference between a communication orientation and a performance orientation.' },
+  { way: 0, title: 'Rory Sutherland, “Life Lessons from an Ad Man”', text: 'TED, 2009. The talk you break down for the speech analysis.', href: 'https://www.ted.com/talks/rory_sutherland_life_lessons_from_an_ad_man' },
+  { way: 0, title: 'A phone tripod with a remote', text: 'Order it yourself from the link in Marc’s October 5 email. It extends to 72 inches, which puts the camera at eye level when you stand.', href: 'https://www.amazon.com/dp/B0CNGHR7PK' },
   { title: 'Earbuds and a quiet place', text: 'For every session. Your car counts.' },
   { title: 'Zoom, Claude or ChatGPT, and LinkedIn', text: 'Zoom uses the standing link from the calendar invite. You already have both AI accounts for research.' },
 ];
 export const recommended = 'Recommended, not required: Dale Carnegie, How to Win Friends and Influence People, for meeting new people and building relationships.';
 
 export const PRE_ASSESSMENT = 'https://docs.google.com/forms/d/e/1FAIpQLSf5RNdW8hYaeGHCpfQoXLWXQs-32zYo2DPG3W1-1y-8kp7cwA/viewform';
+
+export const ways = [
+  { slug: 'audience', title: 'In front of an audience', short: 'Plan and deliver a presentation with a complete macro structure.', rubric: 'speech' },
+  { slug: 'one-on-one', title: 'One on one', short: 'Network and interview with a routine you can repeat.', rubric: 'email' },
+  { slug: 'online', title: 'Online', short: 'Rebuild your LinkedIn and publish a short video portfolio.', rubric: 'linkedin' },
+];

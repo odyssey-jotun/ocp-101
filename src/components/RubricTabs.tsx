@@ -30,6 +30,7 @@ export default function RubricTabs({ rubrics }: { rubrics: Rubric[] }) {
   const r = rubrics.find((x) => x.key === active)!;
   return (
     <div>
+      {rubrics.length > 1 && (
       <div role="tablist" aria-label="Rubrics" className="inline-flex gap-1 rounded-full border bg-card p-1">
         {rubrics.map((x) => (
           <button
@@ -46,7 +47,8 @@ export default function RubricTabs({ rubrics }: { rubrics: Rubric[] }) {
           </button>
         ))}
       </div>
-      <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">{r.intro}</p>
+      )}
+      <p className={cn("max-w-2xl leading-relaxed text-muted-foreground", rubrics.length > 1 && "mt-5")}>{r.intro}</p>
 
       {/* Desktop: the full grid */}
       <div className="mt-6 hidden overflow-hidden rounded-[18px] border bg-card lg:block">
