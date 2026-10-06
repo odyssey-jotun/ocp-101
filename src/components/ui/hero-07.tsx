@@ -33,10 +33,10 @@ const variantStyles = {
     grid: 'gap-10',
   },
   compact: {
-    copy: 'pb-14 pt-8 sm:pb-20 sm:pt-10 lg:pb-24',
+    copy: 'pb-8 pt-8 sm:pb-10 sm:pt-12',
     tagline: 'text-sm',
-    title: 'text-2xl sm:text-3xl md:text-4xl',
-    description: 'text-sm',
+    title: 'text-4xl sm:text-5xl md:text-6xl',
+    description: 'text-base sm:text-lg',
     header: 'gap-4 sm:gap-5',
     grid: 'gap-8',
   },
@@ -175,7 +175,7 @@ export function Hero07({
     <section className="bg-background relative isolate w-full overflow-hidden">
       <motion.div
         className={cn(
-          'relative z-10 mx-auto grid max-w-7xl grid-cols-1 px-6 lg:grid-cols-12',
+          'relative z-10 mx-auto grid max-w-[72rem] grid-cols-1 px-6 lg:grid-cols-12',
           vs.copy,
           vs.grid,
         )}
@@ -204,7 +204,7 @@ export function Hero07({
         </Reveal>
       </motion.div>
 
-      {children && <div className="relative z-10 mx-auto max-w-7xl px-6 pb-10">{children}</div>}
+      {children && <div className="relative z-10 mx-auto max-w-[72rem] px-6 pb-10">{children}</div>}
 
       <Reveal active={animate} variants={mediaItem} className="w-full">
         {mediaElement}
