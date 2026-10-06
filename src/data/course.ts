@@ -20,6 +20,7 @@ export const outcomes = [
       'Under each main point, give an example that resonates with your listeners and a listener relevance link that ties the point to their own lives.',
       'Connect every part with a clear transition: from the introduction into the first main point, between each main point, and into the conclusion.',
       'Close with all three parts of a conclusion: restate the thesis, summarize the main points, and end on a clincher.',
+      'Develop appropriate slides that support your listeners’ understanding.',
       'Create connection with control of voice and body: steady pace, few filler words, eye contact with the camera, purposeful gestures, no fidgeting, and deliberate use of space.',
     ],
   },
