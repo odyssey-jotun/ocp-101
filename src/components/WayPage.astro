@@ -21,6 +21,7 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
       <span class="text-primary">0{i + 1}</span> {way.title}
     </h1>
     <p class="lede mt-4">{outcome.title}</p>
+    <div class="mt-10"><slot name="about" /></div>
   </section>
 
   <section class="section !pt-12">
@@ -38,6 +39,8 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
       </div>
     </div>
   </section>
+
+  <slot name="steps" />
 
   <section class="section">
     <div class="wrap">

@@ -1,4 +1,96 @@
 ---
+// Way 1: building presence and connection in front of an audience.
+// Skills, assignments and the speech rubric come from src/data/course.ts
+// through WayPage; the copy and steps on this page live here.
 import WayPage from '../../components/WayPage.astro';
+
+const intro = [
+  { part: 'Icebreaker', does: 'Grabs attention in a way tied to the topic.', line: 'Picture this: you spend six hours on a cover letter, and software decides in seconds that no person will read it.' },
+  { part: 'Listener relevance link', does: 'Tells this audience how the topic affects them.', line: 'Every one of you will apply for a job where software reads your resume first.' },
+  { part: 'Speaker credibility', does: 'Gives a specific reason to trust you.', line: 'I spent the last month reading the research and testing the tools myself.' },
+  { part: 'Thesis statement', does: 'States the central idea in one sentence.', line: 'AI screening rewards candidates who write for both the software and the person.' },
+  { part: 'Preview', does: 'Names each main point in order.', line: 'First, how the screening works. Second, what it misses. Third, how to write for both.' },
+];
+const body = [
+  'State the point in one sentence.',
+  'Support it with cited research, said out loud by author, outlet, and year.',
+  'Give an example that resonates with this audience.',
+  'Add a listener relevance link that ties the point to their own lives.',
+];
+const conclusion = [
+  { part: 'Restated thesis', does: 'Says the central idea again, in fresh words.', line: 'Write for the software, but never forget a person reads it next.' },
+  { part: 'Summary of main points', does: 'Reviews each point briefly.', line: 'We covered how screening works, what it misses, and how to write for both.' },
+  { part: 'Clincher', does: 'Leaves a memorable last line, often tied back to the icebreaker.', line: 'Those six hours are worth it, as long as the software lets a person see them.' },
+];
+const sequence = [
+  ['Attention', 'Open with something that makes them care. This is your icebreaker.'],
+  ['Need', 'Show the problem and who it affects.'],
+  ['Satisfaction', 'Present your solution and show it is practical.'],
+  ['Visualization', 'Help them picture life with the solution, or without it.'],
+  ['Action', 'Tell them exactly what to do next.'],
+];
 ---
-<WayPage i={0} />
+<WayPage i={0}>
+  <div slot="about" class="grid gap-6 rounded-[28px] bg-foreground px-6 py-10 text-background sm:px-10 lg:grid-cols-[1.2fr_1fr]">
+    <p class="font-serif text-3xl leading-[1.12] tracking-tight text-balance sm:text-4xl">
+      In front of an audience, connection means your listeners follow you easily and feel talked with, not at.
+    </p>
+    <div class="grid content-start gap-3 leading-relaxed text-background/70">
+      <p>That comes from structure first and delivery second. Polish and flair take years. A clear structure is something you can use from your very next presentation.</p>
+      <p>Build the body first, then wrap the introduction and conclusion around it.</p>
+    </div>
+  </div>
+
+  <section slot="steps" class="section">
+    <div class="wrap">
+      <h2 class="h-section">The macro structure</h2>
+      <p class="lede">Every speech in this course follows these parts, in this order. The sample lines all come from one practice topic: AI resume screening.</p>
+
+      <h3 class="h-sub mt-12">Introduction: five parts</h3>
+      <ol class="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        {intro.map((p, k) => (
+          <li class="rounded-[18px] border bg-card p-5">
+            <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
+            <p class="mt-2 font-semibold">{p.part}</p>
+            <p class="mt-1 text-sm text-muted-foreground">{p.does}</p>
+            <p class="mt-3 border-l-2 border-primary/40 pl-3 text-sm italic leading-relaxed">“{p.line}”</p>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-4 text-sm text-muted-foreground">Never open with the title of your speech.</p>
+
+      <h3 class="h-sub">Body: two or three main points</h3>
+      <p class="text-muted-foreground">Under each main point:</p>
+      <ol class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {body.map((b, k) => (
+          <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">{k + 1}</span><p class="mt-2 leading-snug">{b}</p></li>
+        ))}
+      </ol>
+
+      <h3 class="h-sub">Transitions</h3>
+      <p class="max-w-2xl leading-relaxed text-muted-foreground">Use one at every handoff: from the introduction into the first point, between each main point, and into the conclusion. A good transition closes the last point and opens the next.</p>
+      <p class="mt-3 max-w-2xl border-l-2 border-primary/40 pl-3 italic">“Now that we know how the screening works, let’s look at what it misses.”</p>
+
+      <h3 class="h-sub">Conclusion: three parts</h3>
+      <ol class="mt-4 grid gap-3 md:grid-cols-3">
+        {conclusion.map((p, k) => (
+          <li class="rounded-[18px] border bg-card p-5">
+            <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
+            <p class="mt-2 font-semibold">{p.part}</p>
+            <p class="mt-1 text-sm text-muted-foreground">{p.does}</p>
+            <p class="mt-3 border-l-2 border-primary/40 pl-3 text-sm italic leading-relaxed">“{p.line}”</p>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-4 text-sm text-muted-foreground">Never end on “So yeah, that’s it” or “Any questions?”</p>
+
+      <h3 class="h-sub">Persuasive speeches: Monroe’s Motivated Sequence</h3>
+      <p class="max-w-2xl leading-relaxed text-muted-foreground">When a persuasive speech argues for a policy or an action, its main points follow these five steps. When it only asks listeners to agree with an idea or a value, pick whatever pattern fits the claim. The introduction and conclusion stay the same.</p>
+      <ol class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {sequence.map(([name, text], k) => (
+          <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">{k + 1}</span><p class="mt-2 font-semibold">{name}</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">{text}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</WayPage>

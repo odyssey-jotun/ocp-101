@@ -1,4 +1,57 @@
 ---
+// Way 3: building presence and connection online.
+// Skills, assignments and the LinkedIn rubric come from src/data/course.ts
+// through WayPage; the copy and steps on this page live here.
 import WayPage from '../../components/WayPage.astro';
+import { LINKEDIN_TAB } from '../../data/course';
+
+const steps = [
+  ['Fill out the worksheet', 'Your LinkedIn worksheet in the workspace collects everything the profile needs, before we change a thing.'],
+  ['Rebuild the profile', 'Photo and banner, headline, About, experience and projects, skills, and Featured, built around one area of expertise.'],
+  ['Film your speeches for reuse', 'Every speech you record becomes content, so it is filmed to be cut up later.'],
+  ['Publish the portfolio', 'Short videos of you explaining what you know, pinned to Featured.'],
+];
+const filming = [
+  'Phone on the tripod, camera at eye level.',
+  'Stand in the center of the frame, so the footage crops cleanly into vertical video.',
+  'Leave room above your head and below your hands.',
+  'Pause for a beat between main points. Each main point can become its own video, and each subpoint its own short.',
+];
 ---
-<WayPage i={2} />
+<WayPage i={2}>
+  <div slot="about" class="grid gap-6 rounded-[28px] bg-foreground px-6 py-10 text-background sm:px-10 lg:grid-cols-[1.2fr_1fr]">
+    <p class="font-serif text-3xl leading-[1.12] tracking-tight text-balance sm:text-4xl">
+      Online, connection means a recruiter sees you talking about something you care about before they ever meet you.
+    </p>
+    <div class="grid content-start gap-3 leading-relaxed text-background/70">
+      <p>Most profiles are a list of bullet points. Yours will show a person with something specific to say, which makes a stranger feel they already know you a little.</p>
+      <p>The speeches you give in this course become that content.</p>
+    </div>
+  </div>
+
+  <section slot="steps" class="section">
+    <div class="wrap">
+      <h2 class="h-section">The steps</h2>
+      <ol class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {steps.map(([name, text], k) => (
+          <li class="rounded-[18px] border bg-card p-5">
+            <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
+            <p class="mt-2 font-semibold">{name}</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{text}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-4 text-sm text-muted-foreground">Start with the <a class="inline" href={LINKEDIN_TAB} target="_blank" rel="noreferrer">LinkedIn worksheet</a>, due Monday, October 12.</p>
+
+      <h3 class="h-sub">Filming speeches for LinkedIn</h3>
+      <ul class="mt-4 grid max-w-3xl gap-2">
+        {filming.map((f) => (
+          <li class="flex gap-3 rounded-xl bg-secondary/50 px-4 py-3 leading-relaxed">
+            <span aria-hidden="true" class="mt-1 grid size-5 shrink-0 place-items-center rounded-md border border-primary/40 text-xs text-primary">✓</span>
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</WayPage>

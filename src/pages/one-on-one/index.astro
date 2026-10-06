@@ -1,4 +1,98 @@
 ---
+// Way 2: building presence and connection one on one.
+// Skills, assignments and the email rubric come from src/data/course.ts
+// through WayPage; the copy and steps on this page live here.
 import WayPage from '../../components/WayPage.astro';
+
+const routine = [
+  ['Greet', 'Walk up, say hello, and give your name.', 'Hi, I’m Max.'],
+  ['Ask', 'Ask a question about them.', 'How did you end up in the fintech club?'],
+  ['Listen', 'Let them finish. Do not plan your next line while they talk.', ''],
+  ['Paraphrase', 'Say back what you heard.', 'So you joined for the competition, and stayed for the people.'],
+];
+const pitch = [
+  ['Who you are', 'I’m Max, a business student at SMU.'],
+  ['Your focus', 'I’m digging into how AI is changing financial decisions.'],
+  ['Your proof', 'This summer I built a model that matched weather data to restaurant sales.'],
+  ['Hand it back', 'What are you working on right now?'],
+];
+const listeners = [
+  ['A potential boss', 'Lead with your proof and what you can do for their team.', 'Ask what the team is working on, and what they look for in an intern.'],
+  ['A useful connection', 'Lead with your focus, and why their work interests you.', 'Ask about their path, and who else you should meet.'],
+  ['A classmate or peer', 'Lead with what you are curious about right now.', 'Ask what they are working on, and whether you could work on something together.'],
+];
+const answer = [
+  ['Thesis', 'Answer the question in one sentence.', 'I’m good at turning messy data into a decision someone can act on.'],
+  ['Preview', 'Say how many examples are coming.', 'Two examples come to mind.'],
+  ['Example one', 'Tell it, then say what it shows.', 'At my summer internship, I... That shows I can...'],
+  ['Example two', 'Tell it, then say what it shows.', 'For my weather and restaurant project, I... That shows I can...'],
+  ['Restate', 'Say the thesis again.', 'So that’s how I work: messy data in, clear decision out.'],
+  ['Stop', 'Stop talking. Let them ask the next question.', ''],
+];
 ---
-<WayPage i={1} />
+<WayPage i={1}>
+  <div slot="about" class="grid gap-6 rounded-[28px] bg-foreground px-6 py-10 text-background sm:px-10 lg:grid-cols-[1.2fr_1fr]">
+    <p class="font-serif text-3xl leading-[1.12] tracking-tight text-balance sm:text-4xl">
+      One on one, connection means the other person feels heard before they hear about you.
+    </p>
+    <div class="grid content-start gap-3 leading-relaxed text-background/70">
+      <p>You do not need to be charismatic. You need a routine you can repeat: open a conversation, say who you are in a minute, and answer hard questions with the same structure you use for speeches.</p>
+      <p>The three steps below build on each other, from meeting someone to interviewing with them.</p>
+    </div>
+  </div>
+
+  <section slot="steps" class="section">
+    <div class="wrap">
+      <h2 class="h-section">The steps</h2>
+
+      <h3 class="h-sub mt-10">1. Open a conversation: greet, ask, listen, paraphrase</h3>
+      <p class="max-w-2xl leading-relaxed text-muted-foreground">Do all four, in order, before you say anything about yourself.</p>
+      <ol class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {routine.map(([name, text, line], k) => (
+          <li class="rounded-[18px] border bg-card p-5">
+            <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
+            <p class="mt-2 font-semibold">{name}</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{text}</p>
+            {line && <p class="mt-3 border-l-2 border-primary/40 pl-3 text-sm italic">“{line}”</p>}
+          </li>
+        ))}
+      </ol>
+
+      <h3 class="h-sub">2. Say who you are: the 60-second elevator pitch</h3>
+      <p class="max-w-2xl leading-relaxed text-muted-foreground">Your pitch is your LinkedIn hook, said out loud. Use it when someone asks what you do.</p>
+      <ol class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {pitch.map(([name, line], k) => (
+          <li class="rounded-[18px] border bg-card p-5">
+            <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
+            <p class="mt-2 font-semibold">{name}</p>
+            <p class="mt-3 border-l-2 border-primary/40 pl-3 text-sm italic">“{line}”</p>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-6 font-semibold">Same four parts every time. Only the emphasis changes:</p>
+      <div class="mt-3 grid gap-3 md:grid-cols-3">
+        {listeners.map(([who, lead, ask]) => (
+          <div class="rounded-[18px] bg-secondary/60 p-5">
+            <p class="font-serif text-2xl leading-tight">{who}</p>
+            <p class="mt-2 text-sm leading-relaxed">{lead}</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{ask}</p>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="h-sub">3. Answer interview questions: modified macro structure</h3>
+      <p class="max-w-2xl leading-relaxed text-muted-foreground">An interview answer is a short speech you did not get to prepare. Use the same skeleton, shrunk down. Sample question: “Tell me about a time you solved a problem.”</p>
+      <ol class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {answer.map(([name, text, line], k) => (
+          <li class="rounded-[18px] border bg-card p-5">
+            <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
+            <p class="mt-2 font-semibold">{name}</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{text}</p>
+            {line && <p class="mt-3 border-l-2 border-primary/40 pl-3 text-sm italic">“{line}”</p>}
+          </li>
+        ))}
+      </ol>
+      <p class="mt-4 max-w-2xl text-sm text-muted-foreground">Pick your example before you start explaining it. Thinking of a better one halfway through and backing up to set it up is how answers fall apart.</p>
+    </div>
+  </section>
+</WayPage>
