@@ -17,7 +17,8 @@ export const outcomes = [
     points: [
       'Open with all five parts of an introduction: icebreaker, listener relevance link, speaker credibility, thesis statement, and preview of main points.',
       'Support each main point with examples and cited research, connected by clear transitions.',
-      'Deliver with control of voice and body: steady pace, few filler words, eye contact with the camera, purposeful gestures, no fidgeting, and deliberate use of space.',
+      'Close with all three parts of a conclusion: restate the thesis, summarize the main points, and end on a clincher.',
+      'Create connection with control of voice and body: steady pace, few filler words, eye contact with the camera, purposeful gestures, no fidgeting, and deliberate use of space.',
     ],
   },
   {
@@ -110,7 +111,7 @@ export const rubrics: Rubric[] = [
       { category: 'Introduction', levels: ['All five parts, in order: icebreaker, listener relevance link, speaker credibility, thesis, preview', 'Four of the five parts', 'Two or three of the five parts', 'One part or none; opens with “My speech is about”'] },
       { category: 'Organization', levels: ['Two or three main points, each with an example, and a transition between every point', 'Main points are clear; one example or transition is missing', 'Main points blur together; few transitions', 'No main points a listener could name afterward'] },
       { category: 'Research and citations', levels: ['Every source cited out loud by author, outlet, and year', 'Sources cited out loud, but some are missing the outlet or year', 'Research used, but sources are vague (“studies show”)', 'No research, or no sources named'] },
-      { category: 'Conclusion', levels: ['Restates the thesis, reviews each main point, ends on a clear closing line', 'Restates the thesis and points, but the ending trails off', 'Restates only the thesis or only the points', 'Speech just stops (“So yeah, that’s it”)'] },
+      { category: 'Conclusion', levels: ['All three parts: restates the thesis, summarizes each main point, ends on a clincher', 'Two of the three parts; usually the clincher is missing and the ending trails off', 'One of the three parts', 'Speech just stops (“So yeah, that’s it”)'] },
       { category: 'Vocal delivery', levels: ['One or fewer filler words per minute; steady pace; easy to hear', 'Two or three filler words per minute, or rushes in spots', 'Four or five filler words per minute, or hard to hear', 'Six or more filler words per minute'] },
       { category: 'Nonverbal delivery', levels: ['Eyes on the camera almost the whole time; stands tall; gestures match the words; no fidgeting', 'Mostly on camera, with one distracting habit', 'Reads notes often, or two or more distracting habits', 'Reads the whole time; constant fidgeting'] },
     ],
