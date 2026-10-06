@@ -1,8 +1,29 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import type { Rubric } from "@/data/course";
+import type { Rubric, RubricRow } from "@/data/course";
 
-const NAMES = ["Strong", "Solid", "Developing", "Beginning"];
+const NAMES = ["Strong", "Solid", "Developing", "Mostly missing"];
+const unused = (l: string) => l === "-";
+
+/** Rows in order, with a heading wherever the group changes. */
+function grouped(rows: RubricRow[]) {
+  const out: { group?: string; rows: RubricRow[] }[] = [];
+  for (const row of rows) {
+    const last = out[out.length - 1];
+    if (last && last.group === row.group) last.rows.push(row);
+    else out.push({ group: row.group, rows: [row] });
+  }
+  return out;
+}
+
+function Unused() {
+  return (
+    <span
+      aria-label="Score not used for this part"
+      className="block h-full min-h-10 rounded-lg bg-[repeating-linear-gradient(135deg,var(--muted)_0_6px,transparent_6px_12px)]"
+    />
+  );
+}
 
 export default function RubricTabs({ rubrics }: { rubrics: Rubric[] }) {
   const [active, setActive] = useState(rubrics[0].key);
@@ -41,32 +62,46 @@ export default function RubricTabs({ rubrics }: { rubrics: Rubric[] }) {
               ))}
             </tr>
           </thead>
-          <tbody>
-            {r.rows.map((row) => (
-              <tr key={row.category} className="border-b last:border-0 align-top">
-                <th scope="row" className="p-4 font-semibold">{row.category}</th>
-                {row.levels.map((l, i) => (
-                  <td key={i} className={cn("p-4 leading-relaxed", i === 0 ? "text-foreground" : "text-muted-foreground")}>{l}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
+          {grouped(r.rows).map((g, gi) => (
+            <tbody key={gi}>
+              {g.group && (
+                <tr className="border-b bg-accent/50">
+                  <th colSpan={5} scope="rowgroup" className="px-4 py-2.5 font-serif text-xl font-normal text-accent-foreground">{g.group}</th>
+                </tr>
+              )}
+              {g.rows.map((row) => (
+                <tr key={row.category} className="border-b align-top">
+                  <th scope="row" className="p-4 font-semibold">{row.category}</th>
+                  {row.levels.map((l, i) => (
+                    <td key={i} className={cn("p-4 leading-relaxed", i === 0 ? "text-foreground" : "text-muted-foreground")}>
+                      {unused(l) ? <Unused /> : l}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          ))}
         </table>
       </div>
 
       {/* Phones and tablets: one card per category */}
       <div className="mt-6 grid gap-4 lg:hidden">
-        {r.rows.map((row) => (
+        {grouped(r.rows).map((g, gi) => (
+          <div key={gi} className="grid gap-4">
+            {g.group && <h4 className="mt-4 font-serif text-2xl leading-none first:mt-0">{g.group}</h4>}
+            {g.rows.map((row) => (
           <div key={row.category} className="rounded-[18px] border bg-card p-5">
             <h4 className="font-semibold">{row.category}</h4>
             <ol className="mt-3 grid gap-3">
-              {row.levels.map((l, i) => (
+              {row.levels.map((l, i) => unused(l) ? null : (
                 <li key={i} className="flex gap-3 text-sm leading-relaxed">
                   <span className={cn("mt-0.5 inline-grid size-6 shrink-0 place-items-center rounded-full text-xs font-semibold", i === 0 ? "bg-primary text-primary-foreground" : "bg-foreground/8")}>{4 - i}</span>
                   <span className={i === 0 ? "" : "text-muted-foreground"}>{l}</span>
                 </li>
               ))}
             </ol>
+          </div>
+            ))}
           </div>
         ))}
       </div>

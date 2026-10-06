@@ -7,7 +7,7 @@ import Outcomes from '../components/Outcomes';
 import RubricTabs from '../components/RubricTabs';
 import {
   WORKSPACE, LINKEDIN_TAB, info, outcomes, assignments, ongoing, schedule,
-  rubrics, professionalism, levels, materials, recommended,
+  rubrics, professionalism, levels, materials, recommended, PRE_ASSESSMENT,
 } from '../data/course';
 
 const base = import.meta.env.BASE_URL;
@@ -53,7 +53,7 @@ const nav = [
     <section id="outcomes" class="section">
       <div class="wrap">
         <h2 class="h-section">By December 2, you will be able to</h2>
-        <p class="lede">Three outcomes, each measured against a starting benchmark, so you and your parents can compare where you began with where you finished.</p>
+        <p class="lede">All three outcomes build presence and connection: in front of an audience, one on one, and online. Each is measured against a starting benchmark, so you and your parents can compare where you began with where you finished.</p>
         <div class="mt-10">
           <Outcomes client:visible outcomes={outcomes} base={base} />
         </div>
@@ -148,8 +148,8 @@ const nav = [
     <section id="rubrics" class="section">
       <div class="wrap">
         <h2 class="h-section">How your work is scored</h2>
-        <p class="lede">There are no letter grades. Speeches, emails, and your LinkedIn profile are scored on a four-point scale, and you see every rubric before you start the work it measures.</p>
-        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <p class="lede">There are no letter grades. Speeches, emails, and your LinkedIn profile are scored from 4 to 0, and you see every rubric before you start the work it measures. A shaded cell means that score is not used for that part: some parts are right, partly right, or wrong, with no useful step in between.</p>
+        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-5">
           {levels.map((l) => (
             <div class="rounded-[18px] border bg-card p-4">
               <p class="font-serif text-4xl leading-none">{l.score}</p>
@@ -161,6 +161,16 @@ const nav = [
         <div class="mt-12">
           <RubricTabs client:visible rubrics={rubrics} />
           <p class="mt-4 text-sm text-muted-foreground">The LinkedIn rubric starts from the <a class="inline" href={LINKEDIN_TAB} target="_blank" rel="noreferrer">LinkedIn worksheet</a> in your workspace.</p>
+        </div>
+        <div class="mt-12 grid gap-8 rounded-[18px] border bg-card p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr]">
+          <div>
+            <h3 class="h-sub">Benchmarks</h3>
+            <p class="text-muted-foreground">Two surveys in the first week and again in the last week, so we can compare your scores. Your benchmark video and current LinkedIn profile are scored on the rubrics too.</p>
+          </div>
+          <ul class="grid content-start gap-2">
+            <li class="rounded-xl bg-secondary/50 px-4 py-3">McCroskey’s public speaking anxiety scale, a standard research instrument</li>
+            <li class="rounded-xl bg-secondary/50 px-4 py-3"><a class="inline" href={PRE_ASSESSMENT} target="_blank" rel="noreferrer">Marc’s public speaking pre-assessment</a></li>
+          </ul>
         </div>
         <div class="mt-12 grid gap-8 rounded-[18px] border bg-card p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr]">
           <div>
@@ -208,7 +218,7 @@ const nav = [
           <p>If I sense you are distracted, I will ask you directly what is going on. That can feel confrontational, and maybe it is. I would rather have one awkward moment than lose the quality of the session.</p>
 
           <h3 class="h-sub">Taking notes</h3>
-          <p>Take notes by hand, then photograph them and have ChatGPT or Claude turn them into text for the workspace. Typing straight into the Google Doc is allowed, but I strongly recommend paper.</p>
+          <p>Have notes from every session. They are your record that you paid attention, and they go in your workspace after each session. I strongly recommend taking them by hand, then photographing them and having ChatGPT or Claude turn them into text.</p>
           <div class="mt-6 grid overflow-hidden rounded-[18px] border bg-card sm:grid-cols-[14rem_1fr]">
             <img src={img('notes', 720)} srcset={`${img('notes', 720)} 720w, ${img('notes', 1200)} 1200w`} sizes="(min-width: 640px) 224px, 100vw" width="720" height="492" loading="lazy" decoding="async" alt="An open notebook with a pen resting on the page" class="h-48 w-full object-cover sm:h-full" />
             <div class="p-6 text-sm">
