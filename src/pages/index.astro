@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import { Hero07 } from '../components/ui/hero-07';
 import { HoverLink } from '../components/ui/hover-link';
 import { CTASection } from '../components/ui/cta-rectangle';
-import Outcomes from '../components/Outcomes';
 import RubricTabs from '../components/RubricTabs';
 import {
   WORKSPACE, LINKEDIN_TAB, info, outcomes, assignments, ongoing, schedule,
@@ -12,6 +11,11 @@ import {
 
 const base = import.meta.env.BASE_URL;
 const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
+const ways = [
+  { title: 'In front of an audience', text: 'Plan and deliver a presentation with a complete macro structure.' },
+  { title: 'One on one', text: 'Network and interview with a routine you can repeat.' },
+  { title: 'Online', text: 'Rebuild your LinkedIn and publish a short video portfolio.' },
+];
 const nav = [
   ['Outcomes', '#outcomes'],
   ['Assignments', '#assignments'],
@@ -39,35 +43,56 @@ const nav = [
       <Hero07
         client:load
         animation="subtle"
-        tagline="Fall 2026. Mondays and Wednesdays at noon, one on one, with Marc Gray."
-        title="Professional Communication and Presence"
-        description="Nine weeks, three speeches, a rebuilt LinkedIn, and a short video portfolio, all built on one structure you can use for the rest of your career."
-        landscapeImage={img('hero', 1600)}
-        landscapeSrcSet={`${img('hero', 960)} 960w, ${img('hero', 1600)} 1600w, ${img('hero', 2400)} 2400w`}
-        landscapeAlt="A young man explaining an idea to a small group around a table"
+        tagline="OCP 101, Fall 2026. Mondays and Wednesdays at noon, one on one, with Marc Gray."
+        title="Build your presence and connection."
+        description="That is the goal of this course. Over nine weeks, we will do it in three ways."
+        landscapeImage={img('mic', 1600)}
+        landscapeSrcSet={`${img('mic', 960)} 960w, ${img('mic', 1600)} 1600w, ${img('mic', 2400)} 2400w`}
+        landscapeAlt=""
         primaryCTA={{ ctaEnabled: true, text: 'Open your workspace', link: WORKSPACE, size: 'lg' }}
         secondaryCTA={{ ctaEnabled: true, text: 'See the schedule', link: '#schedule' }}
-      />
+      >
+        <ol class="grid gap-3 sm:grid-cols-3">
+          {ways.map((w, i) => (
+            <li>
+              <a href={`#outcome-${i + 1}`} class="group flex h-full flex-col rounded-[18px] border bg-card p-5 transition-colors hover:border-primary/40">
+                <span class="font-serif text-3xl leading-none text-primary">0{i + 1}</span>
+                <span class="mt-3 font-semibold">{w.title}</span>
+                <span class="mt-1 text-sm leading-relaxed text-muted-foreground">{w.text}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </Hero07>
     </div>
 
     <section id="outcomes" class="section">
       <div class="wrap">
         <h2 class="h-section">By December 2, you will be able to</h2>
-        <p class="lede">All three outcomes build presence and connection: in front of an audience, one on one, and online. Each is measured against a starting benchmark, so you and your parents can compare where you began with where you finished.</p>
-        <div class="mt-10">
-          <Outcomes client:visible outcomes={outcomes} base={base} />
-        </div>
-        <ol class="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+        <p class="lede">Each outcome is measured against a starting benchmark, so you and your parents can compare where you began with where you finished. Open one to see the skills inside it.</p>
+        <div class="mt-10 grid gap-3">
           {outcomes.map((o, i) => (
-            <li class="border-t border-foreground/15 pt-5">
-              <span class="font-serif text-3xl leading-none text-primary">0{i + 1}</span>
-              <h3 class="h-item mt-3">{o.title}</h3>
-              <ul class="grid gap-2.5 text-sm leading-relaxed text-muted-foreground">
-                {o.points.map((p) => <li class="flex gap-2.5"><span aria-hidden="true" class="mt-2 size-1.5 shrink-0 rounded-full bg-primary/60"></span><span>{p}</span></li>)}
-              </ul>
-            </li>
+            <details id={`outcome-${i + 1}`} class="fold group rounded-[18px] border bg-card" open={i === -1}>
+              <summary class="flex cursor-pointer items-start gap-4 p-5 sm:gap-6 sm:p-6">
+                <span class="font-serif text-3xl leading-none text-primary sm:text-4xl">0{i + 1}</span>
+                <span class="flex-1">
+                  <span class="block text-lg font-semibold leading-snug sm:text-xl">{o.title.split(': ')[0].replace(/\.$/, '')}</span>
+                  {o.title.includes(': ') && <span class="mt-1 block leading-snug text-muted-foreground">{o.title.split(': ')[1].replace(/^./, (c) => c.toUpperCase())}</span>}
+                  <span class="mt-1.5 block text-sm text-primary">{o.points.length} skills</span>
+                </span>
+                <span aria-hidden="true" class="chev mt-1 grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+              </summary>
+              <ol class="grid gap-3 border-t px-5 py-5 sm:px-6 sm:pl-[4.75rem]">
+                {o.points.map((pt, k) => (
+                  <li class="flex gap-3 leading-relaxed text-muted-foreground">
+                    <span class="mt-0.5 inline-grid size-6 shrink-0 place-items-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">{k + 1}</span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ol>
+            </details>
           ))}
-        </ol>
+        </div>
       </div>
     </section>
 
@@ -207,17 +232,34 @@ const nav = [
       <div class="wrap grid gap-12 lg:grid-cols-12">
         <div class="lg:col-span-4 lg:sticky lg:top-24 lg:self-start">
           <h2 class="h-section">How we work together</h2>
-          <p class="lede">The ground rules, from scheduling to swearing.</p>
+          <p class="lede">The ground rules, from scheduling to swearing. Open any one to read it.</p>
         </div>
-        <div class="prose-c lg:col-span-8">
-          <h3 class="h-sub">Attendance and rescheduling</h3>
+        <div class="grid gap-3 lg:col-span-8">
+          <details class="fold group rounded-[18px] border bg-card">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 sm:px-6">
+              <span class="font-serif text-2xl leading-tight">Attendance and rescheduling</span>
+              <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+            </summary>
+            <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>Sessions moved or canceled with less than 24 hours’ notice, and missed sessions, are billed in full. To reschedule, email Marc at least 24 hours ahead with two alternate times.</p>
-
-          <h3 class="h-sub">During sessions</h3>
+            </div>
+          </details>
+          <details class="fold group rounded-[18px] border bg-card">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 sm:px-6">
+              <span class="font-serif text-2xl leading-tight">During sessions</span>
+              <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+            </summary>
+            <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>The hour we meet is reserved for this work. No television, and no other assignments or side work while we are in session. Join from your laptop rather than your phone, sitting at a desk or table, not in bed. I hold myself to the same rules, and unless there is a real emergency, I will not answer texts or calls while we work.</p>
           <p>If I sense you are distracted, I will ask you directly what is going on. That can feel confrontational, and maybe it is. I would rather have one awkward moment than lose the quality of the session.</p>
-
-          <h3 class="h-sub">Taking notes</h3>
+            </div>
+          </details>
+          <details class="fold group rounded-[18px] border bg-card">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 sm:px-6">
+              <span class="font-serif text-2xl leading-tight">Taking notes</span>
+              <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+            </summary>
+            <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>Have notes from every session. They are your record that you paid attention, and they go in your workspace after each session. I strongly recommend taking them by hand, then photographing them and having ChatGPT or Claude turn them into text.</p>
           <div class="mt-6 grid overflow-hidden rounded-[18px] border bg-card sm:grid-cols-[14rem_1fr]">
             <img src={img('notes', 720)} srcset={`${img('notes', 720)} 720w, ${img('notes', 1200)} 1200w`} sizes="(min-width: 640px) 224px, 100vw" width="720" height="492" loading="lazy" decoding="async" alt="An open notebook with a pen resting on the page" class="h-48 w-full object-cover sm:h-full" />
@@ -227,28 +269,66 @@ const nav = [
               <p class="mt-3 text-xs">Mueller and Oppenheimer (2014), “The pen is mightier than the keyboard,” Psychological Science. Van der Weel and Van der Meer (2024), “Handwriting but not typewriting leads to widespread brain connectivity,” Frontiers in Psychology.</p>
             </div>
           </div>
-
-          <h3 class="h-sub">Language</h3>
+            </div>
+          </details>
+          <details class="fold group rounded-[18px] border bg-card">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 sm:px-6">
+              <span class="font-serif text-2xl leading-tight">Language</span>
+              <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+            </summary>
+            <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>This is a one-on-one class between two adults. A few damns and shits, even the occasional F-bomb, will not offend me, as long as neither of us is aggressive and the language never becomes a distraction.</p>
           <p>This policy is unconventional, and it is intentional. I find people are more honest when they swear. I want you to talk openly about this work without filtering it through professional language you may not have yet.</p>
-
-          <h3 class="h-sub">Feedback goes both ways</h3>
+            </div>
+          </details>
+          <details class="fold group rounded-[18px] border bg-card">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 sm:px-6">
+              <span class="font-serif text-2xl leading-tight">Feedback goes both ways</span>
+              <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+            </summary>
+            <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>If you cross a line professionally, I will tell you. If I cross one, I expect you to tell me. I can be intense, and I have been known to push students too hard and expect too much.</p>
           <blockquote class="my-6 border-l-2 border-primary pl-5 font-serif text-2xl leading-snug text-foreground sm:text-3xl">“Marc, I would like to give you some feedback.”</blockquote>
           <p>Start with those words, and I promise I will listen and be open to correction. You can always go to your parents instead, but I will not change my behavior until you tell me directly. Uncomfortable conversations like this one are part of what this course builds.</p>
           <p>We all make mistakes. You will have a lot of grace from me. Please give me some too.</p>
-
-          <h3 class="h-sub">Late work</h3>
+            </div>
+          </details>
+          <details class="fold group rounded-[18px] border bg-card">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 sm:px-6">
+              <span class="font-serif text-2xl leading-tight">Late work</span>
+              <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+            </summary>
+            <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>Work not submitted before a session is marked late on the professionalism check. The session goes ahead anyway, and the work is still due.</p>
-
-          <h3 class="h-sub">Weekly grades check</h3>
+            </div>
+          </details>
+          <details class="fold group rounded-[18px] border bg-card">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 sm:px-6">
+              <span class="font-serif text-2xl leading-tight">Weekly grades check</span>
+              <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+            </summary>
+            <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>Every Monday you share your current grades. This is an accountability step your family has paid for, and practice for talking with professors. If a grade slips, we write the email to that professor together.</p>
-
-          <h3 class="h-sub">Communication</h3>
+            </div>
+          </details>
+          <details class="fold group rounded-[18px] border bg-card">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 sm:px-6">
+              <span class="font-serif text-2xl leading-tight">Communication</span>
+              <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+            </summary>
+            <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>All course email goes to your SMU address. Every email you send in this course follows the five parts in the email rubric: greeting, rapport, context, clear deliverable, and sign-off.</p>
-
-          <h3 class="h-sub">Your input</h3>
+            </div>
+          </details>
+          <details class="fold group rounded-[18px] border bg-card">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 sm:px-6">
+              <span class="font-serif text-2xl leading-tight">Your input</span>
+              <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
+            </summary>
+            <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>This is your time. If an assignment feels pointless or a goal does not fit what you want, say so. The plan can change at my discretion, and I welcome your input, especially when a suggestion makes it more likely we meet the course’s learning outcomes. The three outcomes stay.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>

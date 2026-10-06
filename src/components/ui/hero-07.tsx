@@ -20,13 +20,14 @@ export interface Hero07Props {
   primaryCTA?: CtaProps
   secondaryCTA?: CtaProps
   variant?: 'standard' | 'compact'
+  children?: React.ReactNode
 }
 
 const variantStyles = {
   standard: {
-    copy: 'pb-20 pt-10 sm:pb-28 sm:pt-12 lg:pb-32',
+    copy: 'pb-12 pt-14 sm:pb-14 sm:pt-20 lg:pt-24',
     tagline: 'text-sm sm:text-base',
-    title: 'text-3xl sm:text-4xl md:text-5xl',
+    title: 'text-4xl sm:text-5xl md:text-6xl',
     description: 'text-sm sm:text-base',
     header: 'gap-6 sm:gap-8',
     grid: 'gap-10',
@@ -98,6 +99,7 @@ export function Hero07({
   primaryCTA,
   secondaryCTA,
   variant = 'standard',
+  children,
 }: Readonly<Hero07Props>) {
   const reduce = useReducedMotion()
   const animate = animation === 'subtle' && !reduce
@@ -148,13 +150,8 @@ export function Hero07({
   )
 
   const mediaElement = landscapeImage && (
-    <div className="relative mx-auto w-full max-w-[96rem] overflow-hidden px-3 pt-3 sm:px-4 sm:pt-4">
-      <div
-        className={cn(
-          'relative overflow-hidden rounded-t-[28px]',
-          'mask-b-from-80% mask-b-to-95%',
-        )}
-      >
+    <div className="relative mx-auto w-full max-w-7xl overflow-hidden px-6">
+      <div className="relative overflow-hidden rounded-[28px]">
         <div
           aria-hidden
           className="bg-background/15 dark:bg-background/30 pointer-events-none absolute inset-0 z-10 mix-blend-overlay"
@@ -176,10 +173,6 @@ export function Hero07({
 
   return (
     <section className="bg-background relative isolate w-full overflow-hidden">
-      <Reveal active={animate} variants={mediaItem} className="w-full">
-        {mediaElement}
-      </Reveal>
-
       <motion.div
         className={cn(
           'relative z-10 mx-auto grid max-w-7xl grid-cols-1 px-6 lg:grid-cols-12',
@@ -210,6 +203,13 @@ export function Hero07({
           {ctasElement}
         </Reveal>
       </motion.div>
+
+      {children && <div className="relative z-10 mx-auto max-w-7xl px-6 pb-10">{children}</div>}
+
+      <Reveal active={animate} variants={mediaItem} className="w-full">
+        {mediaElement}
+      </Reveal>
+
     </section>
   )
 }
