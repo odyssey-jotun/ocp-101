@@ -16,7 +16,9 @@ export const outcomes = [
     alt: 'A young man presenting to a room, pointing as he speaks',
     points: [
       'Open with all five parts of an introduction: icebreaker, listener relevance link, speaker credibility, thesis statement, and preview of main points.',
-      'Support each main point with examples and cited research, connected by clear transitions.',
+      'Build the body from two or three main points, each supported with cited research.',
+      'Under each main point, give an example that resonates with your listeners and a listener relevance link that ties the point to their own lives.',
+      'Connect every part with a clear transition: from the introduction into the first main point, between each main point, and into the conclusion.',
       'Close with all three parts of a conclusion: restate the thesis, summarize the main points, and end on a clincher.',
       'Create connection with control of voice and body: steady pace, few filler words, eye contact with the camera, purposeful gestures, no fidgeting, and deliberate use of space.',
     ],
@@ -109,7 +111,7 @@ export const rubrics: Rubric[] = [
     intro: 'Every speech is scored on these six categories. The benchmark video is scored on it too, so your first and last recordings can be compared side by side.',
     rows: [
       { category: 'Introduction', levels: ['All five parts, in order: icebreaker, listener relevance link, speaker credibility, thesis, preview', 'Four of the five parts', 'Two or three of the five parts', 'One part or none; opens with “My speech is about”'] },
-      { category: 'Organization', levels: ['Two or three main points, each with an example, and a transition between every point', 'Main points are clear; one example or transition is missing', 'Main points blur together; few transitions', 'No main points a listener could name afterward'] },
+      { category: 'Organization', levels: ['Two or three main points, each with an example that resonates and a listener relevance link, and a transition between every point', 'Main points are clear; one example, relevance link, or transition is missing', 'Main points blur together; few transitions', 'No main points a listener could name afterward'] },
       { category: 'Research and citations', levels: ['Every source cited out loud by author, outlet, and year', 'Sources cited out loud, but some are missing the outlet or year', 'Research used, but sources are vague (“studies show”)', 'No research, or no sources named'] },
       { category: 'Conclusion', levels: ['All three parts: restates the thesis, summarizes each main point, ends on a clincher', 'Two of the three parts; usually the clincher is missing and the ending trails off', 'One of the three parts', 'Speech just stops (“So yeah, that’s it”)'] },
       { category: 'Vocal delivery', levels: ['One or fewer filler words per minute; steady pace; easy to hear', 'Two or three filler words per minute, or rushes in spots', 'Four or five filler words per minute, or hard to hear', 'Six or more filler words per minute'] },
