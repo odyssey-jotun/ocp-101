@@ -1,9 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import PathsBackdrop from '../components/fx/PathsBackdrop';
 import RotatingHeadline from '../components/fx/RotatingHeadline';
 import Reveal from '../components/fx/Reveal';
-import DitherCTA from '../components/fx/DitherCTA';
+import CleanCTA from '../components/CleanCTA.astro';
 import {
   WORKSPACE, LINKEDIN_TAB, info, ongoing, schedule, ways,
   professionalism, levels, materials, recommended, PRE_ASSESSMENT,
@@ -17,7 +16,6 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
   description="A nine-week, one-on-one course with Marc Gray of Odyssey College Prep: three speeches, a LinkedIn rebuild, and a video portfolio."
 >
     <div id="top" class="relative isolate overflow-hidden">
-      <PathsBackdrop client:load className="[mask-image:linear-gradient(to_right,black_30%,transparent_85%)]" />
       <div class="wrap relative pb-12 pt-12 sm:pb-16 sm:pt-20">
         <h1 class="max-w-4xl font-serif text-5xl leading-[0.98] tracking-tight text-balance sm:text-7xl lg:text-8xl">Professional Communication and Presence</h1>
         <div class="mt-8 max-w-3xl">
@@ -272,6 +270,6 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
     </section>
 
     <div class="wrap pb-16">
-      <DitherCTA client:visible title="Start with the LinkedIn worksheet" description="Fill it out before we touch your profile, due Monday, October 12. We will go from there." href={LINKEDIN_TAB} action="Open the worksheet" />
+      <CleanCTA title="Start with the LinkedIn worksheet" description="Fill it out before we touch your profile, due Monday, October 12. We will go from there." href={LINKEDIN_TAB} action="Open the worksheet" />
     </div>
 </Base>

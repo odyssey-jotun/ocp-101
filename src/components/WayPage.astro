@@ -1,9 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import RubricTabs from './RubricTabs';
-import PathsBackdrop from './fx/PathsBackdrop';
 import { HoverLink } from './ui/hover-link';
-import DitherCTA from './fx/DitherCTA';
+import CleanCTA from './CleanCTA.astro';
 import { outcomes, assignments, rubrics, materials, ways, LINKEDIN_TAB } from '../data/course';
 
 interface Props { i: number }
@@ -18,7 +17,6 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
 ---
 <Base title={`${way.title} | OCP 101`} description={outcome.title} current={way.slug}>
   <div class="relative isolate overflow-hidden">
-  <PathsBackdrop client:load className="[mask-image:linear-gradient(to_right,black_25%,transparent_80%)] opacity-80" />
   <section class="wrap relative pt-10 sm:pt-16">
     <h1 class="font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">
       <span class="text-primary">0{i + 1}</span> {way.title}
@@ -91,7 +89,7 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
 
   {way.slug === 'online' && (
     <div class="wrap">
-      <DitherCTA client:visible title="Start with the LinkedIn worksheet" description="Fill it out before we touch your profile, due Monday, October 12. We will go from there." href={LINKEDIN_TAB} action="Open the worksheet" />
+      <CleanCTA title="Start with the LinkedIn worksheet" description="Fill it out before we touch your profile, due Monday, October 12. We will go from there." href={LINKEDIN_TAB} action="Open the worksheet" />
     </div>
   )}
 

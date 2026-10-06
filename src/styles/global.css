@@ -133,5 +133,5 @@
 }
 
 /* Scroll reveal (see Base.astro). Only hidden once the script has run. */
-.will-reveal { opacity: 0; transform: translateY(22px); filter: blur(6px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1), filter .7s; }
-.will-reveal.is-in { opacity: 1; transform: none; filter: none; }
+.will-reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease-out, transform .6s ease-out; }
+.will-reveal.is-in { opacity: 1; transform: none; }

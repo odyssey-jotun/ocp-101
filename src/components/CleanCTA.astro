@@ -1,0 +1,9 @@
+---
+interface Props { title: string; description: string; href: string; action: string }
+const { title, description, href, action } = Astro.props;
+---
+<div data-reveal class="rounded-[28px] border bg-card px-6 py-14 text-center sm:py-20">
+  <h2 class="h-section mx-auto max-w-3xl">{title}</h2>
+  <p class="mx-auto mt-2 max-w-xl text-lg leading-relaxed text-muted-foreground">{description}</p>
+  <a href={href} target="_blank" rel="noreferrer" class="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">{action} <span aria-hidden="true">→</span></a>
+</div>
