@@ -8,22 +8,22 @@
    One accent: a deep cobalt. Everything else is ink on warm paper. */
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.985 0.004 85);
+  --background: oklch(0.995 0 0);
   --foreground: oklch(0.18 0.01 260);
   --card: oklch(1 0 0);
   --card-foreground: var(--foreground);
   --primary: oklch(0.46 0.19 263);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.955 0.006 85);
+  --secondary: oklch(0.965 0.003 260);
   --secondary-foreground: var(--foreground);
-  --muted: oklch(0.95 0.006 85);
+  --muted: oklch(0.96 0.003 260);
   --muted-foreground: oklch(0.47 0.01 260);
   --accent: oklch(0.95 0.02 263);
   --accent-foreground: oklch(0.3 0.12 263);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.9 0.006 85);
-  --input: oklch(0.9 0.006 85);
+  --border: oklch(0.91 0.004 260);
+  --input: oklch(0.91 0.004 260);
   --ring: oklch(0.46 0.19 263);
   --brand: oklch(0.62 0.17 263);
   --brand-foreground: oklch(0.8 0.1 263);

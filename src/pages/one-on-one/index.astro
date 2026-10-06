@@ -1,6 +1,6 @@
 ---
 // Way 2: building presence and connection one on one.
-// Skills, assignments and the email rubric come from src/data/course.ts
+// Skills, assignments and the email guide come from src/data/course.ts
 // through WayPage; the copy and steps on this page live here.
 import WayPage from '../../components/WayPage.astro';
 
@@ -31,7 +31,7 @@ const answer = [
 ];
 ---
 <WayPage i={1}>
-  <div slot="about" class="grid gap-6 rounded-[28px] bg-foreground px-6 py-10 text-background sm:px-10 lg:grid-cols-[1.2fr_1fr]">
+  <div slot="about" class="grid content-center gap-6 rounded-[28px] bg-foreground px-6 py-10 text-background sm:px-10">
     <p class="font-serif text-3xl leading-[1.12] tracking-tight text-balance sm:text-4xl">
       One on one, connection means the other person feels heard before they hear about you.
     </p>

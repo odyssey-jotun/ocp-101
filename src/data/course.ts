@@ -6,7 +6,7 @@ export const info = [
   { label: 'Instructor', value: 'Marc Gray, Odyssey College Prep' },
   { label: 'Meetings', value: 'Mondays and Wednesdays, 12:00 to 1:00 PM Central, on Zoom' },
   { label: 'Term', value: 'Fall 2026, October 5 through December 2' },
-  { label: 'Office hours', value: 'By email or text. Replies within one business day.' },
+  { label: 'Contact', value: 'Text 501-920-4393 or email mgray@odysseycollegeprep.com' },
 ];
 
 export type Tier = { label: string; items: string[] };
@@ -70,7 +70,7 @@ export const assignments = [
 ];
 
 export const ongoing = [
-  { title: 'Session email', when: 'Between every session', text: 'One email to Marc by 9:00 PM the night before each session. It delivers that session’s work and follows the five-part email rubric.' },
+  { title: 'Session email', when: 'Between every session', text: 'One email to Marc by 9:00 PM the night before each session. It delivers that session’s work and follows the five-part email structure on the One on one page.' },
   { title: 'Weekly grades', when: 'Every Monday', text: 'A screenshot of your current grades in every class, pasted into the Grades Log tab of your workspace.' },
 ];
 
@@ -143,17 +143,6 @@ export const rubrics: Rubric[] = [
     ],
   },
   {
-    key: 'email', label: 'Email',
-    intro: 'Every session email, and every email to a professor or club contact, is scored on these five parts. A part left out scores 0.',
-    rows: [
-      { category: 'Greeting', levels: ['Name at the right formality (“Hi Professor Lee,”)', 'Name, wrong formality (“Hey Lee,”)', 'Generic (“Hello,”)', D] },
-      { category: 'Rapport', levels: ['One specific line about them (“Thanks for the tip on transitions Monday.”)', 'Friendly but generic (“Hope you’re well.”)', 'Forced or off topic', D] },
-      { category: 'Context', levels: ['One or two sentences on why you are writing', 'Clear, but runs three sentences or more', 'The reader has to guess why you are writing', D] },
-      { category: 'Clear deliverable', levels: ['Names exactly what is attached or linked, or exactly what you need and by when', 'Clear ask, but no deadline or a missing link', 'Vague ask (“Let me know what you think.”)', 'The attachment or link is missing'] },
-      { category: 'Sign-off', levels: ['Closing line and full name', 'Closing line and first name only', 'Name only', D] },
-    ],
-  },
-  {
     key: 'linkedin', label: 'LinkedIn',
     intro: 'We start with the LinkedIn worksheet in your workspace, due Monday, October 12. Fill it out before we change anything on your profile, and we will go from there. A part left empty scores 0.',
     rows: [
@@ -189,12 +178,19 @@ export const materials = [
   { title: 'Earbuds and a quiet place', text: 'For every session. Your car counts.' },
   { title: 'Zoom, Claude or ChatGPT, and LinkedIn', text: 'Zoom uses the standing link from the calendar invite. You already have both AI accounts for research.' },
 ];
-export const recommended = 'Recommended, not required: Dale Carnegie, How to Win Friends and Influence People, for meeting new people and building relationships.';
 
 export const PRE_ASSESSMENT = 'https://docs.google.com/forms/d/e/1FAIpQLSf5RNdW8hYaeGHCpfQoXLWXQs-32zYo2DPG3W1-1y-8kp7cwA/viewform';
 
 export const ways = [
-  { slug: 'audience', title: 'In front of an audience', short: 'Plan and deliver a presentation with a complete macro structure.', rubric: 'speech' },
-  { slug: 'one-on-one', title: 'One on one', short: 'Network and interview with a routine you can repeat.', rubric: 'email' },
-  { slug: 'online', title: 'Online', short: 'Rebuild your LinkedIn and publish a short video portfolio.', rubric: 'linkedin' },
+  { slug: 'audience', title: 'In front of an audience', short: 'Plan and deliver a presentation with a complete macro structure.', rubric: 'speech', alt: 'A young man explaining an idea to a small group' },
+  { slug: 'one-on-one', title: 'One on one', short: 'Network and interview with a routine you can repeat.', rubric: '', alt: 'A young man in conversation at a networking event' },
+  { slug: 'online', title: 'Online', short: 'Rebuild your LinkedIn and publish a short video portfolio.', rubric: 'linkedin', alt: 'A young man working on a laptop' },
+];
+
+export const emailGuide = [
+  { part: 'Greeting', how: 'Say hello and use their name.', example: 'Hello, Marc,' },
+  { part: 'Rapport', how: 'One genuine line about them or your last conversation.', example: 'Thanks for the tip on transitions Monday.' },
+  { part: 'Context', how: 'One or two sentences on why you are writing.', example: 'I’m sending my benchmark video for Wednesday’s session.' },
+  { part: 'Clear deliverable', how: 'Say exactly what is attached or linked, or exactly what you need and by when.', example: 'It’s linked in the Benchmark Speech tab of my workspace.' },
+  { part: 'Sign-off', how: 'A closing line and your full name.', example: 'See you Wednesday, [your full name]' },
 ];

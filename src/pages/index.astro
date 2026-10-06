@@ -5,7 +5,7 @@ import Reveal from '../components/fx/Reveal';
 import CleanCTA from '../components/CleanCTA.astro';
 import {
   WORKSPACE, LINKEDIN_TAB, info, ongoing, schedule, ways,
-  professionalism, levels, materials, recommended, PRE_ASSESSMENT,
+  professionalism, levels, materials, PRE_ASSESSMENT,
 } from '../data/course';
 
 const base = import.meta.env.BASE_URL;
@@ -33,11 +33,12 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
           {ways.map((w, i) => (
             <li>
               <Reveal client:visible delay={i * 0.08} className="h-full">
-                <a href={`${base}${w.slug}/`} class="group flex h-full flex-col rounded-[18px] border bg-card/90 p-5 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
-                  <span class="font-serif text-3xl leading-none text-primary">0{i + 1}</span>
-                  <span class="mt-3 font-semibold">{w.title}</span>
-                  <span class="mt-1 text-sm leading-relaxed text-muted-foreground">{w.short}</span>
-                  <span class="mt-3 text-sm font-medium text-primary">Open this page <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span></span>
+                <a href={`${base}${w.slug}/`} class="group flex h-full flex-col rounded-[18px] border bg-card p-3 pb-5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
+                  <img src={img(`way-${w.slug}`, 720)} srcset={`${img(`way-${w.slug}`, 720)} 720w, ${img(`way-${w.slug}`, 1200)} 1200w`} sizes="(min-width: 640px) 33vw, 100vw" width="720" height="540" loading="lazy" decoding="async" alt={w.alt} class="aspect-[4/3] w-full rounded-[14px] object-cover" />
+                  <span class="mt-4 px-2 font-serif text-3xl leading-none text-primary">0{i + 1}</span>
+                  <span class="mt-3 px-2 font-semibold">{w.title}</span>
+                  <span class="mt-1 px-2 text-sm leading-relaxed text-muted-foreground">{w.short}</span>
+                  <span class="mt-3 px-2 text-sm font-medium text-primary">Open this page <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span></span>
                 </a>
               </Reveal>
             </li>
@@ -66,6 +67,27 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
               </div>
             ))}
           </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="instructor" class="section">
+      <div class="wrap grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <h2 data-reveal class="h-section">Your instructor</h2>
+          <p class="lede">Marc Gray, Odyssey College Prep. Reach me either way below, and pick the one that fits the message.</p>
+        </div>
+        <div data-reveal class="grid gap-3 sm:grid-cols-2 lg:col-span-7">
+          <a href="sms:+15019204393" class="group flex flex-col rounded-[18px] border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40">
+            <span class="font-serif text-3xl leading-none">Text</span>
+            <span class="mt-3 text-lg font-semibold text-primary">501-920-4393</span>
+            <span class="mt-2 text-sm leading-relaxed text-muted-foreground">For anything brief: a quick question or something you need clarified.</span>
+          </a>
+          <a href="mailto:mgray@odysseycollegeprep.com" class="group flex flex-col rounded-[18px] border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40">
+            <span class="font-serif text-3xl leading-none">Email</span>
+            <span class="mt-3 text-base font-semibold text-primary sm:text-lg">mgray@<wbr />odysseycollegeprep.com</span>
+            <span class="mt-2 text-sm leading-relaxed text-muted-foreground">For anything a paragraph or longer, and for your session emails.</span>
+          </a>
         </div>
       </div>
     </section>
@@ -113,7 +135,7 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
     <section id="scoring" class="section">
       <div class="wrap">
         <h2 data-reveal class="h-section">How your work is scored</h2>
-        <p class="lede">There are no letter grades. Speeches, emails, and your LinkedIn profile are scored from 4 to 0, and you see every rubric before you start the work it measures. Each rubric lives on its own page: the speech rubric under In front of an audience, the email rubric under One on one, and the LinkedIn rubric under Online.</p>
+        <p class="lede">There are no letter grades. Speeches and your LinkedIn profile are scored from 4 to 0, and you see every rubric before you start the work it measures. The speech rubric lives on the In front of an audience page and the LinkedIn rubric on the Online page.</p>
         <div data-reveal class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-5">
           {levels.map((l) => (
             <div class="rounded-[18px] border bg-card p-4">
@@ -160,7 +182,6 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
             </div>
           ))}
         </div>
-        <p class="mt-6 text-sm text-muted-foreground">{recommended}</p>
       </div>
     </section>
 
@@ -253,7 +274,7 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
               <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
             </summary>
             <div class="prose-c border-t px-5 py-5 sm:px-6">
-          <p>All course email goes to your SMU address. Every email you send in this course follows the five parts in the email rubric: greeting, rapport, context, clear deliverable, and sign-off.</p>
+          <p>All course email goes to your SMU address. Every email you send in this course follows the five-part email structure on the One on one page: greeting, rapport, context, clear deliverable, and sign-off.</p>
             </div>
           </details>
           <details class="fold group rounded-[18px] border bg-card">

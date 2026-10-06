@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import RubricTabs from './RubricTabs';
 import { HoverLink } from './ui/hover-link';
 import CleanCTA from './CleanCTA.astro';
-import { outcomes, assignments, rubrics, materials, ways, LINKEDIN_TAB } from '../data/course';
+import { outcomes, assignments, rubrics, materials, ways, emailGuide, LINKEDIN_TAB } from '../data/course';
 
 interface Props { i: number }
 const { i } = Astro.props;
@@ -22,7 +22,10 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
       <span class="text-primary">0{i + 1}</span> {way.title}
     </h1>
     <p class="lede mt-4">{outcome.title}</p>
-    <div class="mt-10"><slot name="about" /></div>
+    <div class="mt-10 grid items-stretch gap-4 lg:grid-cols-[0.85fr_1.15fr]">
+      <img src={`${base}img/way-${way.slug}-1200.webp`} srcset={`${base}img/way-${way.slug}-720.webp 720w, ${base}img/way-${way.slug}-1200.webp 1200w`} sizes="(min-width: 1024px) 40vw, 100vw" width="1200" height="900" fetchpriority="high" decoding="async" alt={way.alt} class="aspect-[4/3] h-full w-full rounded-[28px] object-cover lg:aspect-auto" />
+      <slot name="about" />
+    </div>
   </section>
   </div>
 
@@ -61,6 +64,7 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
     </div>
   </section>
 
+{rubric.length > 0 ? (
   <section class="section">
     <div class="wrap">
       <h2 data-reveal class="h-section">How it is scored</h2>
@@ -70,6 +74,37 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
       </div>
     </div>
   </section>
+) : (
+  <section class="section">
+    <div class="wrap">
+      <h2 data-reveal class="h-section">How to write your emails</h2>
+      <p class="lede">Every session email, and every email to a professor or club contact, has these five parts, in this order.</p>
+      <div data-reveal class="mt-8 grid gap-8 lg:grid-cols-[1.3fr_1fr]">
+        <ol class="grid gap-3">
+          {emailGuide.map((e, k) => (
+            <li class="grid gap-1 rounded-[18px] border bg-card p-5 sm:grid-cols-[2rem_1fr]">
+              <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
+              <div>
+                <p class="font-semibold">{e.part}</p>
+                <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{e.how}</p>
+                <p class="mt-2 border-l-2 border-primary/40 pl-3 text-sm italic">“{e.example}”</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div class="self-start rounded-[18px] border bg-card p-6 lg:sticky lg:top-24">
+          <p class="font-serif text-2xl leading-none">Put together</p>
+          <div class="mt-4 rounded-xl bg-secondary/60 p-5 text-sm leading-relaxed">
+            <p class="text-muted-foreground">Subject: Benchmark video for Wednesday</p>
+            <p class="mt-4">Hello, Marc,</p>
+            <p class="mt-3">Thanks for the tip on transitions Monday. I’m sending my benchmark video for Wednesday’s session. It’s linked in the Benchmark Speech tab of my workspace.</p>
+            <p class="mt-3">See you Wednesday,<br />[Your full name]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
 
   {kit.length > 0 && (
     <section class="section">
