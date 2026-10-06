@@ -71,24 +71,28 @@ const nav = [
         <p class="lede">Each outcome is measured against a starting benchmark, so you and your parents can compare where you began with where you finished. Open one to see the skills inside it.</p>
         <div class="mt-10 grid gap-3">
           {outcomes.map((o, i) => (
-            <details id={`outcome-${i + 1}`} class="fold group rounded-[18px] border bg-card" open={i === -1}>
+            <details id={`outcome-${i + 1}`} class="fold group rounded-[18px] border bg-card">
               <summary class="flex cursor-pointer items-start gap-4 p-5 sm:gap-6 sm:p-6">
                 <span class="font-serif text-3xl leading-none text-primary sm:text-4xl">0{i + 1}</span>
                 <span class="flex-1">
                   <span class="block text-lg font-semibold leading-snug sm:text-xl">{o.title.split(': ')[0].replace(/\.$/, '')}</span>
                   {o.title.includes(': ') && <span class="mt-1 block leading-snug text-muted-foreground">{o.title.split(': ')[1].replace(/^./, (c) => c.toUpperCase())}</span>}
-                  <span class="mt-1.5 block text-sm text-primary">{o.points.length} skills</span>
+                  <span class="mt-2 flex flex-wrap gap-1.5">
+                    {o.tiers.map((t) => <span class="rounded-full bg-secondary px-2.5 py-0.5 text-xs text-muted-foreground">{t.label}</span>)}
+                  </span>
                 </span>
                 <span aria-hidden="true" class="chev mt-1 grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
               </summary>
-              <ol class="grid gap-3 border-t px-5 py-5 sm:px-6 sm:pl-[4.75rem]">
-                {o.points.map((pt, k) => (
-                  <li class="flex gap-3 leading-relaxed text-muted-foreground">
-                    <span class="mt-0.5 inline-grid size-6 shrink-0 place-items-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">{k + 1}</span>
-                    <span>{pt}</span>
-                  </li>
+              <div class="grid gap-x-10 gap-y-6 border-t px-5 py-6 sm:px-6 sm:pl-[4.75rem] md:grid-cols-2">
+                {o.tiers.map((t) => (
+                  <div>
+                    <h3 class="font-serif text-2xl leading-none">{t.label}</h3>
+                    <ul class="mt-2.5 grid gap-2">
+                      {t.items.map((pt) => <li class="flex gap-2.5 leading-relaxed text-muted-foreground"><span aria-hidden="true" class="mt-2.5 size-1.5 shrink-0 rounded-full bg-primary/60"></span><span>{pt}</span></li>)}
+                    </ul>
+                  </div>
                 ))}
-              </ol>
+              </div>
             </details>
           ))}
         </div>
@@ -122,17 +126,24 @@ const nav = [
     <section id="assignments" class="section">
       <div class="wrap">
         <h2 class="h-section">Assignments</h2>
-        <p class="lede">Everything is due before the session on the date listed. Files go in your workspace, and you send them to Marc in your session email.</p>
-        <ol class="mt-10 border-t border-foreground/10">
-          {assignments.map((a) => (
-            <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 gap-y-1 border-b border-foreground/10 py-5 sm:grid-cols-[3rem_1fr_9rem_7rem] sm:items-baseline">
-              <span class="font-serif text-2xl leading-none text-primary">{String(a.n).padStart(2, '0')}</span>
-              <span class="leading-snug">{a.title}</span>
-              <span class="col-start-2 text-sm text-muted-foreground sm:col-start-auto">{a.length}</span>
-              <span class="col-start-2 text-sm font-medium sm:col-start-auto sm:text-right">{a.due}</span>
-            </li>
+        <p class="lede">Grouped by the three ways. Numbers run in due-date order, everything is due before the session on the date listed, and you send it to Marc in your session email.</p>
+        <div class="mt-10 grid gap-12">
+          {outcomes.map((o, w) => (
+            <div>
+              <h3 class="h-sub"><span class="text-primary">0{w + 1}</span> {o.way}</h3>
+              <ol class="mt-3 border-t border-foreground/10">
+                {assignments.filter((a) => a.way === w).map((a) => (
+                  <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 gap-y-1 border-b border-foreground/10 py-4 sm:grid-cols-[3rem_1fr_9rem_7rem] sm:items-baseline">
+                    <span class="font-serif text-2xl leading-none text-muted-foreground">{String(a.n).padStart(2, '0')}</span>
+                    <span class="leading-snug">{a.title}</span>
+                    <span class="col-start-2 text-sm text-muted-foreground sm:col-start-auto">{a.length}</span>
+                    <span class="col-start-2 text-sm font-medium sm:col-start-auto sm:text-right">{a.due}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
           ))}
-        </ol>
+        </div>
         <div class="mt-10 grid gap-4 md:grid-cols-2">
           {ongoing.map((o) => (
             <div class="rounded-[18px] border bg-card p-6">

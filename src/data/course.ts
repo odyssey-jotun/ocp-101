@@ -9,58 +9,64 @@ export const info = [
   { label: 'Office hours', value: 'By email or text. Replies within one business day.' },
 ];
 
-export const outcomes = [
+export type Tier = { label: string; items: string[] };
+export const outcomes: { title: string; way: string; tiers: Tier[] }[] = [
   {
+    way: 'In front of an audience',
     title: 'Build presence and connection in front of an audience: plan and deliver a presentation with a complete macro structure.',
-    image: 'present',
-    alt: 'A young man presenting to a room, pointing as he speaks',
-    points: [
-      'Open with all five parts of an introduction: icebreaker, listener relevance link, speaker credibility, thesis statement, and preview of main points.',
-      'Build the body from two or three main points, each supported with cited research.',
-      'Under each main point, give an example that resonates with your listeners and a listener relevance link that ties the point to their own lives.',
-      'Connect every part with a clear transition: from the introduction into the first main point, between each main point, and into the conclusion.',
-      'Close with all three parts of a conclusion: restate the thesis, summarize the main points, and end on a clincher.',
-      'When a persuasive speech argues for a policy or an action, organize its main points with Monroe’s Motivated Sequence.',
-      'Develop appropriate slides that support your listeners’ understanding.',
-      'Create connection with voice and body: a rate that is easy to follow, a conversational tone, eye contact that checks for understanding, and movement that emphasizes key moments.',
+    tiers: [
+      { label: 'Introduction', items: ['Open with all five parts: icebreaker, listener relevance link, speaker credibility, thesis statement, and preview of main points.'] },
+      { label: 'Body', items: [
+        'Build the body from two or three main points, each supported with cited research.',
+        'Under each main point, give an example that resonates with your listeners and a listener relevance link that ties the point to their own lives.',
+        'Connect every part with a clear transition: from the introduction into the first main point, between each main point, and into the conclusion.',
+        'When a persuasive speech argues for a policy or an action, organize its main points with Monroe’s Motivated Sequence.',
+      ] },
+      { label: 'Conclusion', items: ['Close with all three parts: restate the thesis, summarize the main points, and end on a clincher.'] },
+      { label: 'Delivery', items: [
+        'Develop appropriate slides that support your listeners’ understanding.',
+        'Create connection with voice and body: a rate that is easy to follow, a conversational tone, eye contact that checks for understanding, and movement that emphasizes key moments.',
+      ] },
     ],
   },
   {
+    way: 'One on one',
     title: 'Demonstrate repeatable networking skills.',
-    image: 'network',
-    alt: 'A young man talking with a group of people at a networking event',
-    points: [
-      'Join at least one SMU organization tied to your major, ideally one with a team or competition component.',
-      'Open conversations with a simple routine: greet, ask a question, listen, and paraphrase the answer before saying anything about yourself.',
-      'Deliver a 60-second elevator pitch built on your LinkedIn hook, and adjust it for different listeners, such as a potential boss or a useful connection.',
-      'Answer interview questions with modified macro structure: a clear thesis, a preview of two examples, each example explained, the thesis restated, and then stop talking.',
+    tiers: [
+      { label: 'Join', items: ['Join at least one SMU organization tied to your major, ideally one with a team or competition component.'] },
+      { label: 'Start conversations', items: [
+        'Open with a simple routine: greet, ask a question, listen, and paraphrase the answer before saying anything about yourself.',
+        'Deliver a 60-second elevator pitch built on your LinkedIn hook, and adjust it for different listeners, such as a potential boss or a useful connection.',
+      ] },
+      { label: 'Interview', items: ['Answer interview questions with modified macro structure: a clear thesis, a preview of two examples, each example explained, the thesis restated, and then stop talking.'] },
     ],
   },
   {
+    way: 'Online',
     title: 'Build presence and connection online.',
-    image: 'identity',
-    alt: 'A young man working on a laptop at a long table',
-    points: [
-      'Rebuild your LinkedIn profile around one area of expertise: photo and banner, headline, About section, experience and projects, skills, and Featured.',
-      'Film every speech centered in the frame, so the footage can be cropped into vertical video for LinkedIn.',
-      'Publish a short video portfolio that shows what you know and how you explain it.',
+    tiers: [
+      { label: 'LinkedIn', items: ['Rebuild your profile around one area of expertise: photo and banner, headline, About section, experience and projects, skills, and Featured.'] },
+      { label: 'Video', items: [
+        'Film every speech centered in the frame, so the footage can be cropped into vertical video for LinkedIn.',
+        'Publish a short video portfolio that shows what you know and how you explain it.',
+      ] },
     ],
   },
 ];
 
 export const assignments = [
-  { n: 1, title: 'Benchmark video: get-to-know-you speech', length: '2 to 3 min', due: 'Wed, Oct 7' },
-  { n: 2, title: 'SMU club list: data science, business, and tech groups, with links and contacts', length: 'Workspace tab', due: 'Wed, Oct 7' },
-  { n: 3, title: 'LinkedIn benchmark: send your current profile link, unchanged, and fill out the LinkedIn worksheet', length: 'Link + worksheet', due: 'Mon, Oct 12' },
-  { n: 4, title: 'Speech analysis: Rory Sutherland, "Life Lessons from an Ad Man." Timestamp each of the five introduction parts or mark it missing, then note three nonverbal habits he uses', length: '1 page', due: 'Wed, Oct 14' },
-  { n: 5, title: 'Club outreach email to one organization, cc Marc', length: '1 email', due: 'Mon, Oct 19' },
-  { n: 6, title: 'Informative speech, first recording', length: '8 to 10 min', due: 'Mon, Oct 26' },
-  { n: 7, title: 'Informative speech, second recording after review', length: '8 to 10 min', due: 'Mon, Nov 2' },
-  { n: 8, title: 'LinkedIn rebuild: headline, About section, experience, Featured', length: 'Profile', due: 'Mon, Nov 9' },
-  { n: 9, title: 'Portfolio video: one main point from your research as a short', length: '60 to 90 sec', due: 'Mon, Nov 16' },
-  { n: 10, title: 'Persuasive speech, delivered live and recorded', length: '5 to 7 min', due: 'Wed, Nov 18' },
-  { n: 11, title: 'Mock interview, recorded', length: '20 min', due: 'Mon, Nov 30' },
-  { n: 12, title: 'Final portfolio and LinkedIn published', length: 'Profile + videos', due: 'Wed, Dec 2' },
+  { n: 1, way: 0, title: 'Benchmark video: get-to-know-you speech', length: '2 to 3 min', due: 'Wed, Oct 7' },
+  { n: 2, way: 1, title: 'SMU club list: data science, business, and tech groups, with links and contacts', length: 'Workspace tab', due: 'Wed, Oct 7' },
+  { n: 3, way: 2, title: 'LinkedIn benchmark: send your current profile link, unchanged, and fill out the LinkedIn worksheet', length: 'Link + worksheet', due: 'Mon, Oct 12' },
+  { n: 4, way: 0, title: 'Speech analysis: Rory Sutherland, "Life Lessons from an Ad Man." Timestamp each of the five introduction parts or mark it missing, then note three nonverbal habits he uses', length: '1 page', due: 'Wed, Oct 14' },
+  { n: 5, way: 1, title: 'Club outreach email to one organization, cc Marc', length: '1 email', due: 'Mon, Oct 19' },
+  { n: 6, way: 0, title: 'Informative speech, first recording', length: '8 to 10 min', due: 'Mon, Oct 26' },
+  { n: 7, way: 0, title: 'Informative speech, second recording after review', length: '8 to 10 min', due: 'Mon, Nov 2' },
+  { n: 8, way: 2, title: 'LinkedIn rebuild: headline, About section, experience, Featured', length: 'Profile', due: 'Mon, Nov 9' },
+  { n: 9, way: 2, title: 'Portfolio video: one main point from your research as a short', length: '60 to 90 sec', due: 'Mon, Nov 16' },
+  { n: 10, way: 0, title: 'Persuasive speech, delivered live and recorded', length: '5 to 7 min', due: 'Wed, Nov 18' },
+  { n: 11, way: 1, title: 'Mock interview, recorded', length: '20 min', due: 'Mon, Nov 30' },
+  { n: 12, way: 2, title: 'Final portfolio and LinkedIn published', length: 'Profile + videos', due: 'Wed, Dec 2' },
 ];
 
 export const ongoing = [
