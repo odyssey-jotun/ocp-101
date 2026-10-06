@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import { Hero07 } from '../components/ui/hero-07';
-import { CTASection } from '../components/ui/cta-rectangle';
+import PathsBackdrop from '../components/fx/PathsBackdrop';
+import RotatingHeadline from '../components/fx/RotatingHeadline';
+import Reveal from '../components/fx/Reveal';
+import DitherCTA from '../components/fx/DitherCTA';
 import {
   WORKSPACE, LINKEDIN_TAB, info, ongoing, schedule, ways,
   professionalism, levels, materials, recommended, PRE_ASSESSMENT,
@@ -14,31 +16,36 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
   title="OCP 101: Professional Communication and Presence"
   description="A nine-week, one-on-one course with Marc Gray of Odyssey College Prep: three speeches, a LinkedIn rebuild, and a video portfolio."
 >
-    <div id="top">
-      <Hero07
-        client:load
-        animation="subtle"
-        variant="compact"
-        tagline="OCP 101, Fall 2026. Mondays and Wednesdays at noon, one on one, with Marc Gray."
-        title="Professional Communication and Presence"
-        description="The goal of this course is to build your presence and connection. Over nine weeks, we will do it in three ways."
-        landscapeImage=""
-        primaryCTA={{ ctaEnabled: true, text: 'Open your workspace', link: WORKSPACE, size: 'lg' }}
-        secondaryCTA={{ ctaEnabled: true, text: 'See the schedule', link: '#schedule' }}
-      >
+    <div id="top" class="relative isolate overflow-hidden">
+      <PathsBackdrop client:load className="[mask-image:linear-gradient(to_right,black_30%,transparent_85%)]" />
+      <div class="wrap relative pb-12 pt-12 sm:pb-16 sm:pt-20">
+        <h1 class="max-w-4xl font-serif text-5xl leading-[0.98] tracking-tight text-balance sm:text-7xl lg:text-8xl">Professional Communication and Presence</h1>
+        <div class="mt-8 max-w-3xl">
+          <RotatingHeadline client:load lead="Build your presence and connection" words={["in front of an audience.", "one on one.", "online."]} />
+        </div>
+        <p class="lede mt-6">That is the goal of this course. Over nine weeks, we will do it in three ways.</p>
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a href={WORKSPACE} target="_blank" rel="noreferrer" class="inline-flex h-12 items-center rounded-full bg-primary px-7 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">Open your workspace</a>
+          <a href="#schedule" class="text-sm font-medium text-primary underline-offset-4 hover:underline">See the schedule</a>
+        </div>
+        <p class="mt-8 text-sm text-muted-foreground">OCP 101, Fall 2026. Mondays and Wednesdays at noon, one on one, with Marc Gray.</p>
+      </div>
+      <div class="wrap relative pb-6">
         <ol class="grid gap-3 sm:grid-cols-3">
           {ways.map((w, i) => (
             <li>
-              <a href={`${base}${w.slug}/`} class="group flex h-full flex-col rounded-[18px] border bg-card p-5 transition-colors hover:border-primary/40">
-                <span class="font-serif text-3xl leading-none text-primary">0{i + 1}</span>
-                <span class="mt-3 font-semibold">{w.title}</span>
-                <span class="mt-1 text-sm leading-relaxed text-muted-foreground">{w.short}</span>
-                <span class="mt-3 text-sm font-medium text-primary">Open this page <span aria-hidden="true">→</span></span>
-              </a>
+              <Reveal client:visible delay={i * 0.08} className="h-full">
+                <a href={`${base}${w.slug}/`} class="group flex h-full flex-col rounded-[18px] border bg-card/90 p-5 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
+                  <span class="font-serif text-3xl leading-none text-primary">0{i + 1}</span>
+                  <span class="mt-3 font-semibold">{w.title}</span>
+                  <span class="mt-1 text-sm leading-relaxed text-muted-foreground">{w.short}</span>
+                  <span class="mt-3 text-sm font-medium text-primary">Open this page <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span></span>
+                </a>
+              </Reveal>
             </li>
           ))}
         </ol>
-      </Hero07>
+      </div>
     </div>
 
     <section class="section">
@@ -48,7 +55,7 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
             <p class="font-serif text-3xl leading-[1.12] tracking-tight text-balance sm:text-4xl">
               The structure is not glamorous. It works like a math formula: once you know it, you can apply it to a class presentation, an interview answer, or a pitch to a room of investors.
             </p>
-            <div class="mt-6 grid gap-4 leading-relaxed text-background/70">
+            <div data-reveal class="mt-6 grid gap-4 leading-relaxed text-background/70">
               <p>Polish and flair come with years of practice. A clear structure and an audience-centered mindset come first. Each speech is recorded, reviewed against a rubric, and in some cases recorded again.</p>
               <p>Alongside the speeches, you research one topic tied to business, finance, or data science until you know more about it than most people in the room. That research becomes your speeches, your LinkedIn, and your portfolio, so when a recruiter asks what you do, you have something specific to say.</p>
             </div>
@@ -67,9 +74,9 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
 
     <section id="weekly" class="section">
       <div class="wrap">
-        <h2 class="h-section">Every week</h2>
+        <h2 data-reveal class="h-section">Every week</h2>
         <p class="lede">Two habits that run the whole course, on top of the assignments listed on each page.</p>
-        <div class="mt-8 grid gap-4 md:grid-cols-2">
+        <div data-reveal class="mt-8 grid gap-4 md:grid-cols-2">
           {ongoing.map((o) => (
             <div class="rounded-[18px] border bg-card p-6">
               <h3 class="h-item">{o.title}</h3>
@@ -83,9 +90,9 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
 
     <section id="schedule" class="section">
       <div class="wrap">
-        <h2 class="h-section">Schedule</h2>
+        <h2 data-reveal class="h-section">Schedule</h2>
         <p class="lede">Eighteen sessions over nine weeks. The plan may shift; changes are announced by email at least one session ahead.</p>
-        <div class="mt-10 grid gap-3">
+        <div data-reveal class="mt-10 grid gap-3">
           {schedule.map((w) => (
             <div class="grid gap-3 rounded-[18px] border bg-card p-4 sm:grid-cols-[6rem_1fr_1fr] sm:p-5">
               <div class="flex items-baseline gap-2 sm:block">
@@ -107,9 +114,9 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
 
     <section id="scoring" class="section">
       <div class="wrap">
-        <h2 class="h-section">How your work is scored</h2>
+        <h2 data-reveal class="h-section">How your work is scored</h2>
         <p class="lede">There are no letter grades. Speeches, emails, and your LinkedIn profile are scored from 4 to 0, and you see every rubric before you start the work it measures. Each rubric lives on its own page: the speech rubric under In front of an audience, the email rubric under One on one, and the LinkedIn rubric under Online.</p>
-        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-5">
+        <div data-reveal class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-5">
           {levels.map((l) => (
             <div class="rounded-[18px] border bg-card p-4">
               <p class="font-serif text-4xl leading-none">{l.score}</p>
@@ -118,9 +125,9 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
             </div>
           ))}
         </div>
-        <div class="mt-12 grid gap-8 rounded-[18px] border bg-card p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr]">
+        <div data-reveal class="mt-12 grid gap-8 rounded-[18px] border bg-card p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr]">
           <div>
-            <h3 class="h-sub">Benchmarks</h3>
+            <h3 data-reveal class="h-sub">Benchmarks</h3>
             <p class="text-muted-foreground">Two surveys in the first week and again in the last week, so we can compare your scores. Your benchmark video and current LinkedIn profile are scored on the rubrics too.</p>
           </div>
           <ul class="grid content-start gap-2">
@@ -128,9 +135,9 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
             <li class="rounded-xl bg-secondary/50 px-4 py-3"><a class="inline" href={PRE_ASSESSMENT} target="_blank" rel="noreferrer">Marc’s public speaking pre-assessment</a></li>
           </ul>
         </div>
-        <div class="mt-12 grid gap-8 rounded-[18px] border bg-card p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr]">
+        <div data-reveal class="mt-12 grid gap-8 rounded-[18px] border bg-card p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr]">
           <div>
-            <h3 class="h-sub">Professionalism, every session</h3>
+            <h3 data-reveal class="h-sub">Professionalism, every session</h3>
             <p class="text-muted-foreground">Five points, scored at every meeting, with feedback on the spot.</p>
           </div>
           <ul class="grid gap-2">
@@ -146,8 +153,8 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
 
     <section id="materials" class="section">
       <div class="wrap">
-        <h2 class="h-section">What you need</h2>
-        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 data-reveal class="h-section">What you need</h2>
+        <div data-reveal class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {materials.filter((m) => m.way === undefined).map((m) => (
             <div class="rounded-[18px] border bg-card p-6">
               <h3 class="h-item">{m.href ? <a class="hover:text-primary" href={m.href} target="_blank" rel="noreferrer">{m.title} <span aria-hidden="true">↗</span></a> : m.title}</h3>
@@ -162,7 +169,7 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
     <section id="policies" class="section">
       <div class="wrap grid gap-12 lg:grid-cols-12">
         <div class="lg:col-span-4 lg:sticky lg:top-24 lg:self-start">
-          <h2 class="h-section">How we work together</h2>
+          <h2 data-reveal class="h-section">How we work together</h2>
           <p class="lede">The ground rules, from scheduling to swearing. Open any one to read it.</p>
         </div>
         <div class="grid gap-3 lg:col-span-8">
@@ -192,7 +199,7 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
             </summary>
             <div class="prose-c border-t px-5 py-5 sm:px-6">
           <p>Have notes from every session. They are your record that you paid attention, and they go in your workspace after each session. I strongly recommend taking them by hand, then photographing them and having ChatGPT or Claude turn them into text.</p>
-          <div class="mt-6 grid overflow-hidden rounded-[18px] border bg-card sm:grid-cols-[14rem_1fr]">
+          <div data-reveal class="mt-6 grid overflow-hidden rounded-[18px] border bg-card sm:grid-cols-[14rem_1fr]">
             <img src={img('notes', 720)} srcset={`${img('notes', 720)} 720w, ${img('notes', 1200)} 1200w`} sizes="(min-width: 640px) 224px, 100vw" width="720" height="492" loading="lazy" decoding="async" alt="An open notebook with a pen resting on the page" class="h-48 w-full object-cover sm:h-full" />
             <div class="p-6 text-sm">
               <p class="!text-foreground font-semibold">The research behind this. Skip if you don’t need it.</p>
@@ -265,10 +272,6 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
     </section>
 
     <div class="wrap pb-16">
-      <CTASection
-        title="Start with the LinkedIn worksheet"
-        description="Fill it out before we touch your profile, due Monday, October 12. We will go from there."
-        action={{ text: 'Open the worksheet', href: LINKEDIN_TAB }}
-      />
+      <DitherCTA client:visible title="Start with the LinkedIn worksheet" description="Fill it out before we touch your profile, due Monday, October 12. We will go from there." href={LINKEDIN_TAB} action="Open the worksheet" />
     </div>
 </Base>

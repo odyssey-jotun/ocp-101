@@ -131,3 +131,7 @@
   .no-scrollbar { scrollbar-width: none; }
   .no-scrollbar::-webkit-scrollbar { display: none; }
 }
+
+/* Scroll reveal (see Base.astro). Only hidden once the script has run. */
+.will-reveal { opacity: 0; transform: translateY(22px); filter: blur(6px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1), filter .7s; }
+.will-reveal.is-in { opacity: 1; transform: none; filter: none; }

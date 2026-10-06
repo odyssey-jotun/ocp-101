@@ -43,11 +43,11 @@ const sequence = [
 
   <section slot="steps" class="section">
     <div class="wrap">
-      <h2 class="h-section">The macro structure</h2>
+      <h2 data-reveal class="h-section">The macro structure</h2>
       <p class="lede">Every speech in this course follows these parts, in this order. The sample lines all come from one practice topic: AI resume screening.</p>
 
-      <h3 class="h-sub mt-12">Introduction: five parts</h3>
-      <ol class="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+      <h3 data-reveal class="h-sub mt-12">Introduction: five parts</h3>
+      <ol data-reveal class="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
         {intro.map((p, k) => (
           <li class="rounded-[18px] border bg-card p-5">
             <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
@@ -59,20 +59,20 @@ const sequence = [
       </ol>
       <p class="mt-4 text-sm text-muted-foreground">Never open with the title of your speech.</p>
 
-      <h3 class="h-sub">Body: two or three main points</h3>
+      <h3 data-reveal class="h-sub">Body: two or three main points</h3>
       <p class="text-muted-foreground">Under each main point:</p>
-      <ol class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <ol data-reveal class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {body.map((b, k) => (
           <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">{k + 1}</span><p class="mt-2 leading-snug">{b}</p></li>
         ))}
       </ol>
 
-      <h3 class="h-sub">Transitions</h3>
+      <h3 data-reveal class="h-sub">Transitions</h3>
       <p class="max-w-2xl leading-relaxed text-muted-foreground">Use one at every handoff: from the introduction into the first point, between each main point, and into the conclusion. A good transition closes the last point and opens the next.</p>
       <p class="mt-3 max-w-2xl border-l-2 border-primary/40 pl-3 italic">“Now that we know how the screening works, let’s look at what it misses.”</p>
 
-      <h3 class="h-sub">Conclusion: three parts</h3>
-      <ol class="mt-4 grid gap-3 md:grid-cols-3">
+      <h3 data-reveal class="h-sub">Conclusion: three parts</h3>
+      <ol data-reveal class="mt-4 grid gap-3 md:grid-cols-3">
         {conclusion.map((p, k) => (
           <li class="rounded-[18px] border bg-card p-5">
             <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
@@ -84,9 +84,9 @@ const sequence = [
       </ol>
       <p class="mt-4 text-sm text-muted-foreground">Never end on “So yeah, that’s it” or “Any questions?”</p>
 
-      <h3 class="h-sub">Persuasive speeches: Monroe’s Motivated Sequence</h3>
+      <h3 data-reveal class="h-sub">Persuasive speeches: Monroe’s Motivated Sequence</h3>
       <p class="max-w-2xl leading-relaxed text-muted-foreground">When a persuasive speech argues for a policy or an action, its main points follow these five steps. When it only asks listeners to agree with an idea or a value, pick whatever pattern fits the claim. The introduction and conclusion stay the same.</p>
-      <ol class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <ol data-reveal class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {sequence.map(([name, text], k) => (
           <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">{k + 1}</span><p class="mt-2 font-semibold">{name}</p><p class="mt-1 text-sm leading-relaxed text-muted-foreground">{text}</p></li>
         ))}
