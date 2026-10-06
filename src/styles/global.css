@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@source "../components";
+@source "../pages";
+@source "../layouts";
+
+/* shadcn-style tokens, so the 21st.dev components render as designed.
+   One accent: a deep cobalt. Everything else is ink on warm paper. */
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.004 85);
+  --foreground: oklch(0.18 0.01 260);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --primary: oklch(0.46 0.19 263);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.955 0.006 85);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.95 0.006 85);
+  --muted-foreground: oklch(0.47 0.01 260);
+  --accent: oklch(0.95 0.02 263);
+  --accent-foreground: oklch(0.3 0.12 263);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.9 0.006 85);
+  --input: oklch(0.9 0.006 85);
+  --ring: oklch(0.46 0.19 263);
+  --brand: oklch(0.62 0.17 263);
+  --brand-foreground: oklch(0.8 0.1 263);
+
+  /* spacing: containers own block gaps; a heading hugs what follows it */
+  --flow-tight: 0.35em;
+  --flow-block: 1.5rem;
+  --section: clamp(4.5rem, 10vw, 8rem);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-sans: var(--font-inter), "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+  --container-container: 80rem;
+  --shadow-glow: 0 -16px 128px 0 oklch(0.8 0.1 263 / 0.45) inset, 0 -16px 32px 0 oklch(0.62 0.17 263 / 0.45) inset;
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; height: auto; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+}
+
+@layer components {
+  .wrap { margin-inline: auto; width: 100%; max-width: 72rem; padding-inline: 1.5rem; }
+  .section { padding-block: var(--section); }
+  .section + .section { padding-top: 0; }
+  .ruled { border-top: 1px solid var(--border); padding-top: var(--section); }
+
+  /* Section headings: big serif, hugging the text below, with room above */
+  .h-section {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.02;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    margin: 0 0 var(--flow-tight);
+    text-wrap: balance;
+  }
+  .h-sub {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 3rem 0 0.4rem;
+  }
+  .h-sub:first-child { margin-top: 0; }
+  .h-item { font-weight: 600; font-size: 1.05rem; line-height: 1.35; margin: 1.5rem 0 0.3rem; }
+  .h-item:first-child { margin-top: 0; }
+  .lede { font-size: clamp(1.05rem, 1.6vw, 1.2rem); line-height: 1.6; color: var(--muted-foreground); max-width: 40rem; }
+  .prose-c p { line-height: 1.7; color: var(--muted-foreground); max-width: 40rem; }
+  .prose-c p + p { margin-top: 1em; }
+  .prose-c a, a.inline { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .prose-c strong { color: var(--foreground); font-weight: 600; }
+}
+
+@layer utilities {
+  .fade-top-lg { mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1) 8rem); }
+}

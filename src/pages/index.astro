@@ -1,0 +1,261 @@
+---
+import Base from '../layouts/Base.astro';
+import { Hero07 } from '../components/ui/hero-07';
+import { HoverLink } from '../components/ui/hover-link';
+import { CTASection } from '../components/ui/cta-rectangle';
+import Outcomes from '../components/Outcomes';
+import RubricTabs from '../components/RubricTabs';
+import {
+  WORKSPACE, LINKEDIN_TAB, info, outcomes, assignments, ongoing, schedule,
+  rubrics, professionalism, levels, materials, recommended,
+} from '../data/course';
+
+const base = import.meta.env.BASE_URL;
+const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
+const nav = [
+  ['Outcomes', '#outcomes'],
+  ['Assignments', '#assignments'],
+  ['Schedule', '#schedule'],
+  ['Rubrics', '#rubrics'],
+  ['Policies', '#policies'],
+];
+---
+<Base
+  title="OCP 101: Professional Communication and Presence"
+  description="A nine-week, one-on-one course with Marc Gray of Odyssey College Prep: three speeches, a LinkedIn rebuild, and a video portfolio."
+>
+  <header class="sticky top-0 z-40 border-b border-foreground/5 bg-background/80 backdrop-blur-md">
+    <div class="wrap flex h-16 items-center justify-between gap-6">
+      <a href="#top" class="font-serif text-2xl leading-none tracking-tight">OCP 101</a>
+      <nav aria-label="Sections" class="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
+        {nav.map(([label, href]) => <a href={href} class="transition-colors hover:text-foreground">{label}</a>)}
+      </nav>
+      <HoverLink text="Workspace" href={WORKSPACE} target="_blank" rel="noreferrer" />
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="top">
+      <Hero07
+        client:load
+        animation="subtle"
+        tagline="Fall 2026. Mondays and Wednesdays at noon, one on one, with Marc Gray."
+        title="Professional Communication and Presence"
+        description="Nine weeks, three speeches, a rebuilt LinkedIn, and a short video portfolio, all built on one structure you can use for the rest of your career."
+        landscapeImage={img('hero', 1600)}
+        landscapeSrcSet={`${img('hero', 960)} 960w, ${img('hero', 1600)} 1600w, ${img('hero', 2400)} 2400w`}
+        landscapeAlt="A young man explaining an idea to a small group around a table"
+        primaryCTA={{ ctaEnabled: true, text: 'Open your workspace', link: WORKSPACE, size: 'lg' }}
+        secondaryCTA={{ ctaEnabled: true, text: 'See the schedule', link: '#schedule' }}
+      />
+    </div>
+
+    <section id="outcomes" class="section">
+      <div class="wrap">
+        <h2 class="h-section">By December 2, you will be able to</h2>
+        <p class="lede">Three outcomes, each measured against a starting benchmark, so you and your parents can compare where you began with where you finished.</p>
+        <div class="mt-10">
+          <Outcomes client:visible outcomes={outcomes} base={base} />
+        </div>
+        <ol class="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          {outcomes.map((o, i) => (
+            <li class="border-t border-foreground/15 pt-5">
+              <span class="font-serif text-3xl leading-none text-primary">0{i + 1}</span>
+              <h3 class="h-item mt-3">{o.title}</h3>
+              <ul class="grid gap-2.5 text-sm leading-relaxed text-muted-foreground">
+                {o.points.map((p) => <li class="flex gap-2.5"><span aria-hidden="true" class="mt-2 size-1.5 shrink-0 rounded-full bg-primary/60"></span><span>{p}</span></li>)}
+              </ul>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="grid gap-12 rounded-[28px] bg-foreground px-6 py-12 text-background sm:px-12 sm:py-16 lg:grid-cols-12">
+          <div class="lg:col-span-7">
+            <p class="font-serif text-3xl leading-[1.12] tracking-tight text-balance sm:text-4xl">
+              The structure is not glamorous. It works like a math formula: once you know it, you can apply it to a class presentation, an interview answer, or a pitch to a room of investors.
+            </p>
+            <div class="mt-6 grid gap-4 leading-relaxed text-background/70">
+              <p>Polish and flair come with years of practice. A clear structure and an audience-centered mindset come first. Each speech is recorded, reviewed against a rubric, and in some cases recorded again.</p>
+              <p>Alongside the speeches, you research one topic tied to business, finance, or data science until you know more about it than most people in the room. That research becomes your speeches, your LinkedIn, and your portfolio, so when a recruiter asks what you do, you have something specific to say.</p>
+            </div>
+          </div>
+          <dl class="grid content-start gap-6 lg:col-span-4 lg:col-start-9">
+            {info.map((i) => (
+              <div class="border-t border-background/15 pt-4">
+                <dt class="text-sm text-background/55">{i.label}</dt>
+                <dd class="mt-1 leading-snug">{i.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="assignments" class="section">
+      <div class="wrap">
+        <h2 class="h-section">Assignments</h2>
+        <p class="lede">Everything is due before the session on the date listed. Files go in your workspace, and you send them to Marc in your session email.</p>
+        <ol class="mt-10 border-t border-foreground/10">
+          {assignments.map((a) => (
+            <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 gap-y-1 border-b border-foreground/10 py-5 sm:grid-cols-[3rem_1fr_9rem_7rem] sm:items-baseline">
+              <span class="font-serif text-2xl leading-none text-primary">{String(a.n).padStart(2, '0')}</span>
+              <span class="leading-snug">{a.title}</span>
+              <span class="col-start-2 text-sm text-muted-foreground sm:col-start-auto">{a.length}</span>
+              <span class="col-start-2 text-sm font-medium sm:col-start-auto sm:text-right">{a.due}</span>
+            </li>
+          ))}
+        </ol>
+        <div class="mt-10 grid gap-4 md:grid-cols-2">
+          {ongoing.map((o) => (
+            <div class="rounded-[18px] border bg-card p-6">
+              <h3 class="h-item">{o.title}</h3>
+              <p class="text-sm font-medium text-primary">{o.when}</p>
+              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{o.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule" class="section">
+      <div class="wrap">
+        <h2 class="h-section">Schedule</h2>
+        <p class="lede">Eighteen sessions over nine weeks. The plan may shift; changes are announced by email at least one session ahead.</p>
+        <div class="mt-10 grid gap-3">
+          {schedule.map((w) => (
+            <div class="grid gap-3 rounded-[18px] border bg-card p-4 sm:grid-cols-[6rem_1fr_1fr] sm:p-5">
+              <div class="flex items-baseline gap-2 sm:block">
+                <span class="text-sm text-muted-foreground">Week</span>
+                <span class="font-serif text-4xl leading-none sm:block">{w.week}</span>
+              </div>
+              {w.sessions.map((s) => (
+                <div class:list={['rounded-xl p-4', s.off ? 'bg-secondary/60 text-muted-foreground' : 'bg-secondary/40']}>
+                  <p class="text-sm font-medium"><span class="text-primary">{s.day}</span> {s.date}</p>
+                  <p class="mt-1.5 leading-snug">{s.topic}</p>
+                  {s.due !== 'None' && <p class="mt-2 text-sm text-muted-foreground">Due: {s.due}</p>}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="rubrics" class="section">
+      <div class="wrap">
+        <h2 class="h-section">How your work is scored</h2>
+        <p class="lede">There are no letter grades. Speeches, emails, and your LinkedIn profile are scored on a four-point scale, and you see every rubric before you start the work it measures.</p>
+        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {levels.map((l) => (
+            <div class="rounded-[18px] border bg-card p-4">
+              <p class="font-serif text-4xl leading-none">{l.score}</p>
+              <p class="mt-2 font-semibold">{l.name}</p>
+              <p class="mt-1 text-sm leading-snug text-muted-foreground">{l.text}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-12">
+          <RubricTabs client:visible rubrics={rubrics} />
+          <p class="mt-4 text-sm text-muted-foreground">The LinkedIn rubric starts from the <a class="inline" href={LINKEDIN_TAB} target="_blank" rel="noreferrer">LinkedIn worksheet</a> in your workspace.</p>
+        </div>
+        <div class="mt-12 grid gap-8 rounded-[18px] border bg-card p-6 sm:p-8 lg:grid-cols-[1fr_1.4fr]">
+          <div>
+            <h3 class="h-sub">Professionalism, every session</h3>
+            <p class="text-muted-foreground">Five points, scored at every meeting, with feedback on the spot.</p>
+          </div>
+          <ul class="grid gap-2">
+            {professionalism.map((p) => (
+              <li class="flex items-center justify-between gap-4 rounded-xl bg-secondary/50 px-4 py-3">
+                <span>{p}</span><span class="shrink-0 whitespace-nowrap text-sm font-semibold text-primary">1 pt</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="materials" class="section">
+      <div class="wrap">
+        <h2 class="h-section">What you need</h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {materials.map((m) => (
+            <div class="rounded-[18px] border bg-card p-6">
+              <h3 class="h-item">{m.href ? <a class="hover:text-primary" href={m.href} target="_blank" rel="noreferrer">{m.title} <span aria-hidden="true">↗</span></a> : m.title}</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">{m.text}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-6 text-sm text-muted-foreground">{recommended}</p>
+      </div>
+    </section>
+
+    <section id="policies" class="section">
+      <div class="wrap grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-4 lg:sticky lg:top-24 lg:self-start">
+          <h2 class="h-section">How we work together</h2>
+          <p class="lede">The ground rules, from scheduling to swearing.</p>
+        </div>
+        <div class="prose-c lg:col-span-8">
+          <h3 class="h-sub">Attendance and rescheduling</h3>
+          <p>Sessions moved or canceled with less than 24 hours’ notice, and missed sessions, are billed in full. To reschedule, email Marc at least 24 hours ahead with two alternate times.</p>
+
+          <h3 class="h-sub">During sessions</h3>
+          <p>The hour we meet is reserved for this work. No television, and no other assignments or side work while we are in session. Join from your laptop rather than your phone, sitting at a desk or table, not in bed. I hold myself to the same rules, and unless there is a real emergency, I will not answer texts or calls while we work.</p>
+          <p>If I sense you are distracted, I will ask you directly what is going on. That can feel confrontational, and maybe it is. I would rather have one awkward moment than lose the quality of the session.</p>
+
+          <h3 class="h-sub">Taking notes</h3>
+          <p>Take notes by hand, then photograph them and have ChatGPT or Claude turn them into text for the workspace. Typing straight into the Google Doc is allowed, but I strongly recommend paper.</p>
+          <div class="mt-6 grid overflow-hidden rounded-[18px] border bg-card sm:grid-cols-[14rem_1fr]">
+            <img src={img('notes', 720)} srcset={`${img('notes', 720)} 720w, ${img('notes', 1200)} 1200w`} sizes="(min-width: 640px) 224px, 100vw" width="720" height="492" loading="lazy" decoding="async" alt="An open notebook with a pen resting on the page" class="h-48 w-full object-cover sm:h-full" />
+            <div class="p-6 text-sm">
+              <p class="!text-foreground font-semibold">The research behind this. Skip if you don’t need it.</p>
+              <p class="mt-2">In three experiments, students who typed notes on laptops did worse on conceptual questions than students who wrote by hand, mostly because typists copied lectures word for word instead of putting ideas in their own words. A 2024 study of 36 university students found that handwriting produced far wider brain connectivity than typing, in regions tied to memory and learning.</p>
+              <p class="mt-3 text-xs">Mueller and Oppenheimer (2014), “The pen is mightier than the keyboard,” Psychological Science. Van der Weel and Van der Meer (2024), “Handwriting but not typewriting leads to widespread brain connectivity,” Frontiers in Psychology.</p>
+            </div>
+          </div>
+
+          <h3 class="h-sub">Language</h3>
+          <p>This is a one-on-one class between two adults. A few damns and shits, even the occasional F-bomb, will not offend me, as long as neither of us is aggressive and the language never becomes a distraction.</p>
+          <p>This policy is unconventional, and it is intentional. I find people are more honest when they swear. I want you to talk openly about this work without filtering it through professional language you may not have yet.</p>
+
+          <h3 class="h-sub">Feedback goes both ways</h3>
+          <p>If you cross a line professionally, I will tell you. If I cross one, I expect you to tell me. I can be intense, and I have been known to push students too hard and expect too much.</p>
+          <blockquote class="my-6 border-l-2 border-primary pl-5 font-serif text-2xl leading-snug text-foreground sm:text-3xl">“Marc, I would like to give you some feedback.”</blockquote>
+          <p>Start with those words, and I promise I will listen and be open to correction. You can always go to your parents instead, but I will not change my behavior until you tell me directly. Uncomfortable conversations like this one are part of what this course builds.</p>
+          <p>We all make mistakes. You will have a lot of grace from me. Please give me some too.</p>
+
+          <h3 class="h-sub">Late work</h3>
+          <p>Work not submitted before a session is marked late on the professionalism check. The session goes ahead anyway, and the work is still due.</p>
+
+          <h3 class="h-sub">Weekly grades check</h3>
+          <p>Every Monday you share your current grades. This is an accountability step your family has paid for, and practice for talking with professors. If a grade slips, we write the email to that professor together.</p>
+
+          <h3 class="h-sub">Communication</h3>
+          <p>All course email goes to your SMU address. Every email you send in this course follows the five parts in the email rubric: greeting, rapport, context, clear deliverable, and sign-off.</p>
+
+          <h3 class="h-sub">Your input</h3>
+          <p>This is your time. If an assignment feels pointless or a goal does not fit what you want, say so. The plan can change at my discretion, and I welcome your input, especially when a suggestion makes it more likely we meet the course’s learning outcomes. The three outcomes stay.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap pb-16">
+      <CTASection
+        title="Start with the LinkedIn worksheet"
+        description="Fill it out before we touch your profile, due Monday, October 12. We will go from there."
+        action={{ text: 'Open the worksheet', href: LINKEDIN_TAB }}
+      />
+    </div>
+  </main>
+
+  <footer class="border-t border-foreground/10">
+    <div class="wrap flex flex-col gap-2 py-8 text-sm text-muted-foreground sm:flex-row sm:justify-between">
+      <p>OCP 101, Fall 2026. Taught by Marc Gray, Odyssey College Prep.</p>
+      <p>mgray@odysseycollegeprep.com</p>
+    </div>
+  </footer>
+</Base>
