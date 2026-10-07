@@ -4,3 +4,6 @@ dist
 raw
 .DS_Store
 tools/shots
+
+# Max's confidential reports: kept locally, never pushed to the public repo
+resources/
