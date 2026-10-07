@@ -10,6 +10,8 @@ const links = ways.map((w) => ({ label: w.title, href: `${base}${w.slug}/`, slug
   <div class="wrap flex h-16 items-center justify-between gap-6">
     <a href={base} class="font-serif text-2xl leading-none tracking-tight">OCP 101</a>
     <nav aria-label="Pages" class="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
+      <a href={`${base}sessions/`} aria-current={current === 'sessions' ? 'page' : undefined}
+         class:list={['transition-colors hover:text-foreground', current === 'sessions' && 'text-foreground underline decoration-primary decoration-2 underline-offset-[6px]']}>Sessions</a>
       {links.map((l) => (
         <a href={l.href} aria-current={current === l.slug ? 'page' : undefined}
            class:list={['transition-colors hover:text-foreground', current === l.slug && 'text-foreground underline decoration-primary decoration-2 underline-offset-[6px]']}>{l.label}</a>
@@ -19,6 +21,8 @@ const links = ways.map((w) => ({ label: w.title, href: `${base}${w.slug}/`, slug
     <HoverLink text="Workspace" href={WORKSPACE} target="_blank" rel="noreferrer" />
   </div>
   <nav aria-label="Pages" class="no-scrollbar flex gap-5 overflow-x-auto border-t border-foreground/5 px-6 py-2.5 text-sm text-muted-foreground md:hidden">
+    <a href={`${base}sessions/`} aria-current={current === 'sessions' ? 'page' : undefined}
+       class:list={['shrink-0', current === 'sessions' && 'text-foreground underline decoration-primary decoration-2 underline-offset-[6px]']}>Sessions</a>
     {links.map((l) => (
       <a href={l.href} aria-current={current === l.slug ? 'page' : undefined}
          class:list={['shrink-0', current === l.slug && 'text-foreground underline decoration-primary decoration-2 underline-offset-[6px]']}>{l.label}</a>

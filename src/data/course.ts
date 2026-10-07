@@ -194,3 +194,112 @@ export const emailGuide = [
   { part: 'Clear deliverable', how: 'Say exactly what is attached or linked, or exactly what you need and by when.', example: 'It’s linked in the Benchmark Speech tab of my workspace.' },
   { part: 'Sign-off', how: 'A closing line and your full name.', example: 'See you Wednesday, [your full name]' },
 ];
+
+// Session summaries, newest first. Each topic is a main point with its
+// subpoints; `sub` nests one level deeper. Deliverables close every session.
+export type Point = string | { text: string; sub: string[] };
+export type Session = {
+  n: number; date: string; title: string;
+  topics: { title: string; points: Point[] }[];
+  professionalism?: { score: number; items: [string, number, string][] };
+  deliverables: { text: string; due: string }[];
+};
+export const sessions: Session[] = [
+  {
+    n: 2, date: 'Wednesday, October 7', title: 'Your benchmark and macro structure',
+    topics: [
+      { title: 'Connection is a relationship', points: [
+        'Presenting is nerve-wracking because you are building a relationship with every person in the room at once.',
+        'The same things that build a friendship build connection with an audience. These are relationship practices, and they work outside a speech too.',
+        { text: 'Disclosure: revealing something about yourself draws people in.', sub: [
+          'Think of how someone tells you a secret: their voice drops and they lean in.',
+          'The same moves work in front of a room.',
+        ] },
+        'Connection happens in email too. Claude can draft your emails, as long as you read every one before it goes out.',
+      ] },
+      { title: 'Your benchmark speech', points: [
+        'What you said was solid: basketball, then finance and computer science at SMU, then a career that brings you back to Arkansas.',
+        'Filler words were the least distracting part.',
+        { text: 'Your hands were fine. Move them more, and on purpose.', sub: [
+          'Nerves push the body to fight or run, which shows up as fidgeting.',
+          'Gesture with a point when you make it, for example when you describe moving around for basketball.',
+        ] },
+        'Swaying was the one distracting habit. It usually shows up when you are not sure what comes next.',
+        'Keep a note card with bullet points. Looking down at it shows you care about getting it right.',
+        'Practice out loud, even once for 30 seconds. Any practice beats none.',
+      ] },
+      { title: 'Macro structure', points: [
+        'The format for academic and corporate presentations, going back to Aristotle. Know it, and you can present on anything.',
+        { text: 'Introduction', sub: [
+          'Icebreaker: a short declarative sentence or a quote. Never open with your name and your topic. Yours: “I have been many places.”',
+          'Listener relevance link: wrap the whole audience in with words like “many of us” or “all of us.” Yours: “We all enjoy traveling.”',
+          'Speaker credibility: who you are and why you can speak on this. Yours: “I’m Max, a freshman at SMU.”',
+          'Thesis statement: short and clear. “Today I will present about who I am.”',
+          'Preview of main points: name each one in order.',
+        ] },
+        { text: 'Complete transition', sub: [
+          'Say what you just covered and what comes next, at every handoff.',
+          'It keeps a complicated topic easy to follow.',
+        ] },
+        { text: 'Main point', sub: [
+          'Topic sentence: announce the point.',
+          'Listener relevance link: one under every main point.',
+          'Subpoints: 1.1, 1.2, 1.3, connected to each other, often in time order.',
+          'Examples or evidence: a scene that shows the point, like sitting bored in your room before class.',
+        ] },
+        { text: 'Conclusion', sub: [
+          'Restate the thesis.',
+          'Summarize the main points.',
+          'Clincher: a last line that leaves them wanting more.',
+          'Never add anything new.',
+        ] },
+      ] },
+      { title: 'Two things to remember for good', points: [
+        'Clarity over brilliance. You cannot make people think you are smart. You can be clear, and clear speakers come across as smart.',
+        'Disclosing who you are builds connection. When you share something, listeners feel they owe you something back, and the one thing they can give is their attention.',
+      ] },
+      { title: 'Taking notes', points: [
+        'Have something to write with at every session.',
+        'Taking notes tells the speaker that what they are saying is worth writing down. That is how trust starts with a professor, and trust is what leads to a strong recommendation letter later.',
+      ] },
+    ],
+    professionalism: { score: 3, items: [
+      ['Session email sent by 9:00 PM the night before', 1, ''],
+      ['On time, in a quiet space, with earbuds in', 0, 'Two minutes late. Joining from your car is fine; find a spot with better signal.'],
+      ['Assignment submitted before the session', 1, 'Benchmark recorded and sent.'],
+      ['Brought at least one question', 1, ''],
+      ['Focused: notes open, no second screen', 0, 'Nothing to take notes with.'],
+    ] },
+    deliverables: [
+      { text: 'Rewrite your get-to-know-you speech outline in macro structure. Type it yourself, no AI this one time, and email it to Marc using the five-part email format.', due: 'Fri, Oct 9' },
+      { text: 'Record the new version and text the video to Marc.', due: 'Mon, Oct 12, by 11:00 AM' },
+      { text: 'Fill out the second survey from Marc’s email.', due: 'Mon, Oct 12' },
+      { text: 'From now on, put every file for this course in our shared Google Drive.', due: 'Ongoing' },
+    ],
+  },
+  {
+    n: 1, date: 'Monday, October 5', title: 'Orientation',
+    topics: [
+      { title: 'What we are working on', points: [
+        { text: 'Three goals over two months', sub: [
+          'Presenting: one structure you can use for any speech, starting with the introduction.',
+          'Networking: SMU clubs tied to your major, ideally with a team or competition element.',
+          'A professional identity: research a topic tied to what you study and turn it into something people can see, like a video on LinkedIn.',
+        ] },
+        { text: 'Three speeches', sub: [
+          'A self-introduction',
+          'An informative speech built on real research',
+          'A persuasive speech that pulls everything together',
+        ] },
+        'A weekly check on your grades.',
+        'We meet Mondays and Wednesdays at noon on the same Zoom link.',
+      ] },
+    ],
+    deliverables: [
+      { text: 'Fill out the pre-assessment form. Be honest; you take it again at the end.', due: 'Wed, Oct 7' },
+      { text: 'Order the phone tripod with a remote.', due: 'Wed, Oct 7' },
+      { text: 'Record a two to three minute self-introduction speech.', due: 'Wed, Oct 7' },
+      { text: 'Ask Claude which SMU clubs fit data science, business, and tech, with links and contacts.', due: 'Wed, Oct 7' },
+    ],
+  },
+];

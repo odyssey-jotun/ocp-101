@@ -1,0 +1,88 @@
+---
+// Session summaries: what we covered, how professionalism scored, and what is due.
+// Content lives in `sessions` in src/data/course.ts, newest first.
+import Base from '../../layouts/Base.astro';
+import { HoverLink } from '../../components/ui/hover-link';
+import { sessions, WORKSPACE } from '../../data/course';
+const base = import.meta.env.BASE_URL;
+const bullet = 'mt-2.5 size-1.5 shrink-0 rounded-full bg-primary/60';
+---
+<Base title="Sessions | OCP 101" description="What we covered in each session, and what is due next." current="sessions">
+  <section class="wrap pt-10 sm:pt-16">
+    <h1 class="font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">Sessions</h1>
+    <p class="lede mt-4">What we covered in each session, newest first. Each one ends with what you owe before the next.</p>
+    <nav aria-label="Jump to a session" class="mt-6 flex flex-wrap gap-2">
+      {sessions.map((s) => (
+        <a href={`#session-${s.n}`} class="rounded-full border bg-card px-4 py-2 text-sm transition-colors hover:border-primary/40">Session {s.n}: {s.date.split(', ')[1]}</a>
+      ))}
+    </nav>
+  </section>
+
+  {sessions.map((s) => (
+    <section id={`session-${s.n}`} class="section scroll-mt-24">
+      <div class="wrap">
+        <div class="border-t border-foreground/10 pt-8">
+          <p class="text-sm font-medium text-primary">Session {s.n} · {s.date}</p>
+          <h2 class="h-section mt-2">{s.title}</h2>
+        </div>
+
+        <div class="mt-8 gap-4 md:columns-2">
+          {s.topics.map((t) => (
+            <div class="mb-4 break-inside-avoid rounded-[18px] border bg-card p-6">
+              <h3 class="font-serif text-3xl leading-none">{t.title}</h3>
+              <ul class="mt-4 grid gap-3">
+                {t.points.map((p) => typeof p === 'string' ? (
+                  <li class="flex gap-2.5 leading-relaxed text-muted-foreground"><span aria-hidden="true" class={bullet}></span><span>{p}</span></li>
+                ) : (
+                  <li class="leading-relaxed">
+                    <div class="flex gap-2.5"><span aria-hidden="true" class={bullet}></span><span class="font-semibold">{p.text}</span></div>
+                    {p.sub.length > 0 && (
+                      <ul class="mt-2 grid gap-2 border-l-2 border-primary/25 pl-4 ml-[3px]">
+                        {p.sub.map((q) => <li class="text-sm leading-relaxed text-muted-foreground">{q}</li>)}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {s.professionalism && (
+          <div class="grid gap-6 rounded-[18px] border bg-card p-6 sm:p-8 lg:grid-cols-[1fr_1.6fr]">
+            <div>
+              <h3 class="font-serif text-3xl leading-none">Professionalism</h3>
+              <p class="mt-3 font-serif text-5xl leading-none text-primary">{s.professionalism.score}<span class="text-2xl text-muted-foreground"> / 5</span></p>
+            </div>
+            <ul class="grid gap-2">
+              {s.professionalism.items.map(([item, pt, note]) => (
+                <li class="rounded-xl bg-secondary/50 px-4 py-3">
+                  <div class="flex items-center justify-between gap-4"><span>{item}</span><span class:list={['shrink-0 text-sm font-semibold', pt ? 'text-primary' : 'text-muted-foreground']}>{pt} pt</span></div>
+                  {note && <p class="mt-1 text-sm text-muted-foreground">{note}</p>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div class="mt-4 rounded-[18px] bg-foreground p-6 text-background sm:p-8">
+          <h3 class="font-serif text-3xl leading-none">Your deliverables</h3>
+          <ol class="mt-5 grid gap-3">
+            {s.deliverables.map((d, k) => (
+              <li class="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-1 border-t border-background/15 pt-3 sm:grid-cols-[2rem_1fr_11rem]">
+                <span class="font-serif text-2xl leading-none text-background/60">{k + 1}</span>
+                <span class="leading-relaxed">{d.text}</span>
+                <span class="col-start-2 text-sm font-medium text-background/70 sm:col-start-auto sm:text-right">{d.due}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <div class="wrap pb-16 flex flex-wrap gap-6">
+    <HoverLink text="Back to the course" href={base} />
+    <HoverLink text="Open your workspace" href={WORKSPACE} target="_blank" rel="noreferrer" />
+  </div>
+</Base>
