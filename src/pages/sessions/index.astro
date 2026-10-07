@@ -10,7 +10,7 @@ const bullet = 'mt-2.5 size-1.5 shrink-0 rounded-full bg-primary/60';
 <Base title="Sessions | OCP 101" description="What we covered in each session, and what is due next." current="sessions">
   <section class="wrap pt-10 sm:pt-16">
     <h1 class="font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">Sessions</h1>
-    <p class="lede mt-4">What we covered in each session, newest first. Each one ends with what you owe before the next.</p>
+    <p class="lede mt-4">What we covered in each session, newest first. Each one starts with the big ideas and ends with what you owe before the next.</p>
     <nav aria-label="Jump to a session" class="mt-6 flex flex-wrap gap-2">
       {sessions.map((s) => (
         <a href={`#session-${s.n}`} class="rounded-full border bg-card px-4 py-2 text-sm transition-colors hover:border-primary/40">Session {s.n}: {s.date.split(', ')[1]}</a>
@@ -26,7 +26,22 @@ const bullet = 'mt-2.5 size-1.5 shrink-0 rounded-full bg-primary/60';
           <h2 class="h-section mt-2">{s.title}</h2>
         </div>
 
-        <div class="mt-8 gap-4 md:columns-2">
+        <div class="mt-8 rounded-[18px] bg-primary/[0.06] p-6 sm:p-8">
+          <h3 class="font-serif text-3xl leading-none">The big ideas</h3>
+          <ol class="mt-5 grid gap-x-10 gap-y-5 md:grid-cols-2">
+            {s.takeaways.map((t, k) => (
+              <li class="grid grid-cols-[2rem_1fr] gap-x-2">
+                <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
+                <div>
+                  <p class="font-semibold leading-snug">{t.idea}</p>
+                  <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{t.why}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div class="mt-4 gap-4 md:columns-2">
           {s.topics.map((t) => (
             <div class="mb-4 break-inside-avoid rounded-[18px] border bg-card p-6">
               <h3 class="font-serif text-3xl leading-none">{t.title}</h3>
