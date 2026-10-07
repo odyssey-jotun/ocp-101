@@ -3,6 +3,7 @@
 // Skills, assignments and the email guide come from src/data/course.ts
 // through WayPage; the copy and steps on this page live here.
 import WayPage from '../../components/WayPage.astro';
+import Photo from '../../components/Photo.astro';
 
 const routine = [
   ['Greet', 'Walk up, say hello, and give your name.', 'Hi, I’m Max.'],
@@ -45,8 +46,13 @@ const answer = [
     <div class="wrap">
       <h2 data-reveal class="h-section">The steps</h2>
 
-      <h3 data-reveal class="h-sub mt-10">1. Open a conversation: greet, ask, listen, paraphrase</h3>
+      <div class="mt-10 grid items-center gap-8 lg:grid-cols-2">
+        <div>
+      <h3 data-reveal class="h-sub">1. Open a conversation: greet, ask, listen, paraphrase</h3>
       <p class="max-w-2xl leading-relaxed text-muted-foreground">Do all four, in order, before you say anything about yourself.</p>
+        </div>
+        <Photo name="step-greet" alt="A young professional shaking hands across a table" />
+      </div>
       <ol data-reveal class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {routine.map(([name, text, line], k) => (
           <li class="rounded-[18px] border bg-card p-5">
@@ -58,8 +64,13 @@ const answer = [
         ))}
       </ol>
 
+      <div class="mt-14 grid items-center gap-8 lg:grid-cols-2">
+        <div>
       <h3 data-reveal class="h-sub">2. Say who you are: the 60-second elevator pitch</h3>
       <p class="max-w-2xl leading-relaxed text-muted-foreground">Your pitch is your LinkedIn hook, said out loud. Use it when someone asks what you do.</p>
+        </div>
+        <Photo name="step-pitch" alt="A young man introducing himself at a networking event" />
+      </div>
       <ol data-reveal class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {pitch.map(([name, line], k) => (
           <li class="rounded-[18px] border bg-card p-5">
@@ -80,8 +91,13 @@ const answer = [
         ))}
       </div>
 
+      <div class="mt-14 grid items-center gap-8 lg:grid-cols-2">
+        <div>
       <h3 data-reveal class="h-sub">3. Answer interview questions: modified macro structure</h3>
       <p class="max-w-2xl leading-relaxed text-muted-foreground">An interview answer is a short speech you did not get to prepare. Use the same skeleton, shrunk down. Sample question: “Tell me about a time you solved a problem.”</p>
+        </div>
+        <Photo name="step-interview" alt="Two young men shaking hands at the end of an interview" />
+      </div>
       <ol data-reveal class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {answer.map(([name, text, line], k) => (
           <li class="rounded-[18px] border bg-card p-5">

@@ -182,8 +182,8 @@ export const materials = [
 export const PRE_ASSESSMENT = 'https://docs.google.com/forms/d/e/1FAIpQLSf5RNdW8hYaeGHCpfQoXLWXQs-32zYo2DPG3W1-1y-8kp7cwA/viewform';
 
 export const ways = [
-  { slug: 'audience', title: 'In front of an audience', short: 'Plan and deliver a presentation with a complete macro structure.', rubric: 'speech', alt: 'A young man explaining an idea to a small group' },
-  { slug: 'one-on-one', title: 'One on one', short: 'Network and interview with a routine you can repeat.', rubric: '', alt: 'A young man in conversation at a networking event' },
+  { slug: 'audience', title: 'In front of an audience', short: 'Plan and deliver a presentation with a complete macro structure.', rubric: 'speech', alt: 'A young man in a blazer presenting on stage' },
+  { slug: 'one-on-one', title: 'One on one', short: 'Network and interview with a routine you can repeat.', rubric: '', alt: 'A young man being interviewed across a desk' },
   { slug: 'online', title: 'Online', short: 'Rebuild your LinkedIn and publish a short video portfolio.', rubric: 'linkedin', alt: 'A young man working on a laptop' },
 ];
 

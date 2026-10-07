@@ -3,6 +3,7 @@
 // Skills, assignments and the LinkedIn rubric come from src/data/course.ts
 // through WayPage; the copy and steps on this page live here.
 import WayPage from '../../components/WayPage.astro';
+import Photo from '../../components/Photo.astro';
 import { LINKEDIN_TAB } from '../../data/course';
 
 const steps = [
@@ -43,6 +44,8 @@ const filming = [
       </ol>
       <p class="mt-4 text-sm text-muted-foreground">Start with the <a class="inline" href={LINKEDIN_TAB} target="_blank" rel="noreferrer">LinkedIn worksheet</a>, due Monday, October 12.</p>
 
+      <div class="mt-12 grid items-center gap-8 lg:grid-cols-2">
+        <div>
       <h3 data-reveal class="h-sub">Filming speeches for LinkedIn</h3>
       <ul data-reveal class="mt-4 grid max-w-3xl gap-2">
         {filming.map((f) => (
@@ -52,6 +55,9 @@ const filming = [
           </li>
         ))}
       </ul>
+        </div>
+        <Photo name="step-filming" alt="A phone on a small tripod, ready to record" />
+      </div>
     </div>
   </section>
 </WayPage>

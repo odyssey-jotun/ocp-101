@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import RotatingHeadline from '../components/fx/RotatingHeadline';
 import Reveal from '../components/fx/Reveal';
 import CleanCTA from '../components/CleanCTA.astro';
+import Photo from '../components/Photo.astro';
 import {
   WORKSPACE, LINKEDIN_TAB, info, ongoing, schedule, ways,
   professionalism, levels, materials, PRE_ASSESSMENT,
@@ -16,8 +17,9 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
   description="A nine-week, one-on-one course with Marc Gray of Odyssey College Prep: three speeches, a LinkedIn rebuild, and a video portfolio."
 >
     <div id="top" class="relative isolate overflow-hidden">
-      <div class="wrap relative pb-12 pt-12 sm:pb-16 sm:pt-20">
-        <h1 class="max-w-4xl font-serif text-5xl leading-[0.98] tracking-tight text-balance sm:text-7xl lg:text-8xl">Professional Communication and Presence</h1>
+      <div class="wrap relative grid items-center gap-10 pb-12 pt-10 sm:pb-16 sm:pt-16 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+        <h1 class="font-serif text-5xl leading-[0.98] tracking-tight text-balance sm:text-6xl xl:text-7xl">Professional Communication and Presence</h1>
         <div class="mt-8 max-w-3xl">
           <RotatingHeadline client:load lead="Build your presence and connection" words={["in front of an audience.", "one on one.", "online."]} />
         </div>
@@ -27,6 +29,8 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
           <a href="#schedule" class="text-sm font-medium text-primary underline-offset-4 hover:underline">See the schedule</a>
         </div>
         <p class="mt-8 text-sm text-muted-foreground">OCP 101, Fall 2026. Mondays and Wednesdays at noon, one on one, with Marc Gray.</p>
+        </div>
+        <Photo name="hero-present" alt="A young man presenting charts to a small team" ratio="aspect-[5/4]" eager sizes="(min-width: 1024px) 45vw, 100vw" />
       </div>
       <div class="wrap relative pb-6">
         <ol class="grid gap-3 sm:grid-cols-3">
