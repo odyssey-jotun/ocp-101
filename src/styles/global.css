@@ -68,8 +68,11 @@
 }
 
 @layer base {
+
   * { border-color: var(--border); }
-  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  html { scroll-behavior: smooth; scroll-padding-top: 7.5rem; }
+  /* The sticky header is taller on phones (second nav row) */
+  @media (min-width: 768px) { html { scroll-padding-top: 5.5rem; } }
   body {
     background: var(--background);
     color: var(--foreground);

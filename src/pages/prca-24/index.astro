@@ -40,6 +40,7 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
   <section id="intro" class="wrap pt-10 sm:pt-16">
     <h1 class="font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">How you feel about communicating</h1>
     <p class="lede mt-4">James McCroskey’s Personal Report of Communication Apprehension, the PRCA-24. It is the most widely used measure of how nervous people feel when they talk with others. You take it now and again on December 2, and we compare.</p>
+    <p id="resume" class="mt-6 rounded-xl bg-accent px-4 py-3 text-sm text-accent-foreground" hidden>Your earlier answers are filled in below. <button id="reset-top" type="button" class="font-semibold underline underline-offset-4">Start over with a blank survey</button></p>
     <ol class="mt-8 grid gap-3 sm:grid-cols-3">
       <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">1</span><p class="mt-2 text-sm leading-relaxed">Click one answer for each of the 24 statements. Go with your first reaction. There are no right answers.</p></li>
       <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">2</span><p class="mt-2 text-sm leading-relaxed">Your answers save in this browser as you go, so you can close the page and come back.</p></li>
@@ -142,7 +143,7 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
 </Base>
 
 <script>
-  const KEY = 'ocp101-prca24';
+  const KEY = 'ocp101-prca24-v2'; // bumped 2026-10-07 so test answers from before launch do not carry over
   const MARC = 'mgray@odysseycollegeprep.com';
   // McCroskey's scoring: 18 - (positively worded) + (negatively worded), each 6 to 30.
   const scales = [
@@ -234,16 +235,19 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
     $('copy').textContent = 'Copied ✓';
     setTimeout(() => ($('copy').textContent = 'Copy my results link'), 2500);
   });
+  $('reset-top').addEventListener('click', () => $('reset').click());
   $('reset').addEventListener('click', () => {
     if (!confirm('Clear all 24 answers?')) return;
     answers = {}; taken = ''; try { localStorage.removeItem(KEY + '-date'); } catch {} save();
     document.querySelectorAll<HTMLInputElement>('input[type=radio]').forEach((r) => (r.checked = false));
+    $('resume').hidden = true;
     sync(); window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   // Pin the progress bar under the header, which is taller on phones.
   const header = document.querySelector('header');
   const pin = () => { if (header) $('progress').style.top = `${header.offsetHeight}px`; };
   pin(); addEventListener('resize', pin);
+  if (!shared && Object.keys(answers).length > 0) $('resume').hidden = false;
   if (shared) {
     ['intro', 'quiz', 'progress', 'send', 'restart'].forEach((id) => ($(id).hidden = true));
     $('rtitle').textContent = 'PRCA-24 results';

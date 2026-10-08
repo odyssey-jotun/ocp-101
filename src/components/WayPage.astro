@@ -14,6 +14,14 @@ const rubric = rubrics.filter((r) => r.key === way.rubric);
 const work = assignments.filter((a) => a.way === i);
 const kit = materials.filter((m) => m.way === i);
 const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
+// Jump links to each section; every section below carries the matching id.
+const toc: [string, string][] = [
+  ['skills', 'What you will be able to do'],
+  ['steps', way.slug === 'audience' ? 'The macro structure' : 'The steps'],
+  ['assignments', 'Assignments'],
+  rubric.length > 0 ? ['scoring', 'How it is scored'] : ['emails', 'How to write your emails'],
+  ...(kit.length > 0 ? [['materials', 'What you need'] as [string, string]] : []),
+];
 ---
 <Base title={`${way.title} | OCP 101`} description={outcome.title} current={way.slug}>
   <div class="relative isolate overflow-hidden">
@@ -22,6 +30,14 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
       <span class="text-primary">0{i + 1}</span> {way.title}
     </h1>
     <p class="lede mt-4">{outcome.title}</p>
+    <nav aria-label="On this page" class="mt-6">
+      <p class="text-sm font-semibold">On this page</p>
+      <ul class="mt-3 flex flex-wrap gap-2">
+        {toc.map(([id, label]) => (
+          <li><a href={`#${id}`} class="inline-flex rounded-full border bg-card px-4 py-2 text-sm transition-colors hover:border-primary/40 hover:text-primary">{label}</a></li>
+        ))}
+      </ul>
+    </nav>
     <div class="mt-10 grid items-stretch gap-4 lg:grid-cols-[0.85fr_1.15fr]">
       <img src={`${base}img/way-${way.slug}-1200.webp`} srcset={`${base}img/way-${way.slug}-720.webp 720w, ${base}img/way-${way.slug}-1200.webp 1200w`} sizes="(min-width: 1024px) 40vw, 100vw" width="1200" height="900" fetchpriority="high" decoding="async" alt={way.alt} class="aspect-[4/3] h-full w-full rounded-[28px] object-cover lg:aspect-auto" />
       <slot name="about" />
@@ -29,9 +45,10 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
   </section>
   </div>
 
+
   <section class="section !pt-12">
     <div class="wrap">
-      <h2 data-reveal class="h-section">What you will be able to do</h2>
+      <h2 id="skills" data-reveal class="h-section">What you will be able to do</h2>
       <div data-reveal class="mt-8 grid items-start gap-4 md:grid-cols-2">
         {outcome.tiers.map((t) => (
           <div class="rounded-[18px] border bg-card p-6">
@@ -49,7 +66,7 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
 
   <section class="section">
     <div class="wrap">
-      <h2 data-reveal class="h-section">Assignments</h2>
+      <h2 id="assignments" data-reveal class="h-section">Assignments</h2>
       <p class="lede">Due before the session on the date listed. Numbers match the full course list, which runs in due-date order.</p>
       <ol class="mt-8 border-t border-foreground/10">
         {work.map((a) => (
@@ -67,7 +84,7 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
 {rubric.length > 0 ? (
   <section class="section">
     <div class="wrap">
-      <h2 data-reveal class="h-section">How it is scored</h2>
+      <h2 id="scoring" data-reveal class="h-section">How it is scored</h2>
       <p class="lede">From 4 to 0, explained on the <a class="inline" href={`${base}#scoring`}>home page</a>. A shaded cell means that score is not used for that part.</p>
       <div class="mt-8">
         <RubricTabs client:visible rubrics={rubric} />
@@ -75,9 +92,9 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
     </div>
   </section>
 ) : (
-  <section id="emails" class="section scroll-mt-24">
+  <section class="section">
     <div class="wrap">
-      <h2 data-reveal class="h-section">How to write your emails</h2>
+      <h2 id="emails" data-reveal class="h-section">How to write your emails</h2>
       <p class="lede">Every session email, and every email to a professor or club contact, has these five parts, in this order.</p>
       <div data-reveal class="mt-8 grid gap-8 lg:grid-cols-[1.3fr_1fr]">
         <ol class="grid gap-3">
@@ -109,7 +126,7 @@ const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
   {kit.length > 0 && (
     <section class="section">
       <div class="wrap">
-        <h2 data-reveal class="h-section">What you need</h2>
+        <h2 id="materials" data-reveal class="h-section">What you need</h2>
         <div data-reveal class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {kit.map((m) => (
             <div class="rounded-[18px] border bg-card p-6">
