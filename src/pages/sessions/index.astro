@@ -86,7 +86,7 @@ const bullet = 'mt-2.5 size-1.5 shrink-0 rounded-full bg-primary/60';
             {s.deliverables.map((d, k) => (
               <li class="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-1 border-t border-background/15 pt-3 sm:grid-cols-[2rem_1fr_11rem]">
                 <span class="font-serif text-2xl leading-none text-background/60">{k + 1}</span>
-                <span class="leading-relaxed">{d.text}</span>
+                <span class="leading-relaxed">{d.text}{d.href && <> <a href={d.href} target="_blank" rel="noreferrer" class="whitespace-nowrap font-medium underline underline-offset-4">{d.link} ↗</a></>}</span>
                 <span class="col-start-2 text-sm font-medium text-background/70 sm:col-start-auto sm:text-right">{d.due}</span>
               </li>
             ))}

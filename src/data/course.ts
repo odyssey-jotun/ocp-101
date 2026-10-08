@@ -1,6 +1,8 @@
 export const WORKSPACE =
   'https://docs.google.com/document/d/1PLG4TlDc7C62L97sk2MX5vi6sKLjcaSTkyPTFh6SeRw/edit';
 export const LINKEDIN_TAB = `${WORKSPACE}?tab=t.wtq0sen8dlt`;
+// Every video and file Max uploads goes here, not in the workspace doc.
+export const DRIVE = 'https://drive.google.com/drive/folders/1fMR14ENpLI0aolNpUMrjqOUsg8LTe0yp';
 
 export const info = [
   { label: 'Instructor', value: 'Marc Gray, Odyssey College Prep' },
@@ -171,7 +173,8 @@ export const levels = [
 ];
 
 export const materials = [
-  { title: 'The course workspace', text: 'A Google Doc with one tab per assignment. Every video link, the club list, research notes, and the grades log live there.', href: WORKSPACE },
+  { title: 'The course workspace', text: 'A Google Doc with one tab per assignment. Your outlines, the club list, research notes, and the grades log live there.', href: WORKSPACE },
+  { title: 'Your Drive folder', text: 'Upload every video and file here, then paste its link in that assignment’s tab of your workspace.', href: DRIVE },
   { way: 0, title: 'Michael T. Motley, Overcoming Your Fear of Public Speaking', text: 'Assigned chapters cover the difference between a communication orientation and a performance orientation.' },
   { way: 0, title: 'Rory Sutherland, “Life Lessons from an Ad Man”', text: 'TED, 2009. The talk you break down for the speech analysis.', href: 'https://www.ted.com/talks/rory_sutherland_life_lessons_from_an_ad_man' },
   { way: 0, title: 'A phone tripod with a remote', text: 'Order it yourself from the link in Marc’s October 5 email. It extends to 72 inches, which puts the camera at eye level when you stand.', href: 'https://www.amazon.com/dp/B0CNGHR7PK' },
@@ -191,7 +194,7 @@ export const emailGuide = [
   { part: 'Greeting', how: 'Say hello and use their name.', example: 'Hello, Marc,' },
   { part: 'Rapport', how: 'One genuine line about them or your last conversation.', example: 'Thanks for the tip on transitions Monday.' },
   { part: 'Context', how: 'One or two sentences on why you are writing.', example: 'I’m sending my benchmark video for Wednesday’s session.' },
-  { part: 'Clear deliverable', how: 'Say exactly what is attached or linked, or exactly what you need and by when.', example: 'It’s linked in the Benchmark Speech tab of my workspace.' },
+  { part: 'Clear deliverable', how: 'Say exactly what is attached or linked, or exactly what you need and by when.', example: 'It’s uploaded to my Drive folder for the course.' },
   { part: 'Sign-off', how: 'A closing line and your full name.', example: 'See you Wednesday, [your full name]' },
 ];
 
@@ -203,11 +206,11 @@ export type Session = {
   takeaways: { idea: string; why: string }[];
   topics: { title: string; points: Point[] }[];
   professionalism?: { score: number; items: [string, number, string][] };
-  deliverables: { text: string; due: string }[];
+  deliverables: { text: string; due: string; href?: string; link?: string }[];
 };
 export const sessions: Session[] = [
   {
-    n: 1, date: 'Wednesday, October 7', title: 'Your benchmark and macro structure',
+    n: 2, date: 'Wednesday, October 7', title: 'Your benchmark and macro structure',
     takeaways: [
       { idea: 'Macro structure lets you present on anything.', why: 'Introduction, main points, conclusion, with a complete transition at every handoff. Once you know the skeleton, any topic is a matter of filling it in, and your audience always knows where you are.' },
       { idea: 'Clarity over brilliance.', why: 'You cannot make people think you are smart. You can be clear, and clear speakers come across as smart. Trying to sound brilliant usually backfires.' },
@@ -274,8 +277,62 @@ export const sessions: Session[] = [
     deliverables: [
       { text: 'Rewrite your get-to-know-you speech outline in macro structure, in the Intro Speech Outline tab of your workspace. Type it yourself, no AI this one time, and email Marc using the five-part email format when it is done.', due: 'Fri, Oct 9' },
       { text: 'Record the new version and text the video to Marc.', due: 'Mon, Oct 12, by 11:00 AM' },
-      { text: 'Take the PRCA-24 on the course site and email Marc your results: odyssey-jotun.github.io/ocp-101/prca-24/', due: 'Mon, Oct 12' },
-      { text: 'From now on, put every file for this course in our shared Google Drive.', due: 'Ongoing' },
+      { text: 'Take the PRCA-24, click “Copy my results link,” and email that link to Marc.', due: 'Mon, Oct 12', href: 'https://odyssey-jotun.github.io/ocp-101/prca-24/', link: 'Take the survey' },
+      { text: 'From now on, upload every video and file for this course to your Drive folder.', due: 'Ongoing', href: DRIVE, link: 'Open your Drive folder' },
+    ],
+  },
+  {
+    n: 1, date: 'Monday, October 5', title: 'What this course is for',
+    takeaways: [
+      { idea: 'A structure beats polish.', why: 'Polish and flair take years. A structure you know cold lets you build a clear presentation on anything, starting this semester.' },
+      { idea: 'Nervous is normal.', why: 'Confident speakers are still nervous. The ones who feel nothing usually forget about their audience, and that is worse.' },
+      { idea: 'Experience builds confidence.', why: 'A club with a team or a competition gives you real work to pull your weight on, and puts you next to older students who already have the internships you want.' },
+      { idea: 'Have something to say.', why: 'When someone asks what you do, you want a topic you know a lot about and care about. That is what makes people feel they know you.' },
+      { idea: 'Professors write your recommendation letters.', why: 'The weekly grades check is practice communicating with professors like a professional, so they stay in your corner.' },
+    ],
+    topics: [
+      { title: 'Why presenting matters to you', points: [
+        'Getting better means vocal skills and knowing the right things to say.',
+        { text: 'Where it pays off', sub: [
+          'Class presentations, like the two-minute one you gave that morning',
+          'Interviews for the ALT program',
+          'Internship interviews',
+        ] },
+      ] },
+      { title: 'Three goals', points: [
+        { text: 'Presenting', sub: [
+          'Build the middle first: thesis, main points, an example for each, and transitions between them.',
+          'Then put the buns on the sandwich: an introduction and a conclusion.',
+          'The introduction has five parts: icebreaker, listener relevance link, speaker credibility, thesis statement, preview of main points.',
+        ] },
+        { text: 'Networking and interviewing', sub: [
+          'Join clubs tied to your major, ideally with a team or a competition, like a startup pitch group.',
+          'Interview practice means more once you have a real interview to prepare for.',
+        ] },
+        { text: 'A professional identity', sub: [
+          'Research one topic tied to what you study, like fintech or data science.',
+          'Turn it into a portfolio on LinkedIn: each main point a video, each subpoint a short.',
+          'A recruiter who sees you talk about something you care about feels like they already know you.',
+        ] },
+      ] },
+      { title: 'Three speeches', points: [
+        { text: 'Get-to-know-you speech', sub: ['Low stakes. Marc just wants to hear how you talk.'] },
+        { text: 'Informative speech', sub: ['Real research, cited out loud like a pro. Filmed, reviewed, and likely filmed again.'] },
+        { text: 'Persuasive speech', sub: ['Research your audience, then try to move them to do something. It pulls together everything before it.'] },
+        'After that, we work on bringing all of it into interviews.',
+      ] },
+      { title: 'How we work', points: [
+        'Mondays and Wednesdays at noon, on the same Zoom link.',
+        'Earbuds in, somewhere quiet. Your car counts.',
+        'A weekly look at your grades.',
+        'A phone tripod for recording your speeches.',
+      ] },
+    ],
+    deliverables: [
+      { text: 'Fill out the public speaking pre-assessment form. Be honest; you take it again at the end.', due: 'Wed, Oct 7', href: PRE_ASSESSMENT, link: 'Open the form' },
+      { text: 'Order the phone tripod with a remote.', due: 'Wed, Oct 7' },
+      { text: 'Record a two to three minute get-to-know-you speech.', due: 'Wed, Oct 7' },
+      { text: 'Ask Claude which SMU clubs fit data science, business, and tech, with website links and contacts.', due: 'Wed, Oct 7' },
     ],
   },
 ];
