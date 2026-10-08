@@ -37,13 +37,13 @@ const items = [
 const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a speech'];
 ---
 <Base title="PRCA-24 | OCP 101" description="McCroskey’s Personal Report of Communication Apprehension, scored for you as you go." current="">
-  <section class="wrap pt-10 sm:pt-16">
+  <section id="intro" class="wrap pt-10 sm:pt-16">
     <h1 class="font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">How you feel about communicating</h1>
     <p class="lede mt-4">James McCroskey’s Personal Report of Communication Apprehension, the PRCA-24. It is the most widely used measure of how nervous people feel when they talk with others. You take it now and again on December 2, and we compare.</p>
     <ol class="mt-8 grid gap-3 sm:grid-cols-3">
       <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">1</span><p class="mt-2 text-sm leading-relaxed">Click one answer for each of the 24 statements. Go with your first reaction. There are no right answers.</p></li>
       <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">2</span><p class="mt-2 text-sm leading-relaxed">Your answers save in this browser as you go, so you can close the page and come back.</p></li>
-      <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">3</span><p class="mt-2 text-sm leading-relaxed">When all 24 are answered, your scores and chart appear at the bottom, with how to send them to Marc.</p></li>
+      <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">3</span><p class="mt-2 text-sm leading-relaxed">When all 24 are answered, your scores and chart appear at the bottom. Copy your results link and email it to Marc.</p></li>
     </ol>
   </section>
 
@@ -54,7 +54,7 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
     </div>
   </div>
 
-  <section class="wrap mt-8">
+  <section id="quiz" class="wrap mt-8">
     {groups.map((g, gi) => (
       <div class="mb-10">
         <h2 class="h-sub">{g}</h2>
@@ -89,7 +89,8 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
   <section id="results" class="section !pt-4" hidden>
     <div class="wrap">
       <div id="card" class="rounded-[28px] border bg-card p-6 sm:p-10">
-        <h2 class="h-section">Your results</h2>
+        <p id="shared" class="mb-6 rounded-xl bg-accent px-4 py-3 text-sm text-accent-foreground" hidden></p>
+        <h2 id="rtitle" class="h-section">Your results</h2>
         <p id="stamp" class="text-sm text-muted-foreground"></p>
 
         <div class="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
@@ -109,21 +110,26 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
         <p class="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">This is a benchmark, not a grade. A high score here is common and is exactly what this course works on. You retake it on December 2 and we put the two side by side.</p>
       </div>
 
-      <div class="mt-4 rounded-[18px] bg-foreground p-6 text-background sm:p-8">
+      <div id="send" class="mt-4 rounded-[18px] bg-foreground p-6 text-background sm:p-8">
         <h3 class="font-serif text-3xl leading-none">Send your results to Marc</h3>
-        <ol class="mt-5 grid gap-3">
-          <li class="grid grid-cols-[2rem_1fr] border-t border-background/15 pt-3"><span class="font-serif text-2xl leading-none text-background/60">1</span><span class="leading-relaxed">Take a screenshot of your results above, chart included.</span></li>
-          <li class="grid grid-cols-[2rem_1fr] border-t border-background/15 pt-3"><span class="font-serif text-2xl leading-none text-background/60">2</span><span class="leading-relaxed">Click the button below. It opens an email to Marc with your scores and answers already filled in.</span></li>
-          <li class="grid grid-cols-[2rem_1fr] border-t border-background/15 pt-3"><span class="font-serif text-2xl leading-none text-background/60">3</span><span class="leading-relaxed">Fill in the bracketed parts so it follows the <a class="underline underline-offset-4" href={`${base}one-on-one/#emails`}>five-part email format</a>, attach the screenshot, and send it before Monday’s session.</span></li>
-        </ol>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a id="mail" href="#" class="inline-flex h-12 items-center rounded-full bg-background px-6 text-sm font-medium text-foreground transition hover:bg-background/90">Email my results to Marc</a>
-          <button id="copy" type="button" class="inline-flex h-12 items-center rounded-full border border-background/30 px-6 text-sm font-medium transition hover:bg-background/10">Copy my results</button>
+        <p class="mt-3 max-w-2xl leading-relaxed text-background/75">No screenshot needed. Your results link rebuilds your scores and chart when Marc opens it.</p>
+
+        <div class="mt-6 rounded-[18px] border-2 border-[var(--brand)] bg-background/[0.06] p-5 sm:p-6">
+          <p class="flex items-baseline gap-3"><span class="font-serif text-3xl leading-none text-[var(--brand-foreground)]">1</span><span class="text-lg font-semibold">Copy your results link</span></p>
+          <p class="mt-2 text-sm leading-relaxed text-background/75">This is the step that matters. Click the button, and the link is ready to paste.</p>
+          <button id="copy" type="button" class="mt-4 inline-flex h-14 w-full items-center justify-center rounded-full bg-[var(--brand)] px-8 text-base font-semibold text-white transition hover:brightness-110 sm:w-auto">Copy my results link</button>
+          <input id="link" readonly aria-label="Your results link" class="mt-3 block w-full truncate rounded-lg border border-background/20 bg-transparent px-3 py-2 text-xs text-background/70" />
+          <p id="copied" class="mt-2 min-h-5 text-sm font-medium text-[var(--brand-foreground)]" aria-live="polite"></p>
         </div>
-        <p id="copied" class="mt-3 text-sm text-background/70" aria-live="polite"></p>
+
+        <div class="mt-4 px-1">
+          <p class="flex items-baseline gap-3"><span class="font-serif text-3xl leading-none text-background/60">2</span><span class="text-lg font-semibold">Paste it into an email to Marc</span></p>
+          <p class="mt-2 max-w-2xl text-sm leading-relaxed text-background/75">Use the <a class="underline underline-offset-4" href={`${base}one-on-one/#emails`}>five-part email format</a> and send it before Monday’s session. The button below starts that email with your link already in it.</p>
+          <a id="mail" href="#" class="mt-4 inline-flex h-12 items-center rounded-full border border-background/30 px-6 text-sm font-medium transition hover:bg-background/10">Open an email to Marc</a>
+        </div>
       </div>
 
-      <div class="mt-8 flex flex-wrap items-center gap-6">
+      <div id="restart" class="mt-8 flex flex-wrap items-center gap-6">
         <button id="reset" type="button" class="text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground">Clear my answers and start over</button>
       </div>
     </div>
@@ -146,9 +152,24 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
     { name: 'Giving a speech', pos: [19, 21, 23], neg: [20, 22, 24], mean: 19.3, low: 14, high: 24 },
   ];
 
+  // A results link carries all 24 answers (?r=24 digits) and the date taken (&d=YYYY-MM-DD).
+  const params = new URLSearchParams(location.search);
+  const shared = /^[1-5]{24}$/.test(params.get('r') || '');
   let answers: Record<string, number> = {};
-  try { answers = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch { answers = {}; }
-  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch {} };
+  let taken = '';
+  if (shared) {
+    [...params.get('r')!].forEach((c, i) => (answers[i + 1] = Number(c)));
+    taken = params.get('d') || '';
+  } else {
+    try {
+      answers = JSON.parse(localStorage.getItem(KEY) || '{}') || {};
+      taken = localStorage.getItem(KEY + '-date') || '';
+    } catch { answers = {}; }
+  }
+  const save = () => { if (shared) return; try { localStorage.setItem(KEY, JSON.stringify(answers)); if (taken) localStorage.setItem(KEY + '-date', taken); } catch {} };
+  const today = () => new Date().toLocaleDateString('en-CA');
+  const nice = (d: string) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  const resultsLink = () => `${location.origin}${location.pathname}?r=${Array.from({ length: 24 }, (_, i) => answers[i + 1]).join('')}&d=${taken || today()}`;
 
   const $ = (id: string) => document.getElementById(id)!;
   const results = $('results');
@@ -160,23 +181,12 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
     return { subs, total: subs.reduce((t, s) => t + s.score, 0) };
   }
 
-  function summary() {
-    const { subs, total } = compute();
-    const lines = [
-      `PRCA-24 results (${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })})`,
-      `Total: ${total} of 120 (${level(total, 51, 80)})`,
-      ...subs.map((s) => `${s.name}: ${s.score} of 30 (${level(s.score, s.low, s.high)})`),
-      '',
-      'Answers: ' + Array.from({ length: 24 }, (_, i) => `${i + 1}=${answers[i + 1]}`).join(', '),
-    ];
-    return lines.join('\n');
-  }
-
   function draw() {
     const { subs, total } = compute();
     $('total').textContent = String(total);
     $('band').textContent = total < 51 ? 'Low communication apprehension' : total > 80 ? 'High communication apprehension' : 'Average communication apprehension';
-    $('stamp').textContent = 'Scored ' + new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    $('stamp').textContent = 'Taken ' + nice(taken || today());
+    ($('link') as HTMLInputElement).value = resultsLink();
     const pct = (v: number) => ((v - 6) / 24) * 100;
     $('chart').innerHTML = subs.map((s) => `
       <div>
@@ -193,7 +203,7 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
         <div class="mt-1 flex justify-between text-[0.68rem] text-muted-foreground tabular-nums"><span>6 calm</span><span>30 nervous</span></div>
       </div>`).join('') + `<p class="text-xs text-muted-foreground"><span class="inline-block h-3 w-0.5 translate-y-0.5 bg-muted-foreground/50"></span> marks the college average.</p>`;
 
-    const body = `Hello, Marc,\n\n[One line of rapport]\n\n[Context: why you are writing]\n\nMy PRCA-24 results are below, and the screenshot is attached.\n\n${summary()}\n\n[Sign-off and your full name]`;
+    const body = `Hello, Marc,\n\n[One line of rapport]\n\n[Context: why you are writing]\n\nHere is the link to my PRCA-24 results: ${resultsLink()}\n\n[Sign-off and your full name]`;
     ($('mail') as HTMLAnchorElement).href = `mailto:${MARC}?subject=${encodeURIComponent('My PRCA-24 results')}&body=${encodeURIComponent(body)}`;
   }
 
@@ -209,18 +219,24 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
     if (answers[n] === Number(r.value)) r.checked = true;
     r.addEventListener('change', () => {
       const was = Object.keys(answers).length;
-      answers[n] = Number(r.value); save(); sync();
+      answers[n] = Number(r.value);
+      if (Object.keys(answers).length === 24 && !taken) taken = today();
+      save(); sync();
       if (was === 23 && Object.keys(answers).length === 24) results.scrollIntoView({ behavior: 'smooth' });
     });
   });
 
   $('copy').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(summary()); $('copied').textContent = 'Copied. Paste it into your email to Marc.'; }
-    catch { $('copied').textContent = 'Your browser blocked copying. Use the email button instead.'; }
+    const link = $('link') as HTMLInputElement;
+    try { await navigator.clipboard.writeText(resultsLink()); }
+    catch { link.focus(); link.select(); document.execCommand('copy'); }
+    $('copied').textContent = 'Copied. Now paste it into your email to Marc.';
+    $('copy').textContent = 'Copied ✓';
+    setTimeout(() => ($('copy').textContent = 'Copy my results link'), 2500);
   });
   $('reset').addEventListener('click', () => {
     if (!confirm('Clear all 24 answers?')) return;
-    answers = {}; save();
+    answers = {}; taken = ''; try { localStorage.removeItem(KEY + '-date'); } catch {} save();
     document.querySelectorAll<HTMLInputElement>('input[type=radio]').forEach((r) => (r.checked = false));
     sync(); window.scrollTo({ top: 0, behavior: 'smooth' });
   });
@@ -228,5 +244,11 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
   const header = document.querySelector('header');
   const pin = () => { if (header) $('progress').style.top = `${header.offsetHeight}px`; };
   pin(); addEventListener('resize', pin);
+  if (shared) {
+    ['intro', 'quiz', 'progress', 'send', 'restart'].forEach((id) => ($(id).hidden = true));
+    $('rtitle').textContent = 'PRCA-24 results';
+    $('shared').hidden = false;
+    $('shared').textContent = 'You are viewing shared results. Nothing here is saved to this browser.';
+  }
   sync();
 </script>
