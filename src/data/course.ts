@@ -274,7 +274,7 @@ export const sessions: Session[] = [
     deliverables: [
       { text: 'Rewrite your get-to-know-you speech outline in macro structure. Type it yourself, no AI this one time, and email it to Marc using the five-part email format.', due: 'Fri, Oct 9' },
       { text: 'Record the new version and text the video to Marc.', due: 'Mon, Oct 12, by 11:00 AM' },
-      { text: 'Fill out the second survey from Marc’s email.', due: 'Mon, Oct 12' },
+      { text: 'Take the PRCA-24 on the course site and email Marc your results: odyssey-jotun.github.io/ocp-101/prca-24/', due: 'Mon, Oct 12' },
       { text: 'From now on, put every file for this course in our shared Google Drive.', due: 'Ongoing' },
     ],
   },

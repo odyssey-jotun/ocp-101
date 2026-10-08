@@ -1,0 +1,232 @@
+---
+// McCroskey's PRCA-24, taken in the browser. Answers save in this browser
+// (localStorage), scoring follows McCroskey's published formula, and the
+// results chart places each score against his college-student norms.
+// Source: https://www.jamescmccroskey.com/measures/prca24.htm
+import Base from '../../layouts/Base.astro';
+import { HoverLink } from '../../components/ui/hover-link';
+
+const base = import.meta.env.BASE_URL;
+const scale = ['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly agree'];
+const items = [
+  'I dislike participating in group discussions.',
+  'Generally, I am comfortable while participating in group discussions.',
+  'I am tense and nervous while participating in group discussions.',
+  'I like to get involved in group discussions.',
+  'Engaging in a group discussion with new people makes me tense and nervous.',
+  'I am calm and relaxed while participating in group discussions.',
+  'Generally, I am nervous when I have to participate in a meeting.',
+  'Usually, I am comfortable when I have to participate in a meeting.',
+  'I am very calm and relaxed when I am called upon to express an opinion at a meeting.',
+  'I am afraid to express myself at meetings.',
+  'Communicating at meetings usually makes me uncomfortable.',
+  'I am very relaxed when answering questions at a meeting.',
+  'While participating in a conversation with a new acquaintance, I feel very nervous.',
+  'I have no fear of speaking up in conversations.',
+  'Ordinarily I am very tense and nervous in conversations.',
+  'Ordinarily I am very calm and relaxed in conversations.',
+  'While conversing with a new acquaintance, I feel very relaxed.',
+  'I’m afraid to speak up in conversations.',
+  'I have no fear of giving a speech.',
+  'Certain parts of my body feel very tense and rigid while giving a speech.',
+  'I feel relaxed while giving a speech.',
+  'My thoughts become confused and jumbled when I am giving a speech.',
+  'I face the prospect of giving a speech with confidence.',
+  'While giving a speech, I get so nervous I forget facts I really know.',
+];
+const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a speech'];
+---
+<Base title="PRCA-24 | OCP 101" description="McCroskey’s Personal Report of Communication Apprehension, scored for you as you go." current="">
+  <section class="wrap pt-10 sm:pt-16">
+    <h1 class="font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">How you feel about communicating</h1>
+    <p class="lede mt-4">James McCroskey’s Personal Report of Communication Apprehension, the PRCA-24. It is the most widely used measure of how nervous people feel when they talk with others. You take it now and again on December 2, and we compare.</p>
+    <ol class="mt-8 grid gap-3 sm:grid-cols-3">
+      <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">1</span><p class="mt-2 text-sm leading-relaxed">Click one answer for each of the 24 statements. Go with your first reaction. There are no right answers.</p></li>
+      <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">2</span><p class="mt-2 text-sm leading-relaxed">Your answers save in this browser as you go, so you can close the page and come back.</p></li>
+      <li class="rounded-[18px] border bg-card p-5"><span class="font-serif text-2xl leading-none text-primary">3</span><p class="mt-2 text-sm leading-relaxed">When all 24 are answered, your scores and chart appear at the bottom, with how to send them to Marc.</p></li>
+    </ol>
+  </section>
+
+  <div id="progress" class="sticky top-16 z-30 mt-8 border-y border-foreground/5 bg-background/90 backdrop-blur-md">
+    <div class="wrap flex items-center gap-4 py-3">
+      <div class="h-2 flex-1 overflow-hidden rounded-full bg-secondary"><div id="bar" class="h-full w-0 rounded-full bg-primary transition-[width] duration-300 motion-reduce:transition-none"></div></div>
+      <p class="shrink-0 text-sm font-medium tabular-nums"><span id="count">0</span> of 24</p>
+    </div>
+  </div>
+
+  <section class="wrap mt-8">
+    {groups.map((g, gi) => (
+      <div class="mb-10">
+        <h2 class="h-sub">{g}</h2>
+        <ol class="grid gap-3">
+          {items.slice(gi * 6, gi * 6 + 6).map((text, k) => {
+            const n = gi * 6 + k + 1;
+            return (
+              <li class="rounded-[18px] border bg-card p-5" data-item={n}>
+                <p class="leading-relaxed"><span class="mr-2 font-serif text-xl text-primary">{n}</span>{text}</p>
+                <fieldset class="mt-4">
+                  <legend class="sr-only">Statement {n}</legend>
+                  <div class="grid grid-cols-5 gap-1.5 sm:gap-2">
+                    {scale.map((label, v) => (
+                      <label class="choice cursor-pointer">
+                        <input type="radio" name={`q${n}`} value={v + 1} class="peer sr-only" />
+                        <span class="flex h-full min-h-14 flex-col items-center justify-center gap-0.5 rounded-xl border bg-background px-1 py-2 text-center transition-colors hover:border-primary/50 peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground peer-focus-visible:ring-2 peer-focus-visible:ring-ring">
+                          <span class="font-serif text-xl leading-none">{v + 1}</span>
+                          <span class="text-[0.68rem] leading-tight sm:text-xs">{label}</span>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    ))}
+  </section>
+
+  <section id="results" class="section !pt-4" hidden>
+    <div class="wrap">
+      <div id="card" class="rounded-[28px] border bg-card p-6 sm:p-10">
+        <h2 class="h-section">Your results</h2>
+        <p id="stamp" class="text-sm text-muted-foreground"></p>
+
+        <div class="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p class="text-sm text-muted-foreground">Total score, 24 to 120</p>
+            <p class="mt-1 font-serif text-7xl leading-none"><span id="total"></span></p>
+            <p id="band" class="mt-3 font-semibold"></p>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Lower means less nervous. Across more than 40,000 college students, the average total is 65.6. Below 51 counts as low and above 80 as high.</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold">Where you land in each setting</p>
+            <p class="mt-1 text-xs text-muted-foreground">Each setting runs from 6 to 30. The shaded band is the typical range for college students; your score is the dot.</p>
+            <div id="chart" class="mt-4 grid gap-5"></div>
+          </div>
+        </div>
+
+        <p class="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">This is a benchmark, not a grade. A high score here is common and is exactly what this course works on. You retake it on December 2 and we put the two side by side.</p>
+      </div>
+
+      <div class="mt-4 rounded-[18px] bg-foreground p-6 text-background sm:p-8">
+        <h3 class="font-serif text-3xl leading-none">Send your results to Marc</h3>
+        <ol class="mt-5 grid gap-3">
+          <li class="grid grid-cols-[2rem_1fr] border-t border-background/15 pt-3"><span class="font-serif text-2xl leading-none text-background/60">1</span><span class="leading-relaxed">Take a screenshot of your results above, chart included.</span></li>
+          <li class="grid grid-cols-[2rem_1fr] border-t border-background/15 pt-3"><span class="font-serif text-2xl leading-none text-background/60">2</span><span class="leading-relaxed">Click the button below. It opens an email to Marc with your scores and answers already filled in.</span></li>
+          <li class="grid grid-cols-[2rem_1fr] border-t border-background/15 pt-3"><span class="font-serif text-2xl leading-none text-background/60">3</span><span class="leading-relaxed">Fill in the bracketed parts so it follows the <a class="underline underline-offset-4" href={`${base}one-on-one/#emails`}>five-part email format</a>, attach the screenshot, and send it before Monday’s session.</span></li>
+        </ol>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a id="mail" href="#" class="inline-flex h-12 items-center rounded-full bg-background px-6 text-sm font-medium text-foreground transition hover:bg-background/90">Email my results to Marc</a>
+          <button id="copy" type="button" class="inline-flex h-12 items-center rounded-full border border-background/30 px-6 text-sm font-medium transition hover:bg-background/10">Copy my results</button>
+        </div>
+        <p id="copied" class="mt-3 text-sm text-background/70" aria-live="polite"></p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-6">
+        <button id="reset" type="button" class="text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground">Clear my answers and start over</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap pb-16 pt-6">
+    <p class="text-xs text-muted-foreground">McCroskey, J. C. (1982). An introduction to rhetorical communication (4th ed.). Prentice-Hall. Norms from McCroskey’s published PRCA-24 data on more than 40,000 college students.</p>
+    <div class="mt-6"><HoverLink text="Back to the course" href={base} /></div>
+  </section>
+</Base>
+
+<script>
+  const KEY = 'ocp101-prca24';
+  const MARC = 'mgray@odysseycollegeprep.com';
+  // McCroskey's scoring: 18 - (positively worded) + (negatively worded), each 6 to 30.
+  const scales = [
+    { name: 'Group discussions', pos: [2, 4, 6], neg: [1, 3, 5], mean: 15.4, low: 11, high: 20 },
+    { name: 'Meetings', pos: [8, 9, 12], neg: [7, 10, 11], mean: 16.4, low: 13, high: 20 },
+    { name: 'Conversations', pos: [14, 16, 17], neg: [13, 15, 18], mean: 14.2, low: 11, high: 18 },
+    { name: 'Giving a speech', pos: [19, 21, 23], neg: [20, 22, 24], mean: 19.3, low: 14, high: 24 },
+  ];
+
+  let answers: Record<string, number> = {};
+  try { answers = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch { answers = {}; }
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch {} };
+
+  const $ = (id: string) => document.getElementById(id)!;
+  const results = $('results');
+  const sum = (ns: number[]) => ns.reduce((t, n) => t + (answers[n] || 0), 0);
+  const level = (v: number, low: number, high: number) => (v < low ? 'Lower than most' : v > high ? 'Higher than most' : 'Typical');
+
+  function compute() {
+    const subs = scales.map((s) => ({ ...s, score: 18 - sum(s.pos) + sum(s.neg) }));
+    return { subs, total: subs.reduce((t, s) => t + s.score, 0) };
+  }
+
+  function summary() {
+    const { subs, total } = compute();
+    const lines = [
+      `PRCA-24 results (${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })})`,
+      `Total: ${total} of 120 (${level(total, 51, 80)})`,
+      ...subs.map((s) => `${s.name}: ${s.score} of 30 (${level(s.score, s.low, s.high)})`),
+      '',
+      'Answers: ' + Array.from({ length: 24 }, (_, i) => `${i + 1}=${answers[i + 1]}`).join(', '),
+    ];
+    return lines.join('\n');
+  }
+
+  function draw() {
+    const { subs, total } = compute();
+    $('total').textContent = String(total);
+    $('band').textContent = total < 51 ? 'Low communication apprehension' : total > 80 ? 'High communication apprehension' : 'Average communication apprehension';
+    $('stamp').textContent = 'Scored ' + new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    const pct = (v: number) => ((v - 6) / 24) * 100;
+    $('chart').innerHTML = subs.map((s) => `
+      <div>
+        <div class="flex items-baseline justify-between gap-3 text-sm">
+          <span class="font-medium">${s.name}</span>
+          <span class="tabular-nums"><span class="font-semibold">${s.score}</span> <span class="text-muted-foreground">· ${level(s.score, s.low, s.high)}</span></span>
+        </div>
+        <div class="relative mt-2 h-7" role="img" aria-label="${s.name}: ${s.score} out of 30. Typical range ${s.low} to ${s.high}.">
+          <div class="absolute inset-x-0 top-1/2 h-2 -translate-y-1/2 rounded-full bg-secondary"></div>
+          <div class="absolute top-1/2 h-2 -translate-y-1/2 rounded-full bg-primary/20" style="left:${pct(s.low)}%;width:${pct(s.high) - pct(s.low)}%"></div>
+          <div class="absolute top-1/2 h-4 w-0.5 -translate-y-1/2 bg-muted-foreground/50" style="left:${pct(s.mean)}%" title="College average: ${s.mean}"></div>
+          <div class="absolute top-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-card bg-primary shadow" style="left:${pct(s.score)}%" title="Your score: ${s.score}"></div>
+        </div>
+        <div class="mt-1 flex justify-between text-[0.68rem] text-muted-foreground tabular-nums"><span>6 calm</span><span>30 nervous</span></div>
+      </div>`).join('') + `<p class="text-xs text-muted-foreground"><span class="inline-block h-3 w-0.5 translate-y-0.5 bg-muted-foreground/50"></span> marks the college average.</p>`;
+
+    const body = `Hello, Marc,\n\n[One line of rapport]\n\n[Context: why you are writing]\n\nMy PRCA-24 results are below, and the screenshot is attached.\n\n${summary()}\n\n[Sign-off and your full name]`;
+    ($('mail') as HTMLAnchorElement).href = `mailto:${MARC}?subject=${encodeURIComponent('My PRCA-24 results')}&body=${encodeURIComponent(body)}`;
+  }
+
+  function sync() {
+    const n = Object.keys(answers).length;
+    $('count').textContent = String(n);
+    $('bar').style.width = `${(n / 24) * 100}%`;
+    if (n === 24) { results.hidden = false; draw(); } else { results.hidden = true; }
+  }
+
+  document.querySelectorAll<HTMLInputElement>('input[type=radio]').forEach((r) => {
+    const n = Number(r.name.slice(1));
+    if (answers[n] === Number(r.value)) r.checked = true;
+    r.addEventListener('change', () => {
+      const was = Object.keys(answers).length;
+      answers[n] = Number(r.value); save(); sync();
+      if (was === 23 && Object.keys(answers).length === 24) results.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  $('copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(summary()); $('copied').textContent = 'Copied. Paste it into your email to Marc.'; }
+    catch { $('copied').textContent = 'Your browser blocked copying. Use the email button instead.'; }
+  });
+  $('reset').addEventListener('click', () => {
+    if (!confirm('Clear all 24 answers?')) return;
+    answers = {}; save();
+    document.querySelectorAll<HTMLInputElement>('input[type=radio]').forEach((r) => (r.checked = false));
+    sync(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  // Pin the progress bar under the header, which is taller on phones.
+  const header = document.querySelector('header');
+  const pin = () => { if (header) $('progress').style.top = `${header.offsetHeight}px`; };
+  pin(); addEventListener('resize', pin);
+  sync();
+</script>
