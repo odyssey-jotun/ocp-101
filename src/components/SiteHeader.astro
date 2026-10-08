@@ -10,25 +10,29 @@ const tabs = [
   { label: 'Digital', slug: 'online' },
   { label: 'Sessions', slug: 'sessions' },
 ];
-const active = 'text-foreground underline decoration-primary decoration-2 underline-offset-[6px]';
+const tab = 'whitespace-nowrap rounded-full text-center transition-colors';
+const idle = 'bg-foreground/[0.06] text-foreground/75 hover:bg-foreground/10 hover:text-foreground';
+const active = 'bg-primary text-primary-foreground shadow-sm';
 ---
 <header class="sticky top-0 z-40 border-b border-foreground/5 bg-background/85 backdrop-blur-md">
   <div class="wrap flex h-16 items-center justify-between gap-6">
     <a href={base} class="font-serif text-2xl leading-none tracking-tight">OCP 101</a>
-    <nav aria-label="Pages" class="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
+    <nav aria-label="Pages" class="hidden items-center gap-2 text-sm md:flex">
       {tabs.map((t) => (
         <a href={`${base}${t.slug}/`} aria-current={current === t.slug ? 'page' : undefined}
-           class:list={['whitespace-nowrap transition-colors hover:text-foreground', current === t.slug && active]}>{t.label}</a>
+           class:list={[tab, 'px-4 py-1.5', current === t.slug ? active : idle]}>{t.label}</a>
       ))}
     </nav>
     <HoverLink text="Workspace" href={WORKSPACE} target="_blank" rel="noreferrer" />
   </div>
   <nav aria-label="Pages" class="border-t border-foreground/5 md:hidden">
-    <div class="wrap flex justify-between py-2.5 text-sm text-muted-foreground">
+    <div class="wrap py-2">
+      <div class="flex gap-1.5 text-[13px]">
       {tabs.map((t) => (
         <a href={`${base}${t.slug}/`} aria-current={current === t.slug ? 'page' : undefined}
-           class:list={['whitespace-nowrap', current === t.slug && active]}>{t.label}</a>
+           class:list={[tab, 'flex-auto px-2.5 py-1.5', current === t.slug ? active : idle]}>{t.label}</a>
       ))}
+      </div>
     </div>
   </nav>
 </header>
