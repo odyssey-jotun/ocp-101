@@ -4,6 +4,7 @@ import RotatingHeadline from '../components/fx/RotatingHeadline';
 import Reveal from '../components/fx/Reveal';
 import CleanCTA from '../components/CleanCTA.astro';
 import Photo from '../components/Photo.astro';
+import HomeToc from '../components/HomeToc.astro';
 import {
   WORKSPACE, LINKEDIN_TAB, info, ongoing, schedule, ways,
   professionalism, levels, materials, PRE_ASSESSMENT,
@@ -52,7 +53,9 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
       </div>
     </div>
 
-    <section class="section">
+    <HomeToc />
+
+    <section id="course" class="section">
       <div class="wrap">
         <div class="grid gap-12 rounded-[28px] bg-foreground px-6 py-12 text-background sm:px-12 sm:py-16 lg:grid-cols-12">
           <div class="lg:col-span-7">

@@ -1,0 +1,89 @@
+---
+// Homepage table of contents: a fixed panel on the left on wide screens, a pill at the bottom left everywhere else.
+// Open by default only on screens wide enough to sit beside the content; Max's choice is remembered.
+const base = import.meta.env.BASE_URL;
+const sections: [string, string][] = [
+  ['course', 'About the course'],
+  ['instructor', 'Your instructor'],
+  ['weekly', 'Every week'],
+  ['schedule', 'Schedule'],
+  ['scoring', 'How your work is scored'],
+  ['materials', 'What you need'],
+  ['policies', 'How we work together'],
+];
+const pages = [
+  { label: 'One-on-one', slug: 'one-on-one' },
+  { label: 'Presentation', slug: 'audience' },
+  { label: 'Digital', slug: 'online' },
+  { label: 'Sessions', slug: 'sessions' },
+];
+const link = 'block rounded-lg px-3 py-1.5 leading-snug text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground';
+---
+<aside id="toc" aria-label="Contents" class="fixed bottom-4 left-4 z-30 flex flex-col-reverse items-start gap-2 text-sm min-[1600px]:bottom-auto min-[1600px]:top-24 min-[1600px]:flex-col">
+  <button type="button" id="toc-toggle" aria-expanded="false" aria-controls="toc-panel"
+    class="inline-flex items-center gap-2 rounded-full border bg-card/95 px-4 py-2 font-medium shadow-sm backdrop-blur transition-colors hover:border-primary/40 hover:text-primary">
+    <svg aria-hidden="true" viewBox="0 0 16 16" class="size-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2.5 4h11M2.5 8h11M2.5 12h7" /></svg>
+    <span id="toc-label">Contents</span>
+  </button>
+  <nav id="toc-panel" hidden class="max-h-[70vh] w-48 overflow-y-auto rounded-[18px] border bg-card/95 p-2 shadow-sm backdrop-blur">
+    <ul>
+      {sections.map(([id, label]) => (
+        <li><a href={`#${id}`} data-toc={id} class={link}>{label}</a></li>
+      ))}
+    </ul>
+    <details class="fold mt-1 border-t pt-1" open>
+      <summary class="flex cursor-pointer items-center justify-between rounded-lg px-3 py-1.5 font-medium hover:bg-foreground/5">
+        Course pages
+        <svg aria-hidden="true" viewBox="0 0 16 16" class="toc-chev size-3.5 transition-transform" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4" /></svg>
+      </summary>
+      <ul>
+        {pages.map((p) => (
+          <li><a href={`${base}${p.slug}/`} class={link}>{p.label}</a></li>
+        ))}
+      </ul>
+    </details>
+  </nav>
+</aside>
+
+<style>
+  .fold[open] .toc-chev { transform: rotate(180deg); }
+  [data-toc][aria-current='true'] { color: var(--primary); background: color-mix(in oklch, var(--primary) 8%, transparent); }
+</style>
+
+<script>
+  const wide = matchMedia('(min-width: 1600px)');
+  const toggle = document.getElementById('toc-toggle')!;
+  const panel = document.getElementById('toc-panel')!;
+  const label = document.getElementById('toc-label')!;
+  let saved: string | null = null;
+  try { saved = localStorage.getItem('ocp-toc'); } catch {}
+
+  const set = (open: boolean) => {
+    panel.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Hide contents' : 'Contents';
+  };
+  set(saved ? saved === 'open' : wide.matches);
+
+  toggle.addEventListener('click', () => {
+    const open = panel.hidden;
+    set(open);
+    try { localStorage.setItem('ocp-toc', open ? 'open' : 'closed'); } catch {}
+  });
+  // Where the panel covers the page, close it once Max picks a section.
+  panel.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a[data-toc]') && !wide.matches) set(false);
+  });
+
+  // Highlight the section on screen.
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc]')];
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        links.forEach((a) => a.setAttribute('aria-current', String(a.dataset.toc === e.target.id)));
+      }
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    links.forEach((a) => { const s = document.getElementById(a.dataset.toc!); if (s) io.observe(s); });
+  }
+</script>
