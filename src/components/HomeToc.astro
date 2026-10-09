@@ -1,6 +1,7 @@
 ---
-// Homepage table of contents: a fixed panel on the left on wide screens, a pill at the bottom left everywhere else.
-// Open by default only on screens wide enough to sit beside the content; Max's choice is remembered.
+// Homepage table of contents. Desktop: a sidebar under the header that the page makes room for,
+// open by default and collapsible to a slim rail. Phones: a pill at the bottom left that opens the list.
+// Max's choice is remembered.
 const base = import.meta.env.BASE_URL;
 const sections: [string, string][] = [
   ['course', 'About the course'],
@@ -19,20 +20,21 @@ const pages = [
 ];
 const link = 'block rounded-lg px-3 py-1.5 leading-snug text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground';
 ---
-<aside id="toc" aria-label="Contents" class="fixed bottom-4 left-4 z-30 flex flex-col-reverse items-start gap-2 text-sm min-[1600px]:bottom-auto min-[1600px]:top-24 min-[1600px]:flex-col">
-  <button type="button" id="toc-toggle" aria-expanded="false" aria-controls="toc-panel"
+<aside id="toc" data-open="true" aria-label="Contents" class="text-sm">
+  <button type="button" id="toc-toggle" title="Contents" aria-expanded="true" aria-controls="toc-panel"
     class="inline-flex items-center gap-2 rounded-full border bg-card/95 px-4 py-2 font-medium shadow-sm backdrop-blur transition-colors hover:border-primary/40 hover:text-primary">
-    <svg aria-hidden="true" viewBox="0 0 16 16" class="size-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2.5 4h11M2.5 8h11M2.5 12h7" /></svg>
-    <span id="toc-label">Contents</span>
+    <svg aria-hidden="true" viewBox="0 0 16 16" class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2.5 4h11M2.5 8h11M2.5 12h7" /></svg>
+    <span id="toc-label">Hide contents</span>
   </button>
-  <nav id="toc-panel" hidden class="max-h-[70vh] w-48 overflow-y-auto rounded-[18px] border bg-card/95 p-2 shadow-sm backdrop-blur">
+  <nav id="toc-panel">
+    <p class="toc-title px-3 pb-2 font-semibold">On this page</p>
     <ul>
       {sections.map(([id, label]) => (
         <li><a href={`#${id}`} data-toc={id} class={link}>{label}</a></li>
       ))}
     </ul>
-    <details class="fold mt-1 border-t pt-1" open>
-      <summary class="flex cursor-pointer items-center justify-between rounded-lg px-3 py-1.5 font-medium hover:bg-foreground/5">
+    <details class="fold mt-2 border-t pt-2" open>
+      <summary class="flex cursor-pointer items-center justify-between rounded-lg px-3 py-1.5 font-semibold hover:bg-foreground/5">
         Course pages
         <svg aria-hidden="true" viewBox="0 0 16 16" class="toc-chev size-3.5 transition-transform" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4" /></svg>
       </summary>
@@ -44,35 +46,64 @@ const link = 'block rounded-lg px-3 py-1.5 leading-snug text-muted-foreground tr
     </details>
   </nav>
 </aside>
+<script is:inline>
+  // Set the starting state before paint: open on desktop, closed on phones, unless Max chose otherwise.
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('ocp-toc'); } catch (e) {}
+    var desk = matchMedia('(min-width: 1200px)').matches;
+    var open = desk ? saved !== 'closed' : false;
+    var t = document.getElementById('toc');
+    t.dataset.open = String(open);
+    document.getElementById('toc-toggle').setAttribute('aria-expanded', String(open));
+    document.getElementById('toc-label').textContent = open ? 'Hide contents' : 'Contents';
+  })();
+</script>
 
-<style>
+<style is:global>
+  /* Phones and tablets: pill at the bottom left, list opens above it. */
+  #toc { position: fixed; left: 1rem; bottom: 1rem; z-index: 30; display: flex; flex-direction: column-reverse; align-items: flex-start; gap: .5rem; }
+  #toc-panel { width: 12rem; max-height: 70vh; overflow-y: auto; border: 1px solid var(--border); border-radius: 18px; background: color-mix(in oklch, var(--card) 95%, transparent); backdrop-filter: blur(8px); padding: .5rem; box-shadow: 0 1px 2px rgb(0 0 0 / .05); }
+  #toc[data-open='false'] #toc-panel { display: none; }
+  #toc .toc-title { display: none; }
+
+  /* Desktop: a sidebar under the header; the page shifts right to make room. */
+  @media (min-width: 1200px) {
+    #toc { top: 4rem; bottom: 0; left: 0; width: 14rem; flex-direction: column; gap: 0; padding: 1rem .75rem; border-right: 1px solid var(--border); background: var(--background); overflow-y: auto; }
+    #toc #toc-toggle { align-self: flex-end; border: 0; box-shadow: none; background: transparent; padding: .375rem .5rem; color: var(--muted-foreground); font-weight: 400; font-size: .8125rem; }
+    #toc #toc-toggle:hover { color: var(--foreground); }
+    #toc-panel { width: auto; max-height: none; overflow: visible; border: 0; border-radius: 0; background: none; backdrop-filter: none; padding: .5rem 0 0; box-shadow: none; }
+    #toc .toc-title { display: block; }
+    #toc[data-open='false'] { width: 3.5rem; padding-inline: .5rem; }
+    #toc[data-open='false'] #toc-toggle { align-self: center; }
+    #toc[data-open='false'] #toc-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    body:has(#toc) main, body:has(#toc) footer { padding-left: 14rem; }
+    body:has(#toc[data-open='false']) main, body:has(#toc[data-open='false']) footer { padding-left: 3.5rem; }
+  }
   .fold[open] .toc-chev { transform: rotate(180deg); }
   [data-toc][aria-current='true'] { color: var(--primary); background: color-mix(in oklch, var(--primary) 8%, transparent); }
 </style>
 
 <script>
-  const wide = matchMedia('(min-width: 1600px)');
+  const desk = matchMedia('(min-width: 1200px)');
+  const toc = document.getElementById('toc')!;
   const toggle = document.getElementById('toc-toggle')!;
-  const panel = document.getElementById('toc-panel')!;
   const label = document.getElementById('toc-label')!;
-  let saved: string | null = null;
-  try { saved = localStorage.getItem('ocp-toc'); } catch {}
 
   const set = (open: boolean) => {
-    panel.hidden = !open;
+    toc.dataset.open = String(open);
     toggle.setAttribute('aria-expanded', String(open));
     label.textContent = open ? 'Hide contents' : 'Contents';
   };
-  set(saved ? saved === 'open' : wide.matches);
 
   toggle.addEventListener('click', () => {
-    const open = panel.hidden;
+    const open = toc.dataset.open !== 'true';
     set(open);
-    try { localStorage.setItem('ocp-toc', open ? 'open' : 'closed'); } catch {}
+    if (desk.matches) { try { localStorage.setItem('ocp-toc', open ? 'open' : 'closed'); } catch {} }
   });
-  // Where the panel covers the page, close it once Max picks a section.
-  panel.addEventListener('click', (e) => {
-    if ((e.target as HTMLElement).closest('a[data-toc]') && !wide.matches) set(false);
+  // On phones the list covers the page, so close it once Max picks a section.
+  toc.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a[data-toc]') && !desk.matches) set(false);
   });
 
   // Highlight the section on screen.
