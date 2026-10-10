@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import RubricTabs from './RubricTabs';
 import { HoverLink } from './ui/hover-link';
 import CleanCTA from './CleanCTA.astro';
-import { outcomes, assignments, rubrics, materials, ways, emailGuide, LINKEDIN_TAB } from '../data/course';
+import { outcomes, assignments, rubrics, materials, ways, waysInOrder, emailGuide, LINKEDIN_TAB } from '../data/course';
 
 interface Props { i: number }
 const { i } = Astro.props;
@@ -13,7 +13,7 @@ const outcome = outcomes[i];
 const rubric = rubrics.filter((r) => r.key === way.rubric);
 const work = assignments.filter((a) => a.way === i);
 const kit = materials.filter((m) => m.way === i);
-const others = ways.map((w, k) => ({ ...w, k })).filter((w) => w.k !== i);
+const others = waysInOrder.filter((w) => w.k !== i);
 // Jump links to each section; every section below carries the matching id.
 const toc: [string, string][] = [
   ['skills', 'What you will be able to do'],
@@ -27,7 +27,7 @@ const toc: [string, string][] = [
   <div class="relative isolate overflow-hidden">
   <section class="wrap relative pt-10 sm:pt-16">
     <h1 class="font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">
-      <span class="text-primary">0{i + 1}</span> {way.title}
+      <span class="text-primary">0{way.n}</span> {way.title}
     </h1>
     <p class="lede mt-4">{outcome.title}</p>
     <nav aria-label="On this page" class="mt-6">
@@ -151,7 +151,7 @@ const toc: [string, string][] = [
       <div data-reveal class="mt-4 grid gap-3 sm:grid-cols-2">
         {others.map((w) => (
           <a href={`${base}${w.slug}/`} class="flex flex-col rounded-[18px] border bg-card p-5 transition-colors hover:border-primary/40">
-            <span class="font-serif text-3xl leading-none text-primary">0{w.k + 1}</span>
+            <span class="font-serif text-3xl leading-none text-primary">0{w.n}</span>
             <span class="mt-3 font-semibold">{w.title}</span>
             <span class="mt-1 text-sm leading-relaxed text-muted-foreground">{w.short}</span>
           </a>

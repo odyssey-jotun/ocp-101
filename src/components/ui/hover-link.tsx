@@ -10,6 +10,7 @@ interface HoverLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 export function HoverLink({ text, className, ...props }: HoverLinkProps) {
+  const newTab = props.target === "_blank";
   return (
     <a
       className={cn(
@@ -21,8 +22,9 @@ export function HoverLink({ text, className, ...props }: HoverLinkProps) {
       <span aria-hidden="true" className="absolute inset-0 rounded-full bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <span className="relative inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
         {text}
+        {newTab && <span className="sr-only"> (opens in a new tab)</span>}
       </span>
-      <span className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary-foreground opacity-0 transition-all duration-300 group-hover:-translate-x-1 group-hover:opacity-100">
+      <span aria-hidden="true" className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary-foreground opacity-0 transition-all duration-300 group-hover:-translate-x-1 group-hover:opacity-100">
         <span>{text}</span>
         <ArrowRight className="size-4" />
       </span>

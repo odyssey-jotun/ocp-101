@@ -30,7 +30,7 @@ const active = 'bg-primary text-primary-foreground shadow-sm';
       <div class="flex gap-1.5 text-[13px]">
       {tabs.map((t) => (
         <a href={`${base}${t.slug}/`} aria-current={current === t.slug ? 'page' : undefined}
-           class:list={[tab, 'flex-auto px-2.5 py-1.5', current === t.slug ? active : idle]}>{t.label}</a>
+           class:list={[tab, 'flex-auto px-2.5 py-2.5', current === t.slug ? active : idle]}>{t.label}</a>
       ))}
       </div>
     </div>

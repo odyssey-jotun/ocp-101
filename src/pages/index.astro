@@ -6,7 +6,7 @@ import CleanCTA from '../components/CleanCTA.astro';
 import Photo from '../components/Photo.astro';
 import HomeToc from '../components/HomeToc.astro';
 import {
-  WORKSPACE, LINKEDIN_TAB, info, ongoing, schedule, ways,
+  WORKSPACE, LINKEDIN_TAB, info, ongoing, schedule, waysInOrder,
   professionalism, levels, materials, PRE_ASSESSMENT,
 } from '../data/course';
 
@@ -17,12 +17,14 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
   title="OCP 101: Professional Communication and Presence"
   description="A nine-week, one-on-one course with Marc Gray of Odyssey College Prep: three speeches, a LinkedIn rebuild, and a video portfolio."
 >
+    <HomeToc />
+
     <div id="top" class="relative isolate overflow-hidden">
       <div class="wrap relative grid items-center gap-10 pb-12 pt-10 sm:pb-16 sm:pt-16 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
         <h1 class="font-serif text-5xl leading-[0.98] tracking-tight text-balance sm:text-6xl xl:text-7xl">Professional Communication and Presence</h1>
         <div class="mt-8 max-w-3xl">
-          <RotatingHeadline client:load lead="Build your presence and connection" words={["in front of an audience.", "one on one.", "online."]} />
+          <RotatingHeadline client:load lead="Build your presence and connection" words={["one on one.", "in front of an audience.", "online."]} />
         </div>
         <p class="lede mt-6">That is the goal of this course. Over nine weeks, we will do it in three ways.</p>
         <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -36,12 +38,12 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
       </div>
       <div class="wrap relative pb-6">
         <ol class="grid gap-3 sm:grid-cols-3">
-          {ways.map((w, i) => (
+          {waysInOrder.map((w, i) => (
             <li>
               <Reveal client:visible delay={i * 0.08} className="h-full">
                 <a href={`${base}${w.slug}/`} class="group flex h-full flex-col rounded-[18px] border bg-card p-3 pb-5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
                   <img src={img(`way-${w.slug}`, 720)} srcset={`${img(`way-${w.slug}`, 720)} 720w, ${img(`way-${w.slug}`, 1200)} 1200w`} sizes="(min-width: 640px) 33vw, 100vw" width="720" height="540" loading="lazy" decoding="async" alt={w.alt} class="aspect-[4/3] w-full rounded-[14px] object-cover" />
-                  <span class="mt-4 px-2 font-serif text-3xl leading-none text-primary">0{i + 1}</span>
+                  <span class="mt-4 px-2 font-serif text-3xl leading-none text-primary">0{w.n}</span>
                   <span class="mt-3 px-2 font-semibold">{w.title}</span>
                   <span class="mt-1 px-2 text-sm leading-relaxed text-muted-foreground">{w.short}</span>
                   <span class="mt-3 px-2 text-sm font-medium text-primary">Open this page <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span></span>
@@ -52,8 +54,6 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
         </ol>
       </div>
     </div>
-
-    <HomeToc />
 
     <section id="course" class="section">
       <div class="wrap">
@@ -143,7 +143,7 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
     <section id="scoring" class="section">
       <div class="wrap">
         <h2 data-reveal class="h-section">How your work is scored</h2>
-        <p class="lede">There are no letter grades. Speeches and your LinkedIn profile are scored from 4 to 0, and you see every rubric before you start the work it measures. The speech rubric lives on the In front of an audience page and the LinkedIn rubric on the Online page.</p>
+        <p class="lede">There are no letter grades. Speeches and your LinkedIn profile are scored from 4 to 0, and you see every rubric before you start the work it measures. The speech rubric lives on the Presentation page and the LinkedIn rubric on the Digital page.</p>
         <div data-reveal class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-5">
           {levels.map((l) => (
             <div class="rounded-[18px] border bg-card p-4">
@@ -282,7 +282,7 @@ const img = (name: string, w: number) => `${base}img/${name}-${w}.webp`;
               <span aria-hidden="true" class="chev grid size-8 shrink-0 place-items-center rounded-full border text-muted-foreground transition-transform">+</span>
             </summary>
             <div class="prose-c border-t px-5 py-5 sm:px-6">
-          <p>All course email goes to your SMU address. Every email you send in this course follows the five-part email structure on the One on one page: greeting, rapport, context, clear deliverable, and sign-off.</p>
+          <p>All course email goes to your SMU address. Every email you send in this course follows the five-part email structure on the One-on-one page: greeting, rapport, context, clear deliverable, and sign-off.</p>
             </div>
           </details>
           <details class="fold group rounded-[18px] border bg-card">

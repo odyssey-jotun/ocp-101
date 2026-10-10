@@ -14,7 +14,7 @@ export const info = [
 export type Tier = { label: string; items: string[] };
 export const outcomes: { title: string; way: string; tiers: Tier[] }[] = [
   {
-    way: 'In front of an audience',
+    way: 'Presentation',
     title: 'Build presence and connection in front of an audience: plan and deliver a presentation with a complete macro structure.',
     tiers: [
       { label: 'Introduction', items: ['Open with all five parts: icebreaker, listener relevance link, speaker credibility, thesis statement, and preview of main points.'] },
@@ -32,7 +32,7 @@ export const outcomes: { title: string; way: string; tiers: Tier[] }[] = [
     ],
   },
   {
-    way: 'One on one',
+    way: 'One-on-one',
     title: 'Demonstrate repeatable networking skills.',
     tiers: [
       { label: 'Join', items: ['Join at least one SMU organization tied to your major, ideally one with a team or competition component.'] },
@@ -44,7 +44,7 @@ export const outcomes: { title: string; way: string; tiers: Tier[] }[] = [
     ],
   },
   {
-    way: 'Online',
+    way: 'Digital',
     title: 'Build presence and connection online.',
     tiers: [
       { label: 'LinkedIn', items: ['Rebuild your profile around one area of expertise: photo and banner, headline, About section, experience and projects, skills, and Featured.'] },
@@ -72,7 +72,7 @@ export const assignments = [
 ];
 
 export const ongoing = [
-  { title: 'Session email', when: 'Between every session', text: 'One email to Marc by 9:00 PM the night before each session. It delivers that session’s work and follows the five-part email structure on the One on one page.' },
+  { title: 'Session email', when: 'Between every session', text: 'One email to Marc by 9:00 PM the night before each session. It delivers that session’s work and follows the five-part email structure on the One-on-one page.' },
   { title: 'Weekly grades', when: 'Every Monday', text: 'A screenshot of your current grades in every class, pasted into the Grades Log tab of your workspace.' },
 ];
 
@@ -184,11 +184,15 @@ export const materials = [
 
 export const PRE_ASSESSMENT = 'https://docs.google.com/forms/d/e/1FAIpQLSf5RNdW8hYaeGHCpfQoXLWXQs-32zYo2DPG3W1-1y-8kp7cwA/viewform';
 
+// Data order (0 audience, 1 one-on-one, 2 online) is what assignments, materials and outcomes
+// index by; `n` is the order Max sees, matching the header tabs.
 export const ways = [
-  { slug: 'audience', title: 'In front of an audience', short: 'Plan and deliver a presentation with a complete macro structure.', rubric: 'speech', alt: 'A young man in a blazer presenting on stage' },
-  { slug: 'one-on-one', title: 'One on one', short: 'Network and interview with a routine you can repeat.', rubric: '', alt: 'A young man being interviewed across a desk' },
-  { slug: 'online', title: 'Online', short: 'Rebuild your LinkedIn and publish a short video portfolio.', rubric: 'linkedin', alt: 'A young man working on a laptop' },
+  { slug: 'audience', n: 2, title: 'Presentation', short: 'Plan and deliver a presentation with a complete macro structure.', rubric: 'speech', alt: 'A young man in a blazer presenting on stage' },
+  { slug: 'one-on-one', n: 1, title: 'One-on-one', short: 'Network and interview with a routine you can repeat.', rubric: '', alt: 'A young man being interviewed across a desk' },
+  { slug: 'online', n: 3, title: 'Digital', short: 'Rebuild your LinkedIn and publish a short video portfolio.', rubric: 'linkedin', alt: 'A young man working on a laptop' },
 ];
+/** The three ways in the order Max sees them, with each one's data index as `k`. */
+export const waysInOrder = ways.map((w, k) => ({ ...w, k })).sort((a, b) => a.n - b.n);
 
 export const emailGuide = [
   { part: 'Greeting', how: 'Say hello and use their name.', example: 'Hello, Marc,' },

@@ -18,10 +18,9 @@ function grouped(rows: RubricRow[]) {
 
 function Unused() {
   return (
-    <span
-      aria-label="Score not used for this part"
-      className="block h-full min-h-10 rounded-lg bg-[repeating-linear-gradient(135deg,var(--muted)_0_6px,transparent_6px_12px)]"
-    />
+    <span className="block h-full min-h-10 rounded-lg bg-[repeating-linear-gradient(135deg,var(--muted)_0_6px,transparent_6px_12px)]">
+      <span className="sr-only">Score not used for this part</span>
+    </span>
   );
 }
 
@@ -90,10 +89,10 @@ export default function RubricTabs({ rubrics }: { rubrics: Rubric[] }) {
       <div className="mt-6 grid gap-4 lg:hidden">
         {grouped(r.rows).map((g, gi) => (
           <div key={gi} className="grid gap-4">
-            {g.group && <h4 className="mt-4 font-serif text-2xl leading-none first:mt-0">{g.group}</h4>}
+            {g.group && <h3 className="mt-4 font-serif text-2xl leading-none first:mt-0">{g.group}</h3>}
             {g.rows.map((row) => (
           <div key={row.category} className="rounded-[18px] border bg-card p-5">
-            <h4 className="font-semibold">{row.category}</h4>
+            {g.group ? <h4 className="font-semibold">{row.category}</h4> : <h3 className="font-semibold">{row.category}</h3>}
             <ol className="mt-3 grid gap-3">
               {row.levels.map((l, i) => unused(l) ? null : (
                 <li key={i} className="flex gap-3 text-sm leading-relaxed">
