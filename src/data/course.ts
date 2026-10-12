@@ -282,12 +282,12 @@ export const sessions: Session[] = [
         'Use credible or peer-reviewed sources. Peer-reviewed research on AI is still thin, so a credible outlet works. Social media does not.',
       ] },
     ],
-    professionalism: { score: 4, items: [
+    professionalism: { score: 3, items: [
       ['Session email sent by 9:00 PM the night before', 0, 'No email yet. Tuesday night’s email fixes this.'],
       ['On time, in a quiet space, with earbuds in', 1, 'Joined from a laptop in a quiet room.'],
       ['Assignment submitted before the session', 1, 'Video and survey in on time.'],
       ['Brought at least one question', 1, 'Asked where files and videos go.'],
-      ['Focused: notes open, no second screen', 1, ''],
+      ['Focused: notes open, no second screen', 0, 'Have a pen and paper out and take notes as we go.'],
     ] },
     deliverables: [
       { text: 'Research AI data centers: at least two credible or peer-reviewed sources for each of your three questions, six total. Every source free to read, no paywall, listed in full APA 7 format. Claude or ChatGPT can help with the research and the formatting.', due: 'Tue, Oct 13', href: `${WORKSPACE}?tab=t.fwcv0shsln3t`, link: 'Open Research Notes' },
