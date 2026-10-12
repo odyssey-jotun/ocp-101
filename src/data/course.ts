@@ -214,6 +214,90 @@ export type Session = {
 };
 export const sessions: Session[] = [
   {
+    n: 3, date: 'Monday, October 12', title: 'Connection, open questions, and your topic',
+    takeaways: [
+      { idea: 'Connect, don’t fill space.', why: 'When the goal is filling time and not looking dumb, people settle for boring. When the goal is helping the other person understand, the effort goes into being clear.' },
+      { idea: 'Ask an open-ended question.', why: 'A closed question ends in one word. An open-ended one asks the other person to explain or tell a story, and hands you something to respond to.' },
+      { idea: 'Tell a short story about yourself.', why: 'When you reveal something about yourself, the other person feels more comfortable revealing something back. That is the law of reciprocity.' },
+      { idea: 'One take, start to finish.', why: 'Knowing how to fumble through a mistake and keep going is one of the best tools a presenter has. You only build it by doing it.' },
+      { idea: 'Pick a topic you want to nerd out on.', why: 'You will spend two months with it. Something you care about shows on camera.' },
+    ],
+    topics: [
+      { title: 'Your new intro speech', points: [
+        'Leaps and bounds above your first one. The organization and transitions were much smoother, and you knew where you were going.',
+        'After a shaky start, your movements were intentional and you looked poised.',
+        'You said “um” far less. The new word to cut is “really.”',
+        { text: 'Never open with your name.', sub: [
+          'Your name comes with speaker credibility, after the icebreaker and the relevance link.',
+          'Open with a story instead, like the first layup you ever missed.',
+          'In an introduction speech, give your credibility a little more room.',
+        ] },
+        { text: 'From now on, film every presentation in one take.', sub: [
+          'A few practice takes first are fine. The one you send is one run, start to finish.',
+        ] },
+      ] },
+      { title: 'Meeting new people', points: [
+        'Your survey backs up what you told me: conversations with people you know are fine. New people are where it spikes.',
+        'It is not that you don’t know what to say. Sometimes you struggle to connect.',
+        { text: 'Open-ended questions', sub: [
+          'Closed: “Do you like basketball?” One word, and the conversation stops.',
+          'Open-ended: “What made you get into basketball?” Now there is something to follow up on.',
+          'After “What’s your major?” ask what made them pick it.',
+        ] },
+        { text: 'Answer with a story, not a fact.', sub: [
+          '“I’m thinking about comp sci” stops the conversation. A short story about measuring weather for restaurants last summer keeps it going.',
+          'A double major is a conversation starter. Mention it.',
+        ] },
+      ] },
+      { title: 'Emails and files', points: [
+        { text: 'The five parts, with an example', sub: [
+          'Greeting: “Hi Marc,”',
+          'Rapport: “Thanks again for Monday’s session.”',
+          'Context: what I need to know to help you.',
+          'Clear deliverable: “Here is the link to my outline.”',
+          'Sign-off: a closing line and your full name.',
+        ] },
+        'Send every file to Marc and he files it in your Drive folder. Texting videos is fine.',
+        'Every assignment email from Marc links the doc you need.',
+      ] },
+      { title: 'Clubs', points: [
+        'You plan to rush next semester, and that takes serious time, so keep the list short.',
+        'Business classes will fill your schedule anyway. A tech club gives you skills your finance classmates won’t have.',
+        { text: 'Three tech clubs at SMU', sub: [
+          'AI Club: your pick to visit first.',
+          'Computer Science Club: open to all majors, meets Wednesdays from 5 to 7.',
+          'Coders for Community: builds tech for local nonprofits, which also counts as volunteer work.',
+        ] },
+        'Expect to be the least experienced person there. Go in as the humble student.',
+      ] },
+      { title: 'Your research topic', points: [
+        'AI data centers: why they are growing, what good they do, and what they cost.',
+        'The informative speech informs. It does not take a side.',
+        { text: 'Your three main points', sub: [
+          'The growth of AI',
+          'The benefits of data centers, including what AI itself can do and how people use it',
+          'The harms: water, space, and energy',
+        ] },
+        'Ideally it connects to your major, so look for ways data centers affect business and the corporate world.',
+        'Use credible or peer-reviewed sources. Peer-reviewed research on AI is still thin, so a credible outlet works. Social media does not.',
+      ] },
+    ],
+    professionalism: { score: 4, items: [
+      ['Session email sent by 9:00 PM the night before', 0, 'No email yet. Tuesday night’s email fixes this.'],
+      ['On time, in a quiet space, with earbuds in', 1, 'Joined from a laptop in a quiet room.'],
+      ['Assignment submitted before the session', 1, 'Video and survey in on time.'],
+      ['Brought at least one question', 1, 'Asked where files and videos go.'],
+      ['Focused: notes open, no second screen', 1, ''],
+    ] },
+    deliverables: [
+      { text: 'Research AI data centers: at least two credible or peer-reviewed sources for each of your three questions, six total. Every source free to read, no paywall, listed in full APA 7 format. Claude or ChatGPT can help with the research and the formatting.', due: 'Tue, Oct 13', href: `${WORKSPACE}?tab=t.fwcv0shsln3t`, link: 'Open Research Notes' },
+      { text: 'Write a mock introduction as a speech, word for word, in the Mock introduction section of your Informative Speech tab. Type it yourself. Focus on the icebreaker and the relevance link.', due: 'Tue, Oct 13', href: `${WORKSPACE}?tab=t.vpywumt8vxmk`, link: 'Open Informative Speech' },
+      { text: 'Email Marc in the five-part format when both are done.', due: 'Tue, Oct 13', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+      { text: 'Log in to SMU360, open the AI Club’s page, and join it. Find the next meeting’s day, time, and place, and bring them to Wednesday’s session. Then go to that meeting.', due: 'Wed, Oct 14', href: 'https://smu360.smu.edu/student_community?a=1&club_id=35464', link: 'Open the AI Club page' },
+      { text: 'Film every presentation in one take, start to finish.', due: 'Ongoing' },
+    ],
+  },
+  {
     n: 2, date: 'Wednesday, October 7', title: 'Your benchmark and macro structure',
     takeaways: [
       { idea: 'Macro structure lets you present on anything.', why: 'Introduction, main points, conclusion, with a complete transition at every handoff. Once you know the skeleton, any topic is a matter of filling it in, and your audience always knows where you are.' },
