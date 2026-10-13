@@ -1,0 +1,114 @@
+---
+// One page per session: big ideas up top, each topic and the professionalism
+// score folded into a dropdown, deliverables always open at the bottom.
+// Content lives in `sessions` in src/data/course.ts, newest first.
+import Base from '../../layouts/Base.astro';
+import { HoverLink } from '../../components/ui/hover-link';
+import { sessions, WORKSPACE } from '../../data/course';
+
+export function getStaticPaths() {
+  return sessions.map((s) => ({ params: { n: String(s.n) }, props: { s } }));
+}
+
+const { s } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const bullet = 'mt-2.5 size-1.5 shrink-0 rounded-full bg-primary/60';
+const newer = sessions.find((x) => x.n === s.n + 1);
+const older = sessions.find((x) => x.n === s.n - 1);
+const fold = 'group rounded-[18px] border bg-card';
+const head = 'flex cursor-pointer list-none items-center justify-between gap-4 p-6 [&::-webkit-details-marker]:hidden';
+const chevron = 'size-5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180';
+---
+<Base title={`Session ${s.n} | OCP 101`} description={`${s.title}: what we covered on ${s.date}, and what is due next.`} current="sessions">
+  <section class="wrap pt-10 sm:pt-16">
+    <a href={`${base}sessions/`} class="text-sm font-medium text-primary underline-offset-4 hover:underline">All sessions</a>
+    <p class="mt-6 text-sm font-medium text-primary">Session {s.n} · {s.date}</p>
+    <h1 class="mt-2 font-serif text-5xl leading-[1.02] tracking-tight sm:text-6xl">{s.title}</h1>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="rounded-[18px] bg-primary/[0.06] p-6 sm:p-8">
+        <h2 class="font-serif text-3xl leading-none">The big ideas</h2>
+        <ol class="mt-5 grid gap-x-10 gap-y-5 md:grid-cols-2">
+          {s.takeaways.map((t, k) => (
+            <li class="grid grid-cols-[2rem_1fr] gap-x-2">
+              <span class="font-serif text-2xl leading-none text-primary">{k + 1}</span>
+              <div>
+                <p class="font-semibold leading-snug">{t.idea}</p>
+                <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{t.why}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <h2 class="mt-12 font-serif text-3xl leading-none">What we covered</h2>
+      <p class="mt-2 text-sm text-muted-foreground">Tap a topic to open it.</p>
+      <div class="mt-4 grid gap-3">
+        {s.topics.map((t) => (
+          <details class={fold}>
+            <summary class={head}>
+              <span class="font-serif text-2xl leading-tight">{t.title}</span>
+              <svg aria-hidden="true" class={chevron} viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 5 5 5-5" /></svg>
+            </summary>
+            <ul class="grid gap-3 px-6 pb-6">
+              {t.points.map((p) => typeof p === 'string' ? (
+                <li class="flex gap-2.5 leading-relaxed text-muted-foreground"><span aria-hidden="true" class={bullet}></span><span>{p}</span></li>
+              ) : (
+                <li class="leading-relaxed">
+                  <div class="flex gap-2.5"><span aria-hidden="true" class={bullet}></span><span class="font-semibold">{p.text}</span></div>
+                  {p.sub.length > 0 && (
+                    <ul class="mt-2 grid gap-2 border-l-2 border-primary/25 pl-4 ml-[3px]">
+                      {p.sub.map((q) => <li class="text-sm leading-relaxed text-muted-foreground">{q}</li>)}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </details>
+        ))}
+
+        {s.professionalism && (
+          <details class={fold}>
+            <summary class={head}>
+              <span class="font-serif text-2xl leading-tight">Professionalism <span class="text-primary">{s.professionalism.score}</span><span class="text-lg text-muted-foreground"> / 5</span></span>
+              <svg aria-hidden="true" class={chevron} viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 5 5 5-5" /></svg>
+            </summary>
+            <ul class="grid gap-2 px-6 pb-6">
+              {s.professionalism.items.map(([item, pt, note]) => (
+                <li class="rounded-xl bg-secondary/50 px-4 py-3">
+                  <div class="flex items-center justify-between gap-4"><span>{item}</span><span class:list={['shrink-0 text-sm font-semibold', pt ? 'text-primary' : 'text-muted-foreground']}>{pt} pt</span></div>
+                  {note && <p class="mt-1 text-sm text-muted-foreground">{note}</p>}
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+      </div>
+
+      <div class="mt-12 rounded-[18px] bg-foreground p-6 text-background sm:p-8">
+        <h2 class="font-serif text-3xl leading-none">Your deliverables</h2>
+        <ol class="mt-5 grid gap-3">
+          {s.deliverables.map((d, k) => (
+            <li class="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-1 border-t border-background/15 pt-3 sm:grid-cols-[2rem_1fr_11rem]">
+              <span class="font-serif text-2xl leading-none text-background/60">{k + 1}</span>
+              <span class="leading-relaxed">{d.text}{d.href && <> <a href={d.href} target="_blank" rel="noreferrer" class="whitespace-nowrap font-medium underline underline-offset-4">{d.link} ↗</a></>}</span>
+              <span class="col-start-2 text-sm font-medium text-background/70 sm:col-start-auto sm:text-right">{d.due}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <nav aria-label="Other sessions" class="mt-8 flex flex-wrap justify-between gap-4 text-sm">
+        {older ? <a href={`${base}sessions/${older.n}/`} class="rounded-full border bg-card px-4 py-2 transition-colors hover:border-primary/40">← Session {older.n}: {older.title}</a> : <span></span>}
+        {newer && <a href={`${base}sessions/${newer.n}/`} class="rounded-full border bg-card px-4 py-2 transition-colors hover:border-primary/40">Session {newer.n}: {newer.title} →</a>}
+      </nav>
+    </div>
+  </section>
+
+  <div class="wrap pb-16 flex flex-wrap gap-6">
+    <HoverLink text="All sessions" href={`${base}sessions/`} />
+    <HoverLink text="Open your workspace" href={WORKSPACE} target="_blank" rel="noreferrer" />
+  </div>
+</Base>
