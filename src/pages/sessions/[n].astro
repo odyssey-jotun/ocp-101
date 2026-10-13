@@ -1,6 +1,6 @@
 ---
-// One page per session: big ideas up top, each topic and the professionalism
-// score folded into a dropdown, deliverables always open at the bottom.
+// One page per session: deliverables first, then the big ideas, then each topic
+// and the professionalism score folded into a dropdown.
 // Content lives in `sessions` in src/data/course.ts, newest first.
 import Base from '../../layouts/Base.astro';
 import { HoverLink } from '../../components/ui/hover-link';
@@ -28,7 +28,20 @@ const chevron = 'size-5 shrink-0 text-muted-foreground transition-transform dura
 
   <section class="section">
     <div class="wrap">
-      <div class="rounded-[18px] bg-primary/[0.06] p-6 sm:p-8">
+      <div class="rounded-[18px] bg-foreground p-6 text-background sm:p-8">
+        <h2 class="font-serif text-3xl leading-none">Your deliverables</h2>
+        <ol class="mt-5 grid gap-3">
+          {s.deliverables.map((d, k) => (
+            <li class="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-1 border-t border-background/15 pt-3 sm:grid-cols-[2rem_1fr_11rem]">
+              <span class="font-serif text-2xl leading-none text-background/60">{k + 1}</span>
+              <span class="leading-relaxed">{d.text}{d.href && <> <a href={d.href} target="_blank" rel="noreferrer" class="whitespace-nowrap font-medium underline underline-offset-4">{d.link} ↗</a></>}</span>
+              <span class="col-start-2 text-sm font-medium text-background/70 sm:col-start-auto sm:text-right">{d.due}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div class="mt-12 rounded-[18px] bg-primary/[0.06] p-6 sm:p-8">
         <h2 class="font-serif text-3xl leading-none">The big ideas</h2>
         <ol class="mt-5 grid gap-x-10 gap-y-5 md:grid-cols-2">
           {s.takeaways.map((t, k) => (
@@ -85,19 +98,6 @@ const chevron = 'size-5 shrink-0 text-muted-foreground transition-transform dura
             </ul>
           </details>
         )}
-      </div>
-
-      <div class="mt-12 rounded-[18px] bg-foreground p-6 text-background sm:p-8">
-        <h2 class="font-serif text-3xl leading-none">Your deliverables</h2>
-        <ol class="mt-5 grid gap-3">
-          {s.deliverables.map((d, k) => (
-            <li class="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-1 border-t border-background/15 pt-3 sm:grid-cols-[2rem_1fr_11rem]">
-              <span class="font-serif text-2xl leading-none text-background/60">{k + 1}</span>
-              <span class="leading-relaxed">{d.text}{d.href && <> <a href={d.href} target="_blank" rel="noreferrer" class="whitespace-nowrap font-medium underline underline-offset-4">{d.link} ↗</a></>}</span>
-              <span class="col-start-2 text-sm font-medium text-background/70 sm:col-start-auto sm:text-right">{d.due}</span>
-            </li>
-          ))}
-        </ol>
       </div>
 
       <nav aria-label="Other sessions" class="mt-8 flex flex-wrap justify-between gap-4 text-sm">
