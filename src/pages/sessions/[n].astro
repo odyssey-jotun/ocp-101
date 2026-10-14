@@ -1,9 +1,10 @@
 ---
 // One page per session: deliverables first, then the big ideas, then each topic
-// and the professionalism score folded into a dropdown.
+// and the professionalism score folded into a dropdown, then the locked speech archive.
 // Content lives in `sessions` in src/data/course.ts, newest first.
 import Base from '../../layouts/Base.astro';
 import { HoverLink } from '../../components/ui/hover-link';
+import SpeechArchive from '../../components/SpeechArchive.astro';
 import { sessions, WORKSPACE } from '../../data/course';
 
 export function getStaticPaths() {
@@ -98,6 +99,8 @@ const chevron = 'size-5 shrink-0 text-muted-foreground transition-transform dura
             </ul>
           </details>
         )}
+
+        <SpeechArchive />
       </div>
 
       <nav aria-label="Other sessions" class="mt-8 flex flex-wrap justify-between gap-4 text-sm">

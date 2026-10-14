@@ -1,0 +1,107 @@
+---
+// Password-locked dropdown listing every speech Max has given so far.
+// The archive is encrypted at build time (scripts/encrypt-archive.mjs) into
+// public/archive.json; this decrypts it in the browser with the password.
+const base = import.meta.env.BASE_URL;
+const fold = 'group rounded-[18px] border bg-card';
+const head = 'flex cursor-pointer list-none items-center justify-between gap-4 p-6 [&::-webkit-details-marker]:hidden';
+const chevron = 'size-5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180';
+---
+<details class={fold} id="speech-archive" data-base={base}>
+  <summary class={head}>
+    <span class="font-serif text-2xl leading-tight">Speech archive</span>
+    <svg aria-hidden="true" class={chevron} viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 5 5 5-5" /></svg>
+  </summary>
+  <div class="px-6 pb-6">
+    <form data-lock class="grid gap-3 sm:max-w-md">
+      <label for="archive-password" class="text-sm text-muted-foreground">Every speech you have given so far, with transcripts. Enter the password to open it.</label>
+      <div class="flex gap-2">
+        <input id="archive-password" type="password" autocomplete="current-password" required class="h-12 min-w-0 flex-1 rounded-full border bg-background px-5 text-base outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+        <button type="submit" class="inline-flex h-12 shrink-0 items-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition hover:bg-foreground/90">Unlock</button>
+      </div>
+      <p data-error class="hidden text-sm text-destructive" role="alert">That password did not work. Try again.</p>
+    </form>
+    <ol data-list class="hidden grid gap-4"></ol>
+  </div>
+</details>
+
+<script>
+  type Speech = { session: number; date: string; title: string; length: string; video: string; note: string; transcript: string[] };
+  const root = document.getElementById('speech-archive') as HTMLDetailsElement | null;
+  if (root) {
+    const base = root.dataset.base ?? '/';
+    const form = root.querySelector<HTMLFormElement>('[data-lock]')!;
+    const input = root.querySelector<HTMLInputElement>('input')!;
+    const error = root.querySelector<HTMLElement>('[data-error]')!;
+    const list = root.querySelector<HTMLOListElement>('[data-list]')!;
+    const KEY = 'ocp-archive-pw';
+    const bytes = (b64: string) => Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+
+    async function open(password: string): Promise<Speech[]> {
+      const box = await (await fetch(`${base}archive.json`, { cache: 'no-store' })).json();
+      const raw = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+      const key = await crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: bytes(box.salt), iterations: box.iterations, hash: 'SHA-256' },
+        raw, { name: 'AES-GCM', length: 256 }, false, ['decrypt'],
+      );
+      const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: bytes(box.iv) }, key, bytes(box.data));
+      return JSON.parse(new TextDecoder().decode(plain));
+    }
+
+    const el = (tag: string, cls: string, text?: string) => {
+      const e = document.createElement(tag);
+      e.className = cls;
+      if (text) e.textContent = text;
+      return e;
+    };
+
+    function render(speeches: Speech[]) {
+      list.replaceChildren(...speeches.map((s) => {
+        const li = el('li', 'rounded-xl bg-secondary/50 p-5');
+        li.append(el('p', 'text-sm font-medium text-primary', [s.date, s.length].filter(Boolean).join(' · ')));
+        li.append(el('p', 'mt-1 font-semibold leading-snug', s.title));
+        const links = el('p', 'mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm');
+        if (s.video) {
+          const a = el('a', 'font-medium text-primary underline underline-offset-4', 'Watch the video ↗') as HTMLAnchorElement;
+          a.href = s.video; a.target = '_blank'; a.rel = 'noreferrer';
+          links.append(a);
+        } else {
+          links.append(el('span', 'text-muted-foreground', 'Video coming soon'));
+        }
+        const sess = el('a', 'font-medium underline underline-offset-4', `Session ${s.session}`) as HTMLAnchorElement;
+        sess.href = `${base}sessions/${s.session}/`;
+        links.append(sess);
+        li.append(links);
+        const t = el('details', 'mt-3');
+        t.append(el('summary', 'cursor-pointer text-sm font-medium', 'Read the transcript'));
+        t.append(el('p', 'mt-2 text-xs text-muted-foreground', s.note));
+        const body = el('div', 'mt-2 grid gap-2');
+        s.transcript.forEach((p) => body.append(el('p', 'text-sm leading-relaxed text-muted-foreground', p)));
+        t.append(body);
+        li.append(t);
+        return li;
+      }));
+      form.classList.add('hidden');
+      list.classList.remove('hidden');
+    }
+
+    async function tryOpen(password: string, quiet = false) {
+      try {
+        render(await open(password));
+        try { sessionStorage.setItem(KEY, password); } catch {}
+      } catch {
+        if (!quiet) error.classList.remove('hidden');
+      }
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      error.classList.add('hidden');
+      tryOpen(input.value);
+    });
+
+    let saved: string | null = null;
+    try { saved = sessionStorage.getItem(KEY); } catch {}
+    if (saved) tryOpen(saved, true);
+  }
+</script>
