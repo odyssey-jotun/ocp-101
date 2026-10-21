@@ -211,8 +211,66 @@ export type Session = {
   topics: { title: string; points: Point[] }[];
   professionalism?: { score: number; items: [string, number, string][] };
   deliverables: { text: string; due: string; href?: string; link?: string }[];
+  // Sources Marc found for the sub-points, grouped by main point.
+  research?: { title: string; items: { sub: string; finding: string; source: string; href: string }[] }[];
 };
 export const sessions: Session[] = [
+  {
+    n: 6, date: 'Wednesday, October 21', title: 'Research for every sub-point',
+    takeaways: [
+      { idea: 'Practical means examples.', why: '“Practical, real-world use” says nothing until you name three things it looks like. Give the audience the examples, one, two, three.' },
+      { idea: 'Positives for the average consumer.', why: 'You spotted it yourself: main point two was about AI in general, not data centers. Framing it as what data centers make possible for the average person fixes that.' },
+      { idea: 'Everyone benefits from AI, even people who never use it.', why: 'Fraud alerts on your card, your weather app, and your TikTok feed all run on AI. That makes a strong relevance link: it pulls in the people in the room who say they never touch ChatGPT.' },
+      { idea: 'Reaching out is not joining.', why: 'Asking a club if you can sit in on one meeting costs you nothing. You decide after you see it.' },
+      { idea: 'Words first, movement later.', why: 'Next time you sit and read the whole speech. Once the words are solid, delivery smooths out on its own.' },
+    ],
+    topics: [
+      { title: 'How to lay out each main point', points: [
+        'Use this shape for all three main points. The topic is made up, so copy the layout, not the content.',
+        { text: 'Main point 2: How caffeine affects your body', sub: [
+          'Relevance link: “If you’ve had coffee or an energy drink today, this is happening in your body right now.”',
+          'Sub-point 1, alertness: “According to [outlet] in [year], [finding with the number].” ([Source], [year])',
+          'Sub-point 2, sleep: “[Outlet] reported in [year] that [finding with the number].” ([Source], [year])',
+          'Sub-point 3, limits: “A [year] study by [outlet] found [finding with the number].” ([Source], [year])',
+          'Transition: “Now that we’ve covered how caffeine affects your body, let’s look at how much is too much.”',
+        ] },
+      ] },
+      { title: 'Main point two', points: [
+        'Your outline says AI will “move past the hype stage to practical, real-world use.” Say what that use looks like with three examples.',
+        'The research below gives you three: your health, your money, and your weather.',
+        'Relevance link idea: “Believe it or not, everyone in this room benefits from AI in some way.” Then name the examples.',
+      ] },
+      { title: 'Clubs', points: [
+        'Coders for Community builds software for Dallas nonprofits. A nonprofit is a business that runs on donations, so the skills carry over to finance.',
+        'You don’t need to know how to code to show up. Ask to sit in on one meeting, then decide.',
+      ] },
+    ],
+    research: [
+      { title: 'Main point one: how people use AI', items: [
+        { sub: 'Information', finding: '55% of U.S. respondents in Future’s AI Sentiment survey now use AI in place of a search engine for some tasks, such as planning trips, comparing products, and fixing tech problems.', source: 'Tom’s Guide, 2025', href: 'https://tomsguide.com/ai/ai-search-is-exploding-6-tasks-people-are-now-giving-to-ai-instead-of-google' },
+        { sub: 'Productivity', finding: 'Researchers from Stanford and MIT followed 5,179 customer support agents. Agents with an AI assistant resolved about 14% more issues per hour, and the newest, least experienced agents improved about 35%.', source: 'Brynjolfsson, Li, and Raymond, National Bureau of Economic Research, 2023', href: 'https://www.nber.org/digest/20236/measuring-productivity-impact-generative-ai' },
+        { sub: 'Entertainment', finding: 'In a 2025 Ipsos survey of 9,000 people in eight countries, 97% could not tell fully AI-made songs from songs made by people, and 80% want AI music clearly labeled. This one could also sit under negatives.', source: 'Deezer and Ipsos, 2025', href: 'https://newsroom-deezer.com/2025/11/deezer-ipsos-survey-ai-music/' },
+      ] },
+      { title: 'Main point two: positives for the average consumer', items: [
+        { sub: 'Your health', finding: 'The FDA keeps a public list of AI-enabled medical devices cleared for use in the U.S. It now runs past 1,000 devices, and the large majority are in radiology, reading scans like X-rays and MRIs.', source: 'U.S. Food and Drug Administration, 2026', href: 'https://www.fda.gov/medical-devices/artificial-intelligence-enabled-medical-devices/list-artificial-intelligence-enabled-medical-devices' },
+        { sub: 'Your money', finding: '“In 2024 alone, Visa helped block $40 billion in fraudulent activity,” using AI models that check each transaction in milliseconds.', source: 'Visa, 2025', href: 'https://corporate.visa.com/en/sites/visa-perspectives/security-trust/ai-and-trust-at-scale.html' },
+        { sub: 'Your weather', finding: 'Google DeepMind’s GraphCast beat the leading traditional forecasting system on more than 90% of 1,380 test measures, and it produces a 10-day forecast in under a minute. The study was published in Science.', source: 'Google DeepMind, 2023', href: 'https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/' },
+      ] },
+      { title: 'Main point three: negatives', items: [
+        { sub: 'Electricity in the U.S.', finding: 'A Department of Energy report by Lawrence Berkeley National Laboratory found data centers used about 4.4% of all U.S. electricity in 2023, and could use 6.7% to 12% by 2028.', source: 'U.S. Department of Energy, 2024', href: 'https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers' },
+        { sub: 'Electricity worldwide', finding: 'The International Energy Agency projects that data center electricity use worldwide will roughly double by 2030, to about 945 terawatt-hours, with AI as the main driver.', source: 'International Energy Agency, 2025', href: 'https://www.iea.org/reports/energy-and-ai/executive-summary' },
+        { sub: 'Water', finding: 'You already have Tom’s Guide on water in your Research Notes: one data center drew about 29 million gallons over 15 months before residents noticed their water pressure dropping.', source: 'Tom’s Guide, 2026', href: 'https://tomsguide.com/ai/i-kept-hearing-that-ai-data-centers-are-draining-towns-dry-so-i-looked-at-the-evidence' },
+      ] },
+    ],
+    deliverables: [
+      { text: 'Film your intro once with the triangle walk and upload it to your Drive folder.', due: 'Wed, Oct 21, 10:00 PM', href: DRIVE, link: 'Open your Drive folder' },
+      { text: 'Send Coders for Community the Join C4C form on SMU360 and ask to sit in on a meeting.', due: 'Wed, Oct 21', href: 'https://smu360.smu.edu/student_community?a=1&club_id=35998', link: 'Open Coders for Community' },
+      { text: 'Add the three sources you found today to your Research Notes tab in APA 7.', due: 'Wed, Oct 21', href: `${WORKSPACE}?tab=t.fwcv0shsln3t`, link: 'Open Research Notes' },
+      { text: 'Fill out the body of your outline: numbered sub-points, a citation sentence for each, and a relevance link for all three main points. Use the research below.', due: 'Fri, Oct 23', href: `${WORKSPACE}?tab=t.vpywumt8vxmk`, link: 'Open Informative Speech' },
+      { text: 'We finalize the outline together.', due: 'Mon, Oct 26' },
+      { text: 'Deliver the full speech at the start of our session. Sit and read it.', due: 'Wed, Oct 28' },
+    ],
+  },
   {
     n: 3, date: 'Monday, October 12', title: 'Connection, open questions, and your topic',
     takeaways: [
