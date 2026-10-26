@@ -216,6 +216,81 @@ export type Session = {
 };
 export const sessions: Session[] = [
   {
+    n: 7, date: 'Monday, October 26', title: 'Finishing the outline',
+    takeaways: [
+      { idea: 'Name exactly what you mean.', why: '“Positives” could mean anything. “The benefits AI data centers provide” tells the audience exactly what is coming, and your preview has to match the body point for point.' },
+      { idea: 'Cast a wide net.', why: 'A relevance link works when it names things people have seen or used: ChatGPT, Claude, Gemini, a data center going up near home. The more specific examples you list, the more people in the room it pulls in.' },
+      { idea: 'Assume your audience knows something.', why: 'Politeness theory: everyone wants to feel competent. “You don’t realize how AI affects the environment” tells them they are ignorant. “Some of you might already know” brings them along.' },
+      { idea: 'Write it the way you will say it.', why: 'Every line of the outline is a full sentence, word for word, so you can read it straight through out loud.' },
+      { idea: 'Check the rubric before you submit.', why: 'You work fast. The gap between a B and an A is usually a small rubric item, like a works cited, that a second look would catch.' },
+    ],
+    topics: [
+      { title: 'Introduction', points: [
+        'Your preview named four things, but the body has three. It now names AI use cases, the benefits AI data centers provide, and the negatives they cause.',
+        'Keep the icebreaker and the relevance link separate.',
+        { text: 'Make the relevance link wider and longer.', sub: [
+          'Name the tools people use: ChatGPT, Claude, Perplexity, Gemini.',
+          'Some of us live near a data center or have family who do.',
+          'Instagram and TikTok can stay, as part of a longer list.',
+        ] },
+      ] },
+      { title: 'Main point one', points: [
+        'Relevance link: use the stat that about half of adults use AI. “According to the Pew Research Center in 2026, 49% of American adults now use AI chatbots.” Then name what they use it for, like looking things up or entertainment.',
+        'Information sub-point: the trips and fitness plans line comes from Caswell (Tom’s Guide, 2025), not Constantz. Credit Caswell and add the 55%.',
+        'Entertainment sub-point: add the 25% from your notes.',
+      ] },
+      { title: 'Main point two', points: [
+        'Medicine sub-point: add examples after the colon. One option is from Session 6: the FDA lists over 1,000 cleared AI medical devices.',
+        'Add the Chamber of Commerce $700 million source to your Research Notes.',
+        'Add an APA source for the Loudoun County numbers.',
+        'Claude can format all of these in APA 7 for you.',
+      ] },
+      { title: 'Main point three', points: [
+        'Open it the way you would say it: “AI data centers can also have a negative impact.”',
+        'Land: the Wiseman 2026 source is about noise, light, and heat. Use it to show data centers disrupt local communities, and add it to your Research Notes.',
+        'Electricity: the 29 million gallons stat is about water, so you swapped in an electricity stat.',
+        { text: 'Relevance link: cover all three, land, water, and electricity.', sub: [
+          'Example: “Land to live on, fresh water to drink, and electricity for comfort are things all of us have in common. AI data centers take a lot of all three.”',
+          'List things people have likely seen on their feeds: how much water data centers use, how much space they take up, how much electricity they pull.',
+          'Say “some of you might already know,” not “you don’t realize.”',
+        ] },
+      ] },
+      { title: 'Transitions and conclusion', points: [
+        { text: 'A transition closes one point and opens the next.', sub: [
+          '“Now that I’ve talked about how people use AI, let’s look at the benefits AI data centers provide.”',
+          '“Now that we’ve discussed the benefits AI data centers provide, let’s look at the negative impacts they have.”',
+          '“Now that I’ve talked about the negative impacts, let’s conclude.”',
+        ] },
+        { text: 'The conclusion has three parts. No relevance link.', sub: [
+          'Restate your thesis.',
+          'Summarize your main points.',
+          'Clincher: a last line that leaves them wanting more without adding anything new. For a technology still changing, try “Time will tell how this technology will affect society and the environment. One thing is for sure: it is here to stay.”',
+        ] },
+      ] },
+      { title: 'Classes', points: [
+        { text: 'Try NotebookLM for your econ test.', sub: [
+          'Upload your lecture notes and screenshots of your textbook.',
+          'It makes flashcards and practice quizzes from only what you put in.',
+        ] },
+        'Before you turn in a paper, paste it into Claude with the rubric and ask what you are missing.',
+        'Do great work for your writing professor. A professor who knows you is the one who writes your recommendation letter.',
+      ] },
+      { title: 'Clubs', points: [
+        'Coders for Community has not replied. Send a short follow-up.',
+        'Look into the traders club. Claude can help you find where and when it meets.',
+      ] },
+    ],
+    deliverables: [
+      { text: 'Finish your outline: every fix on this page, every line word for word, transitions between main points, and a conclusion.', due: 'Thu, Oct 29, 10:00 PM', href: `${WORKSPACE}?tab=t.vpywumt8vxmk`, link: 'Open Informative Speech' },
+      { text: 'Add the Chamber of Commerce, Wiseman 2026, and Loudoun County sources to your Research Notes tab in APA 7.', due: 'Thu, Oct 29, 10:00 PM', href: `${WORKSPACE}?tab=t.fwcv0shsln3t`, link: 'Open Research Notes' },
+      { text: 'Record yourself reading the full speech out loud, word for word, and send it to Marc.', due: 'Fri, Oct 30, 2:00 PM' },
+      { text: 'Send Coders for Community a short follow-up.', due: 'Fri, Oct 30', href: 'https://smu360.smu.edu/student_community?a=1&club_id=35998', link: 'Open Coders for Community' },
+      { text: 'Look into the traders club.', due: 'Fri, Oct 30' },
+      { text: 'Send Marc a quick email whenever you finish an assignment.', due: 'Ongoing', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+      { text: 'Next session moves from Wednesday to Friday at 2:30.', due: 'Fri, Oct 30, 2:30 PM' },
+    ],
+  },
+  {
     n: 6, date: 'Wednesday, October 21', title: 'Research for every sub-point',
     takeaways: [
       { idea: 'Practical means examples.', why: '“Practical, real-world use” says nothing until you name three things it looks like. Give the audience the examples, one, two, three.' },

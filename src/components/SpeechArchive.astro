@@ -3,7 +3,7 @@
 // The archive is encrypted at build time (scripts/encrypt-archive.mjs) into
 // public/archive.json; this decrypts it in the browser with the password.
 const base = import.meta.env.BASE_URL;
-const fold = 'group rounded-[18px] border bg-card';
+const fold = 'group min-w-0 rounded-[18px] border bg-card';
 const head = 'flex cursor-pointer list-none items-center justify-between gap-4 p-6 [&::-webkit-details-marker]:hidden';
 const chevron = 'size-5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180';
 ---
