@@ -216,6 +216,71 @@ export type Session = {
 };
 export const sessions: Session[] = [
   {
+    n: 8, date: 'Friday, October 30', title: 'Reading it out loud',
+    takeaways: [
+      { idea: 'Verbs carry the sentence.', why: '“My heart hammered in my chest” beats “my heart started beating fast.” In your credibility line, “investigated” does more work than “spent the last week reading and gaining information.”' },
+      { idea: 'Slow down and say “according to.”', why: 'When you reach a source, slow down. “According to a 2025 survey by Caswell” makes you sound like an expert. Make “according to” your default and mix it up only now and then.' },
+      { idea: 'Dates do work for you.', why: 'AI changes fast. “Keep in mind, this was over a year ago, and already 55% of Americans...” tells the audience the number is even higher now.' },
+      { idea: 'A story connects where data can’t.', why: 'A before-and-after from your own life, like a study guide that used to take hours and now takes ten seconds, shows the audience something about you. Sharing your story is how you connect, and connection beats performance.' },
+      { idea: 'Your job is to inform.', why: 'This speech takes no side on AI. Say the negatives plainly, without cushioning them.' },
+      { idea: 'Tell Marc before it’s late.', why: 'If an assignment will be late, email Marc before the deadline with what is going on and when you will have it. Saying nothing reads as not valuing the time we spend on this.' },
+    ],
+    topics: [
+      { title: 'Introduction', points: [
+        { text: 'Fixed live:', sub: [
+          'The credibility line now says you investigated and read 10 peer-reviewed articles.',
+          'The relevance link says “we” instead of “you” and lists more places people see AI: Instagram, TikTok, Facebook, business news outlets, podcasts.',
+          'AI data centers are now “a popular topic.”',
+        ] },
+        'Add traditional news, like Fox or CNN, to the list.',
+        'You said it yourself: the intro repeats “AI data centers” too often. Read it out loud again and cut every one you don’t need. Plain “AI” works in a few spots.',
+        'Contractions are fine. Write the way you talk.',
+      ] },
+      { title: 'Main point one', points: [
+        'You found the source for the 55% live: Caswell, 2025. Now write the line the way you will say it: “According to a 2025 survey by Caswell, 55% of U.S. respondents use AI instead of search engines for some tasks. In the UK, it’s 62%.”',
+        'Add the date as context: “Keep in mind, this was over a year ago.”',
+        'Do the same for Constantz and OfficeChai: “according to,” the author or outlet, the year, then the finding.',
+        'You said each sub-point needs more between the evidence and the next point. After each piece of evidence, add a line or two on what it means for the audience.',
+        { text: 'Put a story in one sub-point, written out word for word. A before and after works well:', sub: [
+          'Studying: making your own Quizlet set for a math test took a couple of hours. Now you put your notes into AI and have a study guide in about ten seconds.',
+          'Research: digging through a database for peer-reviewed sources took hours. Now AI finds them in minutes and your job is to vet them.',
+        ] },
+        'Mark every quote in your outline so you remember to slow down when you reach it.',
+      ] },
+      { title: 'Main point two', points: [
+        'Medicine: make it a complete sentence and name a real AI breakthrough in medicine. This one needs a little more research.',
+        'Economic growth: explain where the $700 million comes from.',
+        { text: 'Taxes: this explains how data centers add money to a state, so it belongs under economic growth. Lead in with “It does that in a few ways. First, it lowers taxes and pays for better public services.”', sub: [
+          'Then explain the numbers in plain words. One way: the rate is per $100 of home value, so on a $500,000 home the yearly bill dropped from about $5,725 to about $4,025, roughly $1,700 less.',
+          'Fix “(London County)” to Loudoun County, Virginia, with its APA source.',
+        ] },
+        'The transition into main point three is still blank. Refer back to what you just covered, then say what’s next: “Now that we’ve covered the benefits AI data centers bring, let’s look at the harm they can cause.”',
+      ] },
+      { title: 'Main point three', points: [
+        { text: 'Add an illustration after each number so the audience can picture it:', sub: [
+          '29 million gallons of water is about 44 Olympic swimming pools.',
+          '1,200 terawatt-hours is enough electricity to power over 100 million American homes for a year.',
+        ] },
+        'Disrupts surroundings: find one more source on how AI data centers affect wildlife.',
+        'Stop softening the negatives. Cut “to operate efficiently” and “might occupy.” Say “how much space a data center takes up.”',
+      ] },
+      { title: 'Conclusion', points: [
+        'Not there yet. Swap “That’s everything I know” for the three parts from Session 7: restate your thesis, summarize your three main points, then the clincher.',
+      ] },
+      { title: 'Using Claude', points: [
+        'Claude can help with every illustration and explanation on this page. Ask it for lots of options, then pick the best ones yourself.',
+        'This list looks long, but every item is small.',
+      ] },
+    ],
+    deliverables: [
+      { text: 'Make every fix on this page in your outline, word for word: citation sentences, explanations after each piece of evidence, one story, illustrations, the missing transition, and the conclusion.', due: 'Mon, Nov 2, 1:00 PM', href: `${WORKSPACE}?tab=t.vpywumt8vxmk`, link: 'Open Informative Speech' },
+      { text: 'Add your medicine breakthrough and wildlife sources to your Research Notes tab in APA 7.', due: 'Mon, Nov 2, 1:00 PM', href: `${WORKSPACE}?tab=t.fwcv0shsln3t`, link: 'Open Research Notes' },
+      { text: 'Email Marc when it’s done, with the link to your outline.', due: 'Mon, Nov 2, 1:00 PM', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+      { text: 'If anything will be late, email Marc before the deadline with what’s going on and when you’ll have it.', due: 'Ongoing' },
+      { text: 'Next session.', due: 'Mon, Nov 2, 2:00 PM' },
+    ],
+  },
+  {
     n: 7, date: 'Monday, October 26', title: 'Finishing the outline',
     takeaways: [
       { idea: 'Name exactly what you mean.', why: '“Positives” could mean anything. “The benefits AI data centers provide” tells the audience exactly what is coming, and your preview has to match the body point for point.' },
