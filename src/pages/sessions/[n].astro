@@ -35,12 +35,44 @@ const chevron = 'size-5 shrink-0 text-muted-foreground transition-transform dura
           {s.deliverables.map((d, k) => (
             <li class="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-1 border-t border-background/15 pt-3 sm:grid-cols-[2rem_1fr_11rem]">
               <span class="font-serif text-2xl leading-none text-background/60">{k + 1}</span>
-              <span class="leading-relaxed">{d.text}{d.href && <> <a href={d.href} target="_blank" rel="noreferrer" class="whitespace-nowrap font-medium underline underline-offset-4">{d.link} ↗</a></>}</span>
+              <span class="leading-relaxed">{d.text}{d.href && (d.href.startsWith('#')
+                ? <> <a href={d.href} class="whitespace-nowrap font-medium underline underline-offset-4">{d.link} ↓</a></>
+                : <> <a href={d.href} target="_blank" rel="noreferrer" class="whitespace-nowrap font-medium underline underline-offset-4">{d.link} ↗</a></>)}</span>
               <span class="col-start-2 text-sm font-medium text-background/70 sm:col-start-auto sm:text-right">{d.due}</span>
             </li>
           ))}
         </ol>
       </div>
+
+      {s.fixes && (
+        <div id="fixes" class="mt-12 scroll-mt-24">
+          <h2 class="font-serif text-3xl leading-none">Outline fixes, line by line</h2>
+          <p class="mt-3 text-muted-foreground">{s.fixes.reduce((n, g) => n + g.items.length, 0)} fixes, in the order they appear in your outline. “Now” is what your outline says today. “Say” is a model line: use it or put it in your own words.</p>
+          <div class="mt-5 grid gap-4">
+            {s.fixes.map((g, gi) => {
+              const start = s.fixes!.slice(0, gi).reduce((n, x) => n + x.items.length, 0);
+              return (
+                <div class="min-w-0 rounded-[18px] border bg-card p-6">
+                  <h3 class="font-serif text-2xl leading-tight">{g.section}</h3>
+                  <ol class="mt-4 grid gap-4">
+                    {g.items.map((f, k) => (
+                      <li class="grid grid-cols-[2rem_1fr] gap-x-2 border-t pt-4">
+                        <span class="font-serif text-xl leading-snug text-primary">{start + k + 1}</span>
+                        <div class="min-w-0">
+                          <p class="font-semibold leading-snug">{f.line}</p>
+                          {f.now && <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground"><span class="font-medium text-foreground/70">Now: </span>{f.now}</p>}
+                          <p class="mt-1.5 leading-relaxed">{f.fix}</p>
+                          {f.say && <p class="mt-2 rounded-xl bg-primary/[0.06] px-4 py-3 text-sm leading-relaxed"><span class="font-medium text-primary">Say: </span>{f.say}</p>}
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {s.research && (
         <div class="mt-12">
