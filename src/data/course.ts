@@ -225,8 +225,9 @@ export const sessions: Session[] = [
       { idea: 'Slow down and say “according to.”', why: 'When you reach a source, slow down. “According to a 2025 survey by Caswell” makes you sound like an expert. Make “according to” your default and mix it up only now and then.' },
       { idea: 'Dates do work for you.', why: 'AI changes fast. “Keep in mind, this was over a year ago, and already 55% of Americans...” tells the audience the number is even higher now.' },
       { idea: 'A story connects where data can’t.', why: 'A before-and-after from your own life, like a study guide that used to take hours and now takes ten seconds, shows the audience something about you. Sharing your story is how you connect, and connection beats performance.' },
+      { idea: 'A transition looks back, then ahead.', why: 'Every transition refers back to the point you just finished, then names the one coming next: “Now that we’ve covered how people use AI, let’s look at the benefits AI data centers bring.” It tells the audience where they have been and where they are going.' },
       { idea: 'Your job is to inform.', why: 'This speech takes no side on AI. Say the negatives plainly, without cushioning them.' },
-      { idea: 'Tell Marc before it’s late.', why: 'If an assignment will be late, email Marc before the deadline with what is going on and when you will have it. Saying nothing reads as not valuing the time we spend on this.' },
+      { idea: 'Email Marc between sessions.', why: 'Use the course email format every time. If you need more time, say so before the deadline and give a new time; schoolwork comes first, and things happen. When Marc hears nothing, he has to assume the worst. When you communicate, it puts your effort in context, and the same habit builds connections with the professors and supervisors who will open doors for you later.' },
     ],
     topics: [
       { title: 'Introduction', points: [
@@ -333,8 +334,8 @@ export const sessions: Session[] = [
     deliverables: [
       { text: 'Make all 43 outline fixes in the list below, in your Informative Speech tab. There are a lot, and every one has to be done. Each one is small: a line to retype, a source to say out loud, a sentence to add.', due: 'Mon, Nov 2, 1:00 PM', href: '#fixes', link: 'See the fixes' },
       { text: 'Add your medicine breakthrough and wildlife sources to your Research Notes tab in APA 7.', due: 'Mon, Nov 2, 1:00 PM', href: `${WORKSPACE}?tab=t.fwcv0shsln3t`, link: 'Open Research Notes' },
-      { text: 'Email Marc when it’s done, with the link to your outline.', due: 'Mon, Nov 2, 1:00 PM', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
-      { text: 'If anything will be late, email Marc before the deadline with what’s going on and when you’ll have it.', due: 'Ongoing' },
+      { text: 'Email Marc when it’s done, in the course email format, with the link to your outline.', due: 'Mon, Nov 2, 1:00 PM', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+      { text: 'If you need more time on anything, email Marc before the deadline, in the same format, with what’s going on and when you’ll have it.', due: 'Ongoing', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
       { text: 'Next session.', due: 'Mon, Nov 2, 2:00 PM' },
     ],
   },
