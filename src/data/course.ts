@@ -198,8 +198,8 @@ export const emailGuide = [
   { part: 'Greeting', how: 'Say hello and use their name.', example: 'Hello, Marc,' },
   { part: 'Rapport', how: 'One genuine line about them or your last conversation.', example: 'Thanks for the tip on transitions Monday.' },
   { part: 'Context', how: 'One or two sentences on why you are writing.', example: 'I’m sending my benchmark video for Wednesday’s session.' },
-  { part: 'Clear deliverable', how: 'Say exactly what is attached or linked, or exactly what you need and by when.', example: 'It’s uploaded to my Drive folder for the course.' },
-  { part: 'Sign-off', how: 'A closing line and your full name.', example: 'See you Wednesday, [your full name]' },
+  { part: 'Ask', how: 'Ask for exactly what you need, and be specific.', example: 'Could you watch it before Wednesday and tell me the first thing to fix?' },
+  { part: 'Sign-off', how: 'A closing line and your name.', example: 'See you Wednesday, [your name]' },
 ];
 
 // Session summaries, newest first. Each topic is a main point with its

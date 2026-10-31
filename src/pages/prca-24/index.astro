@@ -199,7 +199,7 @@ const groups = ['Group discussions', 'Meetings', 'Conversations', 'Giving a spee
         <div class="mt-1 flex justify-between text-[0.68rem] text-muted-foreground tabular-nums"><span>6 calm</span><span>30 nervous</span></div>
       </div>`).join('') + `<p class="text-xs text-muted-foreground"><span class="inline-block h-3 w-0.5 translate-y-0.5 bg-muted-foreground/50"></span> marks the college average.</p>`;
 
-    const body = `Hello, Marc,\n\n[One line of rapport]\n\n[Context: why you are writing]\n\nHere is the link to my PRCA-24 results: ${resultsLink()}\n\n[Sign-off and your full name]`;
+    const body = `Hello, Marc,\n\n[One line of rapport]\n\n[Context: why you are writing]\n\nHere is the link to my PRCA-24 results: ${resultsLink()}\n\n[Sign-off and your name]`;
     ($('mail') as HTMLAnchorElement).href = `mailto:${MARC}?subject=${encodeURIComponent('My PRCA-24 results')}&body=${encodeURIComponent(body)}`;
   }
 
