@@ -244,7 +244,7 @@ export const sessions: Session[] = [
       { title: 'Your Stats class', points: [
         'On today’s test, data distributions made sense. Sampling distributions lost you, and the clock ran out about halfway through.',
         'What you said you need: worked problems, and someone to answer questions as they come up, the way your high school math classes of eight did.',
-        'The plan: one session with one of Marc’s tutors, who has a master’s in data science. He works through problems with you step by step. If it doesn’t help, we stop there.',
+        'The plan: one session with Brad Hymus, one of Marc’s tutors, who has a master’s in data science. He works through problems with you step by step. If it doesn’t help, we stop there.',
         'Only the final is left, so the study guides are where to start.',
       ] },
     ],
@@ -262,7 +262,7 @@ export const sessions: Session[] = [
       { group: 'Your presentation', text: 'Add a short personal story about how you use AI to study.', due: 'Mon, Nov 9' },
       { group: 'Your presentation', text: 'Run every source through the three steps: your own words, the quote or number, then “according to,” who, and the year.', due: 'Mon, Nov 9' },
       { group: 'Your presentation', text: 'Record yourself reading your final outline once and text it to Marc.', due: 'Mon, Nov 9' },
-      { group: 'Your Stats class', text: 'Upload your Stats study guides. If you know which questions trip you up, put the numbers in the file name or a short note.', due: 'Mon, Nov 9', href: 'https://drive.google.com/drive/folders/1HLpotEO49KkVH0iGgikx7TJj_SaDMQNU', link: 'Open the folder' },
+      { group: 'Your Stats class', text: 'Upload your Stats study guides for Brad. If you know which questions trip you up, put the numbers in the file name or a short note.', due: 'Mon, Nov 9', href: 'https://drive.google.com/drive/folders/1HLpotEO49KkVH0iGgikx7TJj_SaDMQNU', link: 'Open the folder' },
       { group: 'Your Stats class', text: 'Send your Stats professor the email Marc wrote for you.', due: 'Mon, Nov 9', href: '#stats-email', link: 'See the email' },
       { group: 'Your other classes', text: 'Email your Italian Cinema professor to apologize for missing class.', due: 'Mon, Nov 9', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
       { group: 'Your other classes', text: 'Email your advisor to drop Econ.', due: 'Mon, Nov 9' },
