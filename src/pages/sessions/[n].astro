@@ -14,8 +14,16 @@ export function getStaticPaths() {
 const { s } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const bullet = 'mt-2.5 size-1.5 shrink-0 rounded-full bg-primary/60';
-const newer = sessions.find((x) => x.n === s.n + 1);
-const older = sessions.find((x) => x.n === s.n - 1);
+// Neighbours by position, so a session missing from the site doesn't break the links.
+const i = sessions.indexOf(s);
+const newer = sessions[i - 1];
+const older = sessions[i + 1];
+// Number deliverables within their group, and mark where each group starts.
+const items = s.deliverables.map((d, k) => {
+  const first = k === 0 || d.group !== s.deliverables[k - 1].group;
+  const num = s.deliverables.slice(0, k + 1).filter((x) => x.group === d.group).length;
+  return { ...d, first: first && !!d.group, num };
+});
 const fold = 'group min-w-0 rounded-[18px] border bg-card';
 const head = 'flex cursor-pointer list-none items-center justify-between gap-4 p-6 [&::-webkit-details-marker]:hidden';
 const chevron = 'size-5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180';
@@ -32,17 +40,31 @@ const chevron = 'size-5 shrink-0 text-muted-foreground transition-transform dura
       <div class="rounded-[18px] bg-foreground p-6 text-background sm:p-8">
         <h2 class="font-serif text-3xl leading-none">Your deliverables</h2>
         <ol class="mt-5 grid gap-3">
-          {s.deliverables.map((d, k) => (
+          {items.map((d) => (<>
+            {d.first && <li class="pt-4 font-serif text-xl leading-none text-background first:pt-0">{d.group}</li>}
             <li class="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-1 border-t border-background/15 pt-3 sm:grid-cols-[2rem_1fr_11rem]">
-              <span class="font-serif text-2xl leading-none text-background/60">{k + 1}</span>
+              <span class="font-serif text-2xl leading-none text-background/60">{d.num}</span>
               <span class="leading-relaxed">{d.text}{d.href && (d.href.startsWith('#')
                 ? <> <a href={d.href} class="whitespace-nowrap font-medium underline underline-offset-4">{d.link} ↓</a></>
                 : <> <a href={d.href} target="_blank" rel="noreferrer" class="whitespace-nowrap font-medium underline underline-offset-4">{d.link} ↗</a></>)}</span>
               <span class="col-start-2 text-sm font-medium text-background/70 sm:col-start-auto sm:text-right">{d.due}</span>
             </li>
-          ))}
+          </>))}
         </ol>
       </div>
+
+      {s.drafts?.map((e) => (
+        <div id={e.id} class="mt-12 scroll-mt-24">
+          <h2 class="font-serif text-3xl leading-none">{e.title}</h2>
+          <p class="mt-3 text-muted-foreground">{e.note}</p>
+          <div class="mt-5 min-w-0 rounded-[18px] border bg-card p-6">
+            <p class="text-sm text-muted-foreground"><span class="font-medium text-foreground/70">Subject: </span>{e.subject}</p>
+            <div class="mt-4 grid gap-3 border-t pt-4 leading-relaxed">
+              {e.lines.map((l) => <p class="whitespace-pre-line">{l}</p>)}
+            </div>
+          </div>
+        </div>
+      ))}
 
       {s.fixes && (
         <div id="fixes" class="mt-12 scroll-mt-24">

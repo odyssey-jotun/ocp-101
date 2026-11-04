@@ -210,7 +210,10 @@ export type Session = {
   takeaways: { idea: string; why: string }[];
   topics: { title: string; points: Point[] }[];
   professionalism?: { score: number; items: [string, number, string][] };
-  deliverables: { text: string; due: string; href?: string; link?: string }[];
+  // `group` puts a heading over a run of deliverables; numbering restarts under each one.
+  deliverables: { text: string; due: string; href?: string; link?: string; group?: string }[];
+  // Emails Marc wrote for Max to adapt and send, shown under the deliverables at #id.
+  drafts?: { id: string; title: string; note: string; subject: string; lines: string[] }[];
   // Line-by-line outline fixes, grouped by section. `now` quotes the outline as
   // it stands, `say` is a model line to adapt.
   fixes?: { section: string; items: { line: string; now?: string; fix: string; say?: string }[] }[];
@@ -218,6 +221,55 @@ export type Session = {
   research?: { title: string; items: { sub: string; finding: string; source: string; href: string }[] }[];
 };
 export const sessions: Session[] = [
+  {
+    n: 10, date: 'Wednesday, November 4', title: 'Your evidence, and a plan for Stats',
+    takeaways: [
+      { idea: 'Say it in your own words first.', why: 'Today you explained Loudoun County in one plain sentence: the data centers pay so much in taxes that the yearly bill on a home drops. That was the clearest you have sounded about this topic, and Marc is adding your words to Draft 3. Do the same for every piece of evidence. Explain it the way you would tell a friend.' },
+      { idea: 'Then back it up with the source.', why: 'Right after your own words, give the quote or the number, introduced with “according to,” who, and the year. Your words make the point clear. The source makes it credible.' },
+      { idea: 'Informative means real evidence.', why: 'AI in medicine is still largely predictions. Productivity has studies with real numbers behind them, so it replaces medicine in main point two.' },
+      { idea: 'Email before the session.', why: 'You did it today. Before we met, you told Marc where you stood on Traders and how your tests went. Keep doing it, especially when something will be late.' },
+    ],
+    topics: [
+      { title: 'Your presentation', points: [
+        { text: 'Medicine is out. Productivity replaces it, with two examples:', sub: [
+          'Software: in a 2023 GitHub study, programmers using its AI assistant, Copilot, built a web server in JavaScript 55% faster than programmers without it.',
+          'Professional writing: in a 2023 MIT study of 453 professionals, people using ChatGPT finished writing tasks in 40% less time, and their work was rated 18% better.',
+        ] },
+        { text: 'The three steps, on one example:', sub: [
+          'Weak: “A study found AI makes programmers 55% faster.”',
+          'Stronger: “Programmers who use AI can finish the same job in less than half the time. According to a 2023 GitHub study, programmers using its AI assistant, Copilot, built a web server 55% faster than programmers without it.”',
+        ] },
+        'Your personal story is not in Draft 3. Write it under the new productivity sub-point: how you study with AI now compared with before.',
+      ] },
+      { title: 'Your Stats class', points: [
+        'On today’s test, data distributions made sense. Sampling distributions lost you, and the clock ran out about halfway through.',
+        'What you said you need: worked problems, and someone to answer questions as they come up, the way your high school math classes of eight did.',
+        'The plan: one session with one of Marc’s tutors, who has a master’s in data science. He works through problems with you step by step. If it doesn’t help, we stop there.',
+        'Only the final is left, so the study guides are where to start.',
+      ] },
+    ],
+    drafts: [
+      { id: 'stats-email', title: 'Your email to your Stats professor', note: 'Change anything you want, then send it from your SMU account.', subject: 'Preparing for the final', lines: [
+        'Dear Professor [last name],',
+        'I’m in your [time] Statistics section. Thank you again for letting me do the lab from home when I was sick.',
+        'I struggled on today’s test. I understood data distributions, but I couldn’t work the sampling distribution problems, and I ran out of time before I finished. I’ve also had trouble turning my notes into steps I can follow on a test.',
+        'Could you point me to practice problems with worked solutions, or let me know a time I could come to office hours before the final?',
+        'Thank you,\nMax Denton',
+      ] },
+    ],
+    deliverables: [
+      { group: 'Your presentation', text: 'In Draft 3, replace the medicine sub-point with productivity, using the two studies under “Your presentation” below.', due: 'Mon, Nov 9', href: `${WORKSPACE}?tab=t.ioyi0gqmuebc`, link: 'Open Draft 3' },
+      { group: 'Your presentation', text: 'Add a short personal story about how you use AI to study.', due: 'Mon, Nov 9' },
+      { group: 'Your presentation', text: 'Run every source through the three steps: your own words, the quote or number, then “according to,” who, and the year.', due: 'Mon, Nov 9' },
+      { group: 'Your presentation', text: 'Record yourself reading your final outline once and text it to Marc.', due: 'Mon, Nov 9' },
+      { group: 'Your Stats class', text: 'Upload your Stats study guides. If you know which questions trip you up, put the numbers in the file name or a short note.', due: 'Mon, Nov 9', href: 'https://drive.google.com/drive/folders/1HLpotEO49KkVH0iGgikx7TJj_SaDMQNU', link: 'Open the folder' },
+      { group: 'Your Stats class', text: 'Send your Stats professor the email Marc wrote for you.', due: 'Mon, Nov 9', href: '#stats-email', link: 'See the email' },
+      { group: 'Your other classes', text: 'Email your Italian Cinema professor to apologize for missing class.', due: 'Mon, Nov 9', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+      { group: 'Your other classes', text: 'Email your advisor to drop Econ.', due: 'Mon, Nov 9' },
+      { group: 'Emailing Marc', text: 'Email Marc when everything is done, in the course email format. If anything will be late, email before the deadline with a new time.', due: 'Mon, Nov 9', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+      { group: 'Emailing Marc', text: 'Next session.', due: 'Mon, Nov 9' },
+    ],
+  },
   {
     n: 8, date: 'Friday, October 30', title: 'Reading it out loud',
     takeaways: [
