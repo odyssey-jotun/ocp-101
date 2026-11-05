@@ -254,6 +254,8 @@ export const sessions: Session[] = [
         'I’m in your [time] Statistics section. Thank you again for letting me do the lab from home when I was sick.',
         'I struggled on today’s test. I understood data distributions, but I couldn’t work the sampling distribution problems, and I ran out of time before I finished. I’ve also had trouble turning my notes into steps I can follow on a test.',
         'Could you point me to practice problems with worked solutions, or let me know a time I could come to office hours before the final?',
+        'I really want to get an A in this class. It’s my first semester here at SMU, and I want to finish your class strong, as well as the semester.',
+        'I’d be grateful for any help you’re willing to give.',
         'Thank you,\nMax Denton',
       ] },
     ],
