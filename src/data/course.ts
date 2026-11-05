@@ -265,7 +265,7 @@ export const sessions: Session[] = [
       { group: 'Your presentation', text: 'Run every source through the three steps: your own words, the quote or number, then “according to,” who, and the year.', due: 'Mon, Nov 9' },
       { group: 'Your presentation', text: 'Record yourself reading your final outline once and text it to Marc.', due: 'Mon, Nov 9' },
       { group: 'Your Stats class', text: 'Upload your Stats study guides to the folder Marc shared with you and Brad.', due: 'Mon, Nov 9', href: 'https://drive.google.com/drive/folders/1OI18pXNBV8Jmk7lPg1qbzVUPxVcIvpiV', link: 'Open the folder' },
-      { group: 'Your Stats class', text: 'Fill in “Stats: Where I’m Stuck” in the same folder: each question that trips you up, and the step where you lose track.', due: 'Mon, Nov 9', href: 'https://docs.google.com/document/d/12UK414GBHMjz3UDfQPOgJEDlEoRIrlippo6DcVnDAQA/edit', link: 'Open the doc' },
+      { group: 'Your Stats class', text: 'Add notes to “Stats: Questions for Brad” in the same folder: the questions you want to work through, and where you’d like help on each one.', due: 'Mon, Nov 9', href: 'https://docs.google.com/document/d/1TmiWeRK_DCZJBHowJrvRGjTXHpPshC4SH31_3ciMOXQ/edit', link: 'Open the doc' },
       { group: 'Your Stats class', text: 'Send your Stats professor the email Marc wrote for you.', due: 'Mon, Nov 9', href: '#stats-email', link: 'See the email' },
       { group: 'Your other classes', text: 'Email your Italian Cinema professor to apologize for missing class.', due: 'Mon, Nov 9', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
       { group: 'Your other classes', text: 'Email your advisor to drop Econ.', due: 'Mon, Nov 9' },
