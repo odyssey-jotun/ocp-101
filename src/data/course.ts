@@ -222,6 +222,198 @@ export type Session = {
 };
 export const sessions: Session[] = [
   {
+    n: 14, date: 'Thursday, November 19', title: 'Your persona, and StoryBrand',
+    takeaways: [
+      { idea: 'Your persona can be dry.', why: 'Every presenter plays a version of themselves. The Weekend Update anchors on SNL don’t act that way at home. You don’t need to fake energy. Kyle Prue, the comedian Marc showed you, is about as dry as they come.' },
+      { idea: 'Start from how you act with your friends.', why: 'Whatever role you play in your group, the planner, the funny one, the guy who knows things, that is the version of you we want on camera.' },
+      { idea: 'Pick a topic in the overlap.', why: 'A good topic helps people, uses something you already know how to do, and matters to the people you want as colleagues one day. Marc knows cross-country, but he would never post about it on LinkedIn.' },
+      { idea: 'The audience is the hero. You are the guide.', why: 'StoryBrand tells your speech as a story about the person watching. You are the one who shows them the way, the way Alfred guides Batman and Waymo guides its riders.' },
+    ],
+    topics: [
+      { title: 'StoryBrand', points: [
+        'A marketing framework businesses use to make their message clear. A hero has a problem and meets a guide, who gives them a plan, calls them to action, and helps them avoid failure. The story ends in success.',
+        { text: 'Batman:', sub: [
+          'Hero: Bruce Wayne. Problem: a robber killed his parents, and crime has taken over Gotham.',
+          'Guide: Alfred. Plan: fight crime without becoming a criminal, so no guns and no killing.',
+          'Failure: he becomes a villain. Success: Gotham has less crime.',
+        ] },
+        { text: 'Waymo:', sub: [
+          'Hero: the rider after a long day, who doesn’t want to talk to a driver.',
+          'Guide: Waymo. Call to action: the blue button to take a ride.',
+          'Failure: stuck in a car with some guy, making small talk, less safe. Success: a safe ride that doesn’t drain your energy.',
+        ] },
+        'A guide needs empathy and authority. Alfred raised Bruce, and he has seen it all before. Waymo knows you want quiet after work, then lists its safety numbers.',
+        'A plan has three steps at most.',
+      ] },
+      { title: 'Your policy speech', points: [
+        'Hero: the person watching your video. Guide: you.',
+        'Call to action: download your PDF.',
+        'Failure: they show up late or unprepared, waste time, or look bad in a meeting.',
+        'Success: AI saves them time.',
+        'Two ideas fit so far: Claude running your calendar, and AI matching colors in your outfits. One keeps people on time for meetings. The other helps them look good once they’re there.',
+        'For a third, start with something you already do, like asking AI for answers that fit your situation.',
+      ] },
+      { title: 'Stats with Brad', points: [
+        'More sessions with Brad. You can meet Saturday, Sunday, or Monday morning, Nov 23, and Tuesday through Friday are out.',
+        'You sent Brad your professor’s study guide during the session.',
+      ] },
+    ],
+    deliverables: [
+      { group: 'Your policy speech', text: 'Finish Part 3 in the Persuasive Speech tab (questions 8 to 10). Come up with your third idea, then pick one.', due: 'Next session', href: `${WORKSPACE}?tab=t.ph57jy6a8qcn`, link: 'Open the tab' },
+      { group: 'Your policy speech', text: 'Then answer Part 4, the StoryBrand questions, about the idea you picked.', due: 'Next session', href: `${WORKSPACE}?tab=t.ph57jy6a8qcn`, link: 'Open the tab' },
+      { group: 'Your policy speech', text: 'Write two or three lines on the role you play in your friend group.', due: 'Next session' },
+      { group: 'Your Stats class', text: 'Reply to Marc’s email with Brad and pick a time.', due: 'When Brad writes' },
+      { group: 'Emailing Marc', text: 'Email Marc when everything is done, in the course email format. Put your friend-group lines in it.', due: 'Next session', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+    ],
+  },
+  {
+    n: 13, date: 'Tuesday, November 17', title: 'Your speech passed, and what comes next',
+    takeaways: [
+      { idea: 'Growth is what Marc measures.', why: 'Marc played your first video from October next to this one. You know what you want to say now, and it shows. Your informative speech passes.' },
+      { idea: 'A policy speech asks people to do something.', why: 'Policy and persuasive mean the same thing here. A policy speech asks the audience to take one specific action, and then you show them how.' },
+      { idea: 'The best speeches feel useful.', why: 'The college classes Marc still uses taught him one technique at a time, explained simply: keep the first line of every paragraph to one line, and put a long list in bullets. He understood each one and could use it the next day. Your policy speech should do the same for your audience.' },
+      { idea: 'The ideas come from you.', why: 'Marc could hand you a topic. He wants you to find it, so he wrote a short survey to help. Start with what AI already does for you, like keeping your calendar in Claude.' },
+    ],
+    topics: [
+      { title: 'Your informative speech', points: [
+        { text: 'It passes. Here’s the growth Marc saw since your first video:', sub: [
+          'You know what you want to say, so the speech has focus.',
+          'Your voice rises when a point is interesting.',
+          'You hit every citation.',
+          'Your movement and hand gestures don’t distract anymore.',
+        ] },
+        'Next time, look at the camera more. You caught that one yourself.',
+        'Your slides look great, and so does the email Claude helped you write.',
+      ] },
+      { title: 'Your policy speech', points: [
+        'The goal: one technique, explained simply, that people can use right away. Marc would like it to show people how to use AI to do more.',
+        'You’ll give it seated at your laptop and share your screen to show people how.',
+        'We’ll do a few test runs, then film it in several takes and edit it.',
+        'It goes on a portfolio site Marc will build for you, linked from your resume. Marc showed you two other students’ sites: one with 3D-printed motel parts, one with fitness videos.',
+        'On your resume, it makes you memorable: the guy with the AI productivity hacks. That’s why it has to be good.',
+      ] },
+      { title: 'Your grades', points: [
+        'Writing: 88. Your last paper is due December 9, and Marc will review it before you turn it in.',
+        'Italian Cinema: 92.5.',
+        'Statistics: B-minus. One rough week on Nov 4 pulled it down, and you’ve scored 10 out of 10 on nearly everything since.',
+        'Business Communication: 85. The team presentation after Thanksgiving works as the final, so a strong one could raise this to an A.',
+        'Worst case, you finish the semester with an A-minus and three Bs. Marc doesn’t think that’s horrible, and with Brad’s help, he thinks it’ll be better.',
+      ] },
+    ],
+    deliverables: [
+      { text: 'Answer the 10 questions in the Persuasive Speech tab.', due: 'Thu, Nov 19', href: `${WORKSPACE}?tab=t.ph57jy6a8qcn`, link: 'Open Persuasive Speech' },
+      { text: 'Send Marc the rubric for your last writing paper.', due: 'Thu, Nov 19' },
+      { text: 'Email Marc when you’re done, using the Claude prompt from last week.', due: 'Thu, Nov 19', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+    ],
+  },
+  {
+    n: 12, date: 'Thursday, November 12', title: 'Clear slides, and filming your speech',
+    takeaways: [
+      { idea: 'You control your clarity.', why: 'No presenter can make an audience think they’re brilliant. Clarity is the part you have full control over. Every slide carries signal, what the audience needs, and noise, everything else, and noise pulls their attention away from the signal.' },
+      { idea: 'Put the number on the screen.', why: 'When the audience can see a statistic while you say it, you look more credible. You don’t need a quote or a number on every slide. Save your slides for the data that’s hard to follow without a picture.' },
+      { idea: 'Anything you add needs a source.', why: 'The Japan comparison in Draft 4 came from AI, so it needs a citation. If there’s nothing to cite, say it with a limit, like “If my math is right.”' },
+      { idea: 'Watch your transitions.', why: 'Marc grades this speech on structure, and transitions are the part people miss. “Now that I’ve discussed this, let’s talk about that” between every section keeps you from a redo.' },
+    ],
+    topics: [
+      { title: 'Your outline', points: [
+        'All 27 suggestions in Draft 4 are accepted, and the length is fine. The outline is ready to film.',
+        'The Japan comparison for data center electricity use needs a source, or a limit when you say it.',
+        'Mark every slide change in your outline in big, colored letters. In the middle of a speech, it’s easy to forget to switch slides.',
+      ] },
+      { title: 'Slides', points: [
+        'Signal is what the audience needs. Noise is everything else.',
+        { text: 'Slides that work:', sub: [
+          'One big number on a simple slide.',
+          'Lines that appear one at a time with an animation, on a click of the space bar or arrow key.',
+          'A question for the audience. It fits the icebreaker, and the relevance link even better, since that’s where you connect the topic to the room.',
+        ] },
+        'Make up to six slides, counting the title slide, in PowerPoint or Google Slides, for the parts of your data that are hard to follow without a picture.',
+      ] },
+      { title: 'Filming', points: [
+        'Read the speech out loud once before you film, so the words are familiar.',
+        'Collared shirt, tripod, horizontal, you in the middle of the frame.',
+        'A good take can be cut into a short clip for each main point, for your LinkedIn or resume when you apply for internships. A video of you presenting helps an employer see who you are.',
+        'One more speech after this one, the persuasive speech, likely a week to a week and a half.',
+      ] },
+      { title: 'What Marc is grading', points: [
+        'Three sources cited out loud, each with the author and the date. The article title isn’t needed.',
+        'Every part of the structure: icebreaker, relevance link, credibility statement, thesis, preview, each main point, a transition between every section, and the conclusion.',
+        'If three parts are missing, you redo the video.',
+      ] },
+      { title: 'Your classes', points: [
+        'Your session with Brad cleared up what you missed on the last Stats test. You meet with him again Tuesday.',
+        'Stats is the only class below a B.',
+        'Finals: Italian Cinema Tue, Dec 1; business Wed, Dec 2; Writing paper due Wed, Dec 9; Stats Sat, Dec 12.',
+        'Marc can review your papers against the rubric before you turn them in. You’ll text him if you want help.',
+      ] },
+    ],
+    deliverables: [
+      { group: 'Before Monday', text: 'In Draft 4, add a source for the Japan comparison, or say it with a limit (“If my math is right...”).', due: 'Mon, Nov 16', href: `${WORKSPACE}?tab=t.bzdmu0l0pgcf`, link: 'Open Draft 4' },
+      { group: 'Before Monday', text: 'Add slide cues to your outline in big, colored letters.', due: 'Mon, Nov 16' },
+      { group: 'Before Monday', text: 'Print your outline.', due: 'Sun, Nov 15' },
+      { group: 'Before Monday', text: 'Read the speech out loud once, then film it in one take: collared shirt, tripod, horizontal, you in the middle of the frame.', due: 'Mon, Nov 16, 1:30 PM' },
+      { group: 'Before Monday', text: 'Text Marc the video.', due: 'Mon, Nov 16, 1:30 PM' },
+      { group: 'Before Monday', text: 'Make up to six slides, counting the title slide, in PowerPoint or Google Slides, for the data that’s hard to follow without a picture.', due: 'Mon, Nov 16, 2:00 PM', href: 'https://claude.ai/artifact/8XWs1N1kboZG2L9FhToxXt', link: 'See the example deck' },
+      { group: 'Emailing Marc', text: 'After you finish your homework, paste this into your Claude: “Draft an email from me to Marc Gray (mgray@odysseycollegeprep.com) using the five-part format on this page: https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails. Tell him what I finished for Monday, and link anything he needs to open. Show me the draft before you send it.”', due: 'Mon, Nov 16', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+      { group: 'Emailing Marc', text: 'Next session.', due: 'Tue, Nov 17, 11:30 AM' },
+    ],
+  },
+  {
+    n: 11, date: 'Monday, November 9', title: 'The read-through, and Draft 4',
+    takeaways: [
+      { idea: 'When a line trips you up, check the wording.', why: 'Marc named three reasons a line comes out wrong: you misread it, it was hard to see, or it is awkward to say. The third is the one to fix. Simplify any line that is hard to say out loud, and cut anything the speech can do without.' },
+      { idea: 'Give every big number a picture.', why: 'Nobody can picture 29 million gallons of water. About 44 Olympic swimming pools makes it clear. 1,200 terawatt-hours needs the same kind of comparison.' },
+      { idea: 'Your outline is a tool.', why: 'Speaking extemporaneously means you glance at your notes when you need them and talk to the audience the rest of the time. It makes the speech sound like a conversation.' },
+      { idea: 'Slides are for data.', why: 'Every slide pulls the audience’s eyes off you. For an informative speech with three main points, six slides is the max, and data visualizations do more for you than quotes.' },
+    ],
+    topics: [
+      { title: 'Your presentation', points: [
+        { text: 'Cuts from the read-through:', sub: [
+          'The news outlet list in the introduction. Start with ChatGPT, Claude, and Gemini.',
+          '“For some tasks,” in the Caswell line.',
+          '“And drive the economy,” after the Copilot study. It stretches the evidence further than it goes.',
+        ] },
+        'Loudoun County: say what kind of source the number comes from, like a report, an article, or a survey.',
+        'Where one citation ran straight into the next, it sounded choppy. Each piece of evidence needs a line on what it means.',
+        'Main point three was jumbled in Draft 3. Draft 4 is the version to work in now.',
+      ] },
+      { title: 'Your delivery', points: [
+        'Your inflection and cadence are better than when you started, and you moved around less.',
+        'Print your outline before you present, from a printer at your apartment or at the library.',
+      ] },
+      { title: 'Your slides', points: [
+        'Up to six slides.',
+        { text: 'Three data visualizations to build:', sub: [
+          '29 million gallons of water, about 44 Olympic swimming pools.',
+          '1,200 terawatt-hours of electricity, once you have a comparison for it.',
+          'The GitHub Copilot study: 1 hour 11 minutes with Copilot, 2 hours 41 minutes without.',
+        ] },
+        'No quote stood out to you as more important than the rest, so the slides can skip quotes.',
+      ] },
+      { title: 'Your classes', points: [
+        'Stats: 83 after the last test. The final is 20% of your grade.',
+        'Homework 6.2 was Canvas-only, and you missed it. You may still be able to do it.',
+        'Brad starts with you Tuesday at 5:15. For the session to be worth both your time, he needs your questions.',
+        'Italian Cinema: 92, with a quiz Tuesday.',
+        'Business Communication: 10.67 out of 16 on last week’s quiz.',
+        'Your advisor’s auto-reply said two to three business days. Marc will check in with you on it Wednesday.',
+      ] },
+    ],
+    deliverables: [
+      { group: 'Your Stats class', text: 'Reply to Brad in the “Max, meet Brad (Stats)” thread and confirm 5:15.', due: 'Tue, Nov 10, 5:15 PM' },
+      { group: 'Your Stats class', text: 'Add the questions you want to work through to “Stats: Questions for Brad.”', due: 'Tue, Nov 10, 5:15 PM', href: 'https://docs.google.com/document/d/1TmiWeRK_DCZJBHowJrvRGjTXHpPshC4SH31_3ciMOXQ/edit', link: 'Open the doc' },
+      { group: 'Your presentation', text: 'In Draft 4, go through Marc’s suggestions and accept them. If one doesn’t sound like you, reword it.', due: 'Thu, Nov 12, 4:00 PM', href: `${WORKSPACE}?tab=t.bzdmu0l0pgcf`, link: 'Open Draft 4' },
+      { group: 'Your presentation', text: 'Fill in Marc’s comments (the bold italic brackets): a topic sentence for each of the three main points.', due: 'Thu, Nov 12, 4:00 PM' },
+      { group: 'Your presentation', text: 'Add a comparison for 1,200 terawatt-hours, the way 29 million gallons became 44 swimming pools.', due: 'Thu, Nov 12, 4:00 PM' },
+      { group: 'Your presentation', text: 'Say what kind of source the Loudoun County number comes from, and its year.', due: 'Thu, Nov 12, 4:00 PM' },
+      { group: 'Your presentation', text: 'Add a few ways people use AI for fun, under entertainment.', due: 'Thu, Nov 12, 4:00 PM' },
+      { group: 'Your presentation', text: 'Practice the speech out loud, and look at your outline only when you need it.', due: 'Thu, Nov 12, 4:00 PM' },
+      { group: 'Emailing Marc', text: 'Wednesday evening, paste Marc’s recap email into your Claude and ask it whether you have everything finished.', due: 'Wed, Nov 11' },
+      { group: 'Emailing Marc', text: 'Email Marc when it’s all done, in the course email format. If something will run late, email before the deadline with a new time.', due: 'Thu, Nov 12, 4:00 PM', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
+      { group: 'Emailing Marc', text: 'Next session.', due: 'Thu, Nov 12, 4:00 PM' },
+    ],
+  },
+  {
     n: 10, date: 'Wednesday, November 4', title: 'Your evidence, and a plan for Stats',
     takeaways: [
       { idea: 'Say it in your own words first.', why: 'Today you explained Loudoun County in one plain sentence: the data centers pay so much in taxes that the yearly bill on a home drops. That was the clearest you have sounded about this topic, and Marc is adding your words to Draft 3. Do the same for every piece of evidence. Explain it the way you would tell a friend.' },
