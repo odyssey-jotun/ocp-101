@@ -250,7 +250,7 @@ export const sessions: Session[] = [
       ] },
       { title: 'Your paper', points: [
         'Your position: Greek life should remain at SMU. Keep it under 1,900 words, and include counterarguments.',
-        'Marc is making a Google Doc for it, with a few things Claude can research for you.',
+        'Your paper doc has a Draft 1 tab to write in and a Research tab with questions for Claude.',
         'Your draft is due Saturday at 8 PM, so you aren’t writing it Sunday after a day of travel.',
         'Monday, Nov 30: ten minutes on your speech research, then your grades and your paper. Tuesday, Dec 1: a short meeting to finalize the paper and make sure it’s submitted.',
       ] },
@@ -258,7 +258,7 @@ export const sessions: Session[] = [
     deliverables: [
       { group: 'Your Stats class', text: 'Finish Learning Curve 8.3, Homework 8.1, and Learning Curve 8.4.', due: 'Mon, Nov 23' },
       { group: 'Your Stats class', text: 'Reply to Brad’s email with a time that works.', due: 'When Brad writes' },
-      { group: 'Your paper', text: 'Send Marc your Greek life paper draft.', due: 'Sat, Nov 28, 8 PM' },
+      { group: 'Your paper', text: 'Write Draft 1 of your Greek life paper, and send it to Marc.', due: 'Sat, Nov 28, 8 PM', href: 'https://docs.google.com/document/d/1EqSxwjo6ALR9SGohUVdzEw1VOVvkrx-ucqP-mho_TMM/edit', link: 'Open your paper doc' },
       { group: 'Your policy speech', text: 'Use Claude and the questions in Speech Research to learn the problem your speech solves better than the average person does. Bring Marc interesting facts.', due: 'Mon, Nov 30', href: `${WORKSPACE}?tab=t.b220628fyaik`, link: 'Open Speech Research' },
     ],
   },
