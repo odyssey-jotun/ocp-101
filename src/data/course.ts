@@ -259,11 +259,9 @@ export const sessions: Session[] = [
       ] },
     ],
     deliverables: [
-      { group: 'Your policy speech', text: 'Finish Part 3 in the Persuasive Speech tab (questions 8 to 10). Come up with your third idea, then pick one.', due: 'Next session', href: `${WORKSPACE}?tab=t.ph57jy6a8qcn`, link: 'Open the tab' },
-      { group: 'Your policy speech', text: 'Then answer Part 4, the StoryBrand questions, about the idea you picked.', due: 'Next session', href: `${WORKSPACE}?tab=t.ph57jy6a8qcn`, link: 'Open the tab' },
-      { group: 'Your policy speech', text: 'Write two or three lines on the role you play in your friend group.', due: 'Next session' },
+      { group: 'Your policy speech', text: 'Come up with a third idea, then pick one of the three. Your calendar and outfit-color ideas both work.', due: 'Mon, Nov 23, 1:30 PM', href: `${WORKSPACE}?tab=t.ph57jy6a8qcn`, link: 'Open Persuasive Speech' },
+      { group: 'Your policy speech', text: 'Complete the StoryBrand form for the idea you picked.', due: 'Mon, Nov 23, 1:30 PM', href: `${WORKSPACE}?tab=t.zgc32l20ad1a`, link: 'Open the StoryBrand form' },
       { group: 'Your Stats class', text: 'Reply to Marc’s email with Brad and pick a time.', due: 'When Brad writes' },
-      { group: 'Emailing Marc', text: 'Email Marc when everything is done, in the course email format. Put your friend-group lines in it.', due: 'Next session', href: 'https://odyssey-jotun.github.io/ocp-101/one-on-one/#emails', link: 'See the email format' },
     ],
   },
   {
