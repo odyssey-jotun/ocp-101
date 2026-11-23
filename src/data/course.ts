@@ -238,6 +238,7 @@ export const sessions: Session[] = [
         'Call to action: download the free guide.',
       ] },
       { title: 'Your research', points: [
+        'The goal: know the problem your speech solves better than the average person does. Find facts, and the more interesting, the better.',
         'Executive functioning is how you organize your mind to get things done. People make it easier on themselves: workout clothes next to the bed, a toothbrush in the shower. Keeping a calendar takes energy, and AI takes some of that work off your plate.',
         { text: 'Learn the problem first. Marc’s printer ad shows how:', sub: [
           'What a printer does: makes a paper copy.',
@@ -246,12 +247,6 @@ export const sessions: Session[] = [
         ] },
         'For the solution, look for white papers. A white paper is a study a company runs itself, like Google measuring how much time its tools save. It isn’t peer reviewed, but it’s useful data.',
         'Claude does the searching. Your part is knowing the sources: open them, drop the weak ones, and keep the ones you trust. Plan on 30 to 40 minutes, spread out before Monday, so you’re not pasting answers in right before we meet.',
-      ] },
-      { title: 'Your grades', points: [
-        'Business Communication: 86.5. Your presentation came back at 90.3. The feedback on your format guide outline matches what we practice: a clear benefit statement, a problem and solution summary, strong verbs, and a call to action at the end.',
-        'Writing: 89.',
-        'Statistics: 80.61. Learning Curve 8.3 and Homework 8.1 are due today, and you’re doing Learning Curve 8.4 early. Fight for every point. This close to the end, a few points can be the difference between an A and a B.',
-        'Italian Cinema: 92. The missing items are ones your professor hasn’t graded yet, and none are late.',
       ] },
       { title: 'Your paper', points: [
         'Your position: Greek life should remain at SMU. Keep it under 1,900 words, and include counterarguments.',
@@ -264,7 +259,7 @@ export const sessions: Session[] = [
       { group: 'Your Stats class', text: 'Finish Learning Curve 8.3, Homework 8.1, and Learning Curve 8.4.', due: 'Mon, Nov 23' },
       { group: 'Your Stats class', text: 'Reply to Brad’s email with a time that works.', due: 'When Brad writes' },
       { group: 'Your paper', text: 'Send Marc your Greek life paper draft.', due: 'Sat, Nov 28, 8 PM' },
-      { group: 'Your policy speech', text: 'Answer the questions in Speech Research with Claude, and know which sources you’d use.', due: 'Mon, Nov 30', href: `${WORKSPACE}?tab=t.b220628fyaik`, link: 'Open Speech Research' },
+      { group: 'Your policy speech', text: 'Use Claude and the questions in Speech Research to learn the problem your speech solves better than the average person does. Bring Marc interesting facts.', due: 'Mon, Nov 30', href: `${WORKSPACE}?tab=t.b220628fyaik`, link: 'Open Speech Research' },
     ],
   },
   {
@@ -335,13 +330,6 @@ export const sessions: Session[] = [
         'We’ll do a few test runs, then film it in several takes and edit it.',
         'It goes on a portfolio site Marc will build for you, linked from your resume. Marc showed you two other students’ sites: one with 3D-printed motel parts, one with fitness videos.',
         'On your resume, it makes you memorable: the guy with the AI productivity hacks. That’s why it has to be good.',
-      ] },
-      { title: 'Your grades', points: [
-        'Writing: 88. Your last paper is due December 9, and Marc will review it before you turn it in.',
-        'Italian Cinema: 92.5.',
-        'Statistics: B-minus. One rough week on Nov 4 pulled it down, and you’ve scored 10 out of 10 on nearly everything since.',
-        'Business Communication: 85. The team presentation after Thanksgiving works as the final, so a strong one could raise this to an A.',
-        'Worst case, you finish the semester with an A-minus and three Bs. Marc doesn’t think that’s horrible, and with Brad’s help, he thinks it’ll be better.',
       ] },
     ],
     deliverables: [
@@ -435,11 +423,10 @@ export const sessions: Session[] = [
         'No quote stood out to you as more important than the rest, so the slides can skip quotes.',
       ] },
       { title: 'Your classes', points: [
-        'Stats: 83 after the last test. The final is 20% of your grade.',
+        'The Stats final is 20% of your grade.',
         'Homework 6.2 was Canvas-only, and you missed it. You may still be able to do it.',
         'Brad starts with you Tuesday at 5:15. For the session to be worth both your time, he needs your questions.',
-        'Italian Cinema: 92, with a quiz Tuesday.',
-        'Business Communication: 10.67 out of 16 on last week’s quiz.',
+        'Italian Cinema has a quiz Tuesday.',
         'Your advisor’s auto-reply said two to three business days. Marc will check in with you on it Wednesday.',
       ] },
     ],
