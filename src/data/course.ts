@@ -222,6 +222,52 @@ export type Session = {
 };
 export const sessions: Session[] = [
   {
+    n: 15, date: 'Monday, November 23', title: 'One idea: your calendar',
+    takeaways: [
+      { idea: 'One idea, done well.', why: 'Your speech covers one thing: using AI to manage your calendar. One idea keeps the speech clean and clear. Your outfit-color idea is still good, and it may become its own guide later.' },
+      { idea: 'It fits how your brain works.', why: 'Your aptitude results point to work like this: figure out how something works, pull out the steps, and turn them into a process other people can repeat. That is what this speech does.' },
+      { idea: 'Problem, solution, implementation.', why: 'A persuasive speech says, “I’m going to persuade you to do this.” Then it shows the problem, the solution, and how to put the solution to work.' },
+      { idea: 'Stats make the problem urgent.', why: 'Citations build your credibility, and they also make people want to fix the problem now. Arkansas passed its smoking ban after ads said one in two Arkansans had lung damage from secondhand smoke. That number made people act.' },
+    ],
+    topics: [
+      { title: 'Your policy speech', points: [
+        'Thesis: “Today I will persuade you to use AI to help manage your calendar.”',
+        'Problem: staying organized. With a messy calendar, you lose track of things, show up late, or miss things altogether.',
+        'Solution: connect Claude to your Google Calendar. You don’t need a reason to pick Claude over ChatGPT or Gemini. Say you use Claude, and that the steps are similar for the others.',
+        'Implementation: you’ll share your screen and connect Claude to a Google Calendar step by step. You can disconnect your own account and reconnect it, or use a second account. We’ll plan this part later.',
+        'Call to action: download the free guide.',
+      ] },
+      { title: 'Your research', points: [
+        'Executive functioning is how you organize your mind to get things done. People make it easier on themselves: workout clothes next to the bed, a toothbrush in the shower. Keeping a calendar takes energy, and AI takes some of that work off your plate.',
+        { text: 'Learn the problem first. Marc’s printer ad shows how:', sub: [
+          'What a printer does: makes a paper copy.',
+          'The problem it solves: every time a college student needs to print, they walk to the library, wait in line, and fight software that may not print their assignment.',
+          'Framed that way, the problem feels urgent before the ad says a word about the printer.',
+        ] },
+        'For the solution, look for white papers. A white paper is a study a company runs itself, like Google measuring how much time its tools save. It isn’t peer reviewed, but it’s useful data.',
+        'Claude does the searching. Your part is knowing the sources: open them, drop the weak ones, and keep the ones you trust. Plan on 30 to 40 minutes, spread out before Monday, so you’re not pasting answers in right before we meet.',
+      ] },
+      { title: 'Your grades', points: [
+        'Business Communication: 86.5. Your presentation came back at 90.3. The feedback on your format guide outline matches what we practice: a clear benefit statement, a problem and solution summary, strong verbs, and a call to action at the end.',
+        'Writing: 89.',
+        'Statistics: 80.61. Learning Curve 8.3 and Homework 8.1 are due today, and you’re doing Learning Curve 8.4 early. Fight for every point. This close to the end, a few points can be the difference between an A and a B.',
+        'Italian Cinema: 92. The missing items are ones your professor hasn’t graded yet, and none are late.',
+      ] },
+      { title: 'Your paper', points: [
+        'Your position: Greek life should remain at SMU. Keep it under 1,900 words, and include counterarguments.',
+        'Marc is making a Google Doc for it, with a few things Claude can research for you.',
+        'Your draft is due Saturday at 8 PM, so you aren’t writing it Sunday after a day of travel.',
+        'Monday, Nov 30: ten minutes on your speech research, then your grades and your paper. Tuesday, Dec 1: a short meeting to finalize the paper and make sure it’s submitted.',
+      ] },
+    ],
+    deliverables: [
+      { group: 'Your Stats class', text: 'Finish Learning Curve 8.3, Homework 8.1, and Learning Curve 8.4.', due: 'Mon, Nov 23' },
+      { group: 'Your Stats class', text: 'Reply to Brad’s email with a time that works.', due: 'When Brad writes' },
+      { group: 'Your paper', text: 'Send Marc your Greek life paper draft.', due: 'Sat, Nov 28, 8 PM' },
+      { group: 'Your policy speech', text: 'Answer the questions in Speech Research with Claude, and know which sources you’d use.', due: 'Mon, Nov 30', href: `${WORKSPACE}?tab=t.b220628fyaik`, link: 'Open Speech Research' },
+    ],
+  },
+  {
     n: 14, date: 'Thursday, November 19', title: 'Your persona, and StoryBrand',
     takeaways: [
       { idea: 'Your persona can be dry.', why: 'Every presenter plays a version of themselves. The Weekend Update anchors on SNL don’t act that way at home. You don’t need to fake energy. Kyle Prue, the comedian Marc showed you, is about as dry as they come.' },
